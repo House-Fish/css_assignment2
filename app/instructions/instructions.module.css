@@ -1,0 +1,71 @@
+
+.instructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    background: #a0e4ff;
+  }
+  
+  .instructionsBasicGuide {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    background: #a0e4ff;
+    font-family: 'Gill Sans', sans-serif;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .instructionsTitle {
+    font-size: 1.5em; /* Adjust the font size as needed */
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
+    color: #ffffff;
+    margin-bottom: -70px; /* Reduce the bottom margin */
+  }
+
+  
+  .instructionsText {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff; 
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 150px;
+  }
+  
+  .spaceBar {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    background-color: #4bae4e;
+    font-size: 1em;
+    color: #ffffff;
+    font-family: 'Pacifico', cursive;
+    border-radius: 7px;
+  }
+  
+  .spaceBarContainer {
+    padding-left: 150px;
+    font-size: 1.3em;
+    margin-left: 80px;
+    max-width: 550px;
+    letter-spacing: 2px;
+  }
+  
+  .gamePreviewPlaceholder {
+    width: 900px;
+    height: 700px;
+    background-color: #d6f5d6; 
+    border-radius: 10px;
+    margin-right: 80px;
+  }
+
+
+  
+  
+  
+  
+  

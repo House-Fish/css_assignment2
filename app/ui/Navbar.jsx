@@ -19,13 +19,7 @@ export default function Navbar() {
         Credits
       </Link>
 
-      <Image
-        src="/flappy.svg"
-        alt="Flappy Bird Logo"
-        width={100}
-        height={50}
-        style={{ marginLeft: "auto", paddingRight: "20px" }}
-      />
+      
     </nav>
   );
 }

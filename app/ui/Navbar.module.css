@@ -1,3 +1,5 @@
+/* Navbar.module.css */
+
 .navbar {
   display: flex;
   background-color: #4bae4e;
@@ -14,10 +16,6 @@
 
 .navitem:hover {
   background-color: #528a2c;
-  color: white;
 }
 
-.logoContainer {
-  margin-left: auto;
-  padding: 10px;
-}
+
