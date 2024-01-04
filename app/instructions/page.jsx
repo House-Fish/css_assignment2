@@ -4,39 +4,42 @@ import styles from './instructions.module.css'; // Import the CSS module
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
-
+// Effect Animation Code
 const AnimatedText = ({ text }) => {
   const [visibleText, setVisibleText] = useState('');
 
   useEffect(() => {
     // Variable to keep track of the current index in the text
-    let index = 0;
+    let index = 1;
     const interval = setInterval(() => {
       // Check if we have reached the end of the text
-      if (index === text.length) {
+      if (index > text.length) {
         clearInterval(interval);
       } else {
         // Update the 'visibleText' state by taking a substring of 'text' up to the current index
-        setVisibleText(text.substring(0, index + 1));
+        setVisibleText(text.substring(0, index));
         index += 1;
       }
     }, 100);
-
-    return () => {
-      clearInterval(interval);
-    };
   }, [text]);
 
   return <span>{visibleText}</span>;
 };
 
 
-
 export default function Instructions() {
   return (
-    <div>
+    <div className={styles.skyContainer}>
       {/* Introduction */}
       <div className={styles.instructions}>
+      {/* Cloud on the left */}
+      <Image
+          src="/cloud.svg"
+          alt="Cloud Logo"
+          width={100}
+          height={50}
+          className={`${styles.cloud} ${styles.left}`}
+        />
         <p className={styles.instructionsTitle}>
           <Image
             src="/flappy.svg"
@@ -45,6 +48,28 @@ export default function Instructions() {
             height={250}
           />
         </p>
+
+        {/* Cloud on the right */}
+        <Image
+          src="/cloud.svg"
+          alt="Cloud Logo"
+          width={100}
+          height={50}
+          className={`${styles.cloud} ${styles.right}`}
+        />
+
+        <Image
+          src="/bird.png"
+          alt="Bird Logo"
+          width={100}
+          height={50}
+        
+
+        
+        
+        />
+
+
         <div className={styles.instructionsTextContainer}>
           <p className={styles.instructionsTextLine}>
             <strong>
@@ -54,7 +79,7 @@ export default function Instructions() {
           </p>
         </div>
       </div>
-      
+
       {/* Game Instructions */}
       <div className={styles.instructionsBasicGuide}>
         <p className={styles.spaceBarContainer}>

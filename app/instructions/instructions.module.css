@@ -1,3 +1,21 @@
+
+.cloud.left {
+  top: 100px;
+  width: 300px;
+  height: 200px;
+  left: 200px;
+  position: absolute;
+}
+
+.cloud.right {
+  top: 150px;
+  right: 140px;
+  width: 300px;
+  height: 200px;
+  position: absolute;
+}
+
+
 .instructions {
   display: flex;
   justify-content: center;
@@ -5,7 +23,9 @@
   flex-direction: column;
   text-align: center;
   background: #a0e4ff;
+  margin: 0 auto; 
 }
+
 
 .instructionsBasicGuide {
   display: flex;
@@ -18,7 +38,7 @@
 }
 
 .instructionsTitle {
-  margin-bottom: -70px; 
+  margin-bottom: -60px; 
 }
 
 .instructionsText {
@@ -78,7 +98,7 @@
 
 .gamePreviewPlaceholder1 {
   display: flex;
-  width: 2100px;
+  width: 100%;
   height: 480px;
   background-color: #d6f5d6;
   border-radius: 15px;
