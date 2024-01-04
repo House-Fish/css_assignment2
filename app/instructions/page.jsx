@@ -44,8 +44,8 @@ export default function Instructions() {
           <Image
             src="/flappy.svg"
             alt="Flappy Bird Logo"
-            width={350}
-            height={250}
+            width={450}
+            height={350}
           />
         </p>
 
