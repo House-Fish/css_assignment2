@@ -1,11 +1,41 @@
-import React from 'react';
+'use client';
+
 import styles from './instructions.module.css'; // Import the CSS module
 import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
 
-export default function App() {
+
+const AnimatedText = ({ text }) => {
+  const [visibleText, setVisibleText] = useState('');
+
+  useEffect(() => {
+    // Variable to keep track of the current index in the text
+    let index = 0;
+    const interval = setInterval(() => {
+      // Check if we have reached the end of the text
+      if (index === text.length) {
+        clearInterval(interval);
+      } else {
+        // Update the 'visibleText' state by taking a substring of 'text' up to the current index
+        setVisibleText(text.substring(0, index + 1));
+        index += 1;
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [text]);
+
+  return <span>{visibleText}</span>;
+};
+
+
+
+export default function Instructions() {
   return (
     <div>
-      {/* Introduction to the Game */}
+      {/* Introduction */}
       <div className={styles.instructions}>
         <p className={styles.instructionsTitle}>
           <Image
@@ -15,13 +45,17 @@ export default function App() {
             height={250}
           />
         </p>
-        <p className={styles.instructionsText}>
-          Learn to soar through the skies and conquer the pipes. <br />
-          This guide will teach you how to play and be the{' '}
-          <strong>highest flapper!</strong>
-        </p>
+        <div className={styles.instructionsTextContainer}>
+          <p className={styles.instructionsTextLine}>
+            <strong>
+              <AnimatedText text="Learn to soar through the skies, conquer the pipes
+              and become the best flapper!"/>
+            </strong>
+          </p>
+        </div>
       </div>
-
+      
+      {/* Game Instructions */}
       <div className={styles.instructionsBasicGuide}>
         <p className={styles.spaceBarContainer}>
           Hit the <span className={styles.spaceBar}>space</span> imparts a
