@@ -18,8 +18,6 @@ export default function Navbar() {
       <Link className={styles.navitem} href="/credits">
         Credits
       </Link>
-
-      
     </nav>
   );
 }

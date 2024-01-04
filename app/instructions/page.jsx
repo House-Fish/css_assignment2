@@ -23,11 +23,12 @@ export default function App() {
 
       <div className={styles.instructionsBasicGuide}>
         <p className={styles.spaceBarContainer}>
-          Hit the <span className={styles.spaceBar}>space</span> to continuously move up. <br/><br/>Each press imparts a slight upward lift, and careful timing is crucial to navigate through gaps and varying pipe heights. <br/> <br/>Score points by successfully passing through pipes, earning +1 for each passage.<br/><br/> 
+          Hit the <span className={styles.spaceBar}>space</span> imparts a slight upward lift. <br/><br/>Careful timing is crucial to navigate through gaps and varying pipe heights. <br/> <br/>Score points by successfully passing through pipes, earning +1 for each passage.<br/><br/> 
           Be cautious of obstacles — colliding with pipes ends the game, and watch for sudden changes in pipe height. Occasionally, encounter special pipes with gaps, barriers, or moving elements, and beware of Venus fly traps that can unexpectedly emerge, ending the game. Enjoy the challenge, have fun playing Flappy Bird, and challenge your friends to beat your high score.
         </p>
-        <div className={styles.gamePreviewPlaceholder}>
-
+        <div className={styles.gamePreviewPlaceholder1}>
+        </div>
+        <div className={styles.gamePreviewPlaceholder2}>
         </div>
       </div>
     </div>

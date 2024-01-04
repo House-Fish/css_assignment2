@@ -1,11 +1,9 @@
-
 .instructions {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-
     background: #a0e4ff;
   }
   
@@ -24,14 +22,15 @@
     font-weight: bold;
     font-family: 'Pacifico', cursive;
     color: #ffffff;
+    text-shadow: 2px 2px #000000;
     margin-bottom: -70px; /* Reduce the bottom margin */
   }
-
   
   .instructionsText {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bold;
     color: #ffffff; 
+    text-shadow: 1.2px 1.2px #483C32;
     font-family: 'Pacifico', cursive;
     margin-bottom: 150px;
   }
@@ -48,20 +47,27 @@
   }
   
   .spaceBarContainer {
-    padding-left: 150px;
+    padding-left: 80px;
+    padding-right: 50px;
     font-size: 1.3em;
-    margin-left: 80px;
+    margin-left: 10px;
     max-width: 550px;
     letter-spacing: 2px;
+    text-shadow: 1.1px 1.1px #483C32;
+    font-family: 'Pacifico', cursive;
   }
   
-  .gamePreviewPlaceholder {
-    width: 900px;
-    height: 700px;
+  .gamePreviewPlaceholder1 {
+    width: 2100px;
+    height: 470px;
     background-color: #d6f5d6; 
     border-radius: 10px;
     margin-right: 80px;
   }
+
+
+
+  
 
 
   
