@@ -1,8 +1,8 @@
 
 .cloud.left {
   top: 100px;
-  width: 300px;
-  height: 200px;
+  width: 500px;
+  height: 250px;
   left: 200px;
   position: absolute;
 }
@@ -10,11 +10,14 @@
 .cloud.right {
   top: 150px;
   right: 140px;
-  width: 300px;
-  height: 200px;
+  width: 500px;
+  height: 250px;
   position: absolute;
 }
 
+.bird{
+  transform: translateY(50px) translateX(80px) rotate(14deg);
+}
 
 .instructions {
   display: flex;
@@ -38,7 +41,7 @@
 }
 
 .instructionsTitle {
-  margin-bottom: -100px; 
+  margin-bottom: -60px; 
 }
 
 .instructionsText {

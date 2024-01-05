@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './instructions.module.css'; // Import the CSS module
+import styles from './page.module.css'; // Import the CSS module
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
@@ -34,40 +34,35 @@ export default function Instructions() {
       <div className={styles.instructions}>
       {/* Cloud on the left */}
       <Image
-          src="/cloud.svg"
+          src="/Cloud.png"
           alt="Cloud Logo"
-          width={100}
-          height={50}
+          width={250}
+          height={200}
           className={`${styles.cloud} ${styles.left}`}
+        />
+        {/* Cloud on the right */}
+        <Image
+          src="/Cloud.png"
+          alt="Cloud Logo"
+          width={250}
+          height={200}
+          className={`${styles.cloud} ${styles.right}`}
+        />
+        <Image
+          src="/bird.png"
+          alt="Bird Logo"
+          width={150}
+          height={100}
+          className={`${styles.bird}`}
         />
         <p className={styles.instructionsTitle}>
           <Image
             src="/flappy.svg"
             alt="Flappy Bird Logo"
             width={450}
-            height={350}
+            height={250}
           />
         </p>
-
-        {/* Cloud on the right */}
-        <Image
-          src="/cloud.svg"
-          alt="Cloud Logo"
-          width={100}
-          height={50}
-          className={`${styles.cloud} ${styles.right}`}
-        />
-
-        <Image
-          src="/bird.png"
-          alt="Bird Logo"
-          width={100}
-          height={50}
-        
-
-        
-        
-        />
 
 
         <div className={styles.instructionsTextContainer}>
