@@ -32,28 +32,13 @@ export default function Instructions() {
     <div className={styles.skyContainer}>
       {/* Introduction */}
       <div className={styles.instructions}>
-      {/* Cloud on the left */}
-      <Image
-          src="/Cloud.png"
-          alt="Cloud Logo"
-          width={250}
-          height={200}
-          className={`${styles.cloud} ${styles.left}`}
-        />
-        {/* Cloud on the right */}
-        <Image
-          src="/Cloud.png"
-          alt="Cloud Logo"
-          width={250}
-          height={200}
-          className={`${styles.cloud} ${styles.right}`}
-        />
+    
         <Image
           src="/bird.png"
           alt="Bird Logo"
           width={150}
           height={100}
-          className={`${styles.bird}`}
+          className={`${styles.bird} ${styles.birdfloating}`}
         />
         <p className={styles.instructionsTitle}>
           <Image
@@ -74,9 +59,9 @@ export default function Instructions() {
           </p>
         </div>
       </div>
-
-      {/* Game Instructions */}
-      <div className={styles.instructionsBasicGuide}>
+    
+      <div className={styles.gamePreview1}></div>
+      <div className={styles.gamePreview2}>
         <p className={styles.spaceBarContainer}>
           Hit the <span className={styles.spaceBar}>space</span> imparts a
           slight upward lift. <br />
@@ -91,9 +76,17 @@ export default function Instructions() {
           fun playing Flappy Bird, and challenge your friends to beat your high
           score.
         </p>
+        
+        
+
+        
         <div className={styles.gamePreviewPlaceholder1}></div>
         <div className={styles.gamePreviewPlaceholder2}></div>
       </div>
+      
+     
+      
+      
     </div>
   );
 }

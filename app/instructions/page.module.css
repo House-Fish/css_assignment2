@@ -1,22 +1,35 @@
 
-.cloud.left {
-  top: 100px;
-  width: 500px;
-  height: 250px;
-  left: 200px;
-  position: absolute;
+.skyContainer {
+  background: url('/background2.png') center center no-repeat;
+  background-size: cover;
+  margin-bottom: 20px;
+  padding-bottom: 130px;
 }
 
-.cloud.right {
-  top: 150px;
-  right: 140px;
-  width: 500px;
-  height: 250px;
-  position: absolute;
-}
-
-.bird{
+.bird {
   transform: translateY(50px) translateX(80px) rotate(14deg);
+}
+
+.birdfloating {
+  animation: floatAnimation 10s infinite linear;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-14deg);
+  }
+  25% {
+    transform: translateY(-20px) translateX(50px) rotate(-20px);
+  }
+  50% {
+    transform: translateY(0) translateX(100px) rotate(140deg);
+  }
+  75% {
+    transform: translateY(20px) translateX(50px) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(140deg);
+  }
 }
 
 .instructions {
@@ -25,16 +38,13 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-  background: #b4e6f9;
   margin: 0 auto; 
 }
-
 
 .instructionsBasicGuide {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background: #b4e6f9;
   font-family: 'Gill Sans', sans-serif;
   color: #ffffff;
   font-weight: bold;
@@ -50,7 +60,6 @@
   color: #ffffff;
   text-shadow: 1.2px 1.2px #483C32;
   font-family: 'Pacifico', cursive;
-  
 }
 
 .instructionsTextContainer {
@@ -59,7 +68,7 @@
   color: #ffffff;
   text-shadow: 1.2px 1.2px #483C32;
   font-size: 1.2em;
-  padding-bottom:100px;
+  padding-bottom: 100px;
   font-family: 'Pacifico', cursive;
   letter-spacing: 2px;
 }
@@ -81,33 +90,45 @@
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 5px;
-  background-color: #4bae4e;
+  background-color: #ff7700;
   font-size: 1em;
   color: #ffffff;
   font-family: 'Pacifico', cursive;
-  border-radius: 7px;
+
 }
 
 .spaceBarContainer {
-  padding-left: 70px;
-  font-size: 1.2em;
-  margin-left: 8px;
-  margin-right: 30px;
-  max-width: 650px;
-  letter-spacing: 2px;
+  
+  font-size: 1em;
+  color:#ffffff;
+  max-width: 1500px;
+  letter-spacing: 1.5px;
   text-shadow: 1.1px 1.1px #483C32;
   font-family: 'Pacifico', cursive;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
-.gamePreviewPlaceholder1 {
-  display: flex;
-  width: 900px;
-  height: 425px;
-  background-color: #d6f5d6;
-  border-radius: 15px;
-  margin-right: 60px;
+.gamePreview1 {
+  width: 70%;
+  height: 600px;
+  background-color: #F9DC35;
+  margin: 17px auto; 
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  opacity: 0.8;
+
 }
 
+.gamePreview2{
+  width: 70%;
+  height: 250px;
+  background-color: #FE9800;
+  margin: -20px auto; 
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  
+}
 
 
 
