@@ -7,6 +7,15 @@
     background-size: cover;
   }
 
+.frame {
+    background-color: rgba(255, 255, 255, 0.75); /* White with 10% opacity */
+    margin: 16px;
+    padding: 16px;
+    border-radius: 0px;
+    /* Other styles as needed */
+}
+
+
   .flappybirdfont {
     /* display: flex;
     justify-content: space-between;
