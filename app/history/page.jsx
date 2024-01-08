@@ -7,6 +7,7 @@ import styles from './page.module.css';
 function App() {
     return (
         <div className={styles.parallax}>
+            
             <Container sx={{ height: "10vh", display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography className={styles.flappybirdfont}>
                     The history of video gaming
@@ -40,7 +41,7 @@ function App() {
                     maxWidth: { xs: 350, md: 250 },
                 }}
                 alt="Tennis for two."
-                src="/tennis_for_two.jpg"
+                src="/tennis_for_two.gif"
                 />
             </Container>
         </div>
