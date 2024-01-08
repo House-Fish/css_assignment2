@@ -1,0 +1,19 @@
+.parallax {
+    background-image: url('/background2.png');
+    height: 100vh; 
+    background-attachment: fixed; /* parallex scrolling effect?? */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .flappybirdfont {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: flex-start; */
+    font-family: 'Gill Sans', sans-serif;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: small;
+  }
+  
