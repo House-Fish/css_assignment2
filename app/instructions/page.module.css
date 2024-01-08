@@ -1,5 +1,6 @@
 
 .skyContainer {
+  /* Background of the Website */
   background: url('/background2.png') center center no-repeat;
   background-size: cover;
   margin-bottom: 20px;
@@ -7,27 +8,34 @@
 }
 
 .bird {
+  /* Initial position and rotation of the bird */
   transform: translateY(50px) translateX(80px) rotate(14deg);
 }
 
 .birdfloating {
+   /* Properties for the floating animation */
   animation: floatAnimation 10s infinite linear;
 }
 
 @keyframes floatAnimation {
   0% {
+    /* Initial position and rotation of the bird at the start of the animation */
     transform: translateY(0) translateX(0) rotate(-14deg);
   }
   25% {
-    transform: translateY(-20px) translateX(50px) rotate(-20px);
+    /* Midway through the animation: bird moves up, right, and tilts */
+    transform: translateY(-20px) translateX(50px) rotate(-20deg);
   }
   50% {
+    /* Halfway through the animation: bird moves right and tilts further */
     transform: translateY(0) translateX(100px) rotate(140deg);
   }
   75% {
+    /* Three-quarters through the animation: bird moves down, right, and tilts */
     transform: translateY(20px) translateX(50px) rotate(-10deg);
   }
   100% {
+    /* At the end of the animation: bird returns to its initial position and rotation */
     transform: translateY(0) translateX(0) rotate(140deg);
   }
 }
@@ -98,7 +106,7 @@
 }
 
 .spaceBarContainer {
-  
+  /* Controls Text */
   font-size: 1em;
   color:#ffffff;
   max-width: 1500px;
@@ -110,6 +118,7 @@
 }
 
 .gamePreview1 {
+  /* Background of the Game */
   width: 70%;
   height: 600px;
   background-color: #F9DC35;
@@ -121,13 +130,13 @@
 }
 
 .gamePreview2{
+  /* Background of the Game Instructions */
   width: 70%;
   height: 250px;
   background-color: #FE9800;
   margin: -20px auto; 
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  
 }
 
 

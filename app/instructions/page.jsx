@@ -32,7 +32,6 @@ export default function Instructions() {
     <div className={styles.skyContainer}>
       {/* Introduction */}
       <div className={styles.instructions}>
-    
         <Image
           src="/bird.png"
           alt="Bird Logo"
@@ -48,8 +47,6 @@ export default function Instructions() {
             height={250}
           />
         </p>
-
-
         <div className={styles.instructionsTextContainer}>
           <p className={styles.instructionsTextLine}>
             <strong>
@@ -76,17 +73,7 @@ export default function Instructions() {
           fun playing Flappy Bird, and challenge your friends to beat your high
           score.
         </p>
-        
-        
-
-        
-        <div className={styles.gamePreviewPlaceholder1}></div>
-        <div className={styles.gamePreviewPlaceholder2}></div>
       </div>
-      
-     
-      
-      
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Head from "next/head";
 import Navbar from "@/app/ui/Navbar";
+import Credits from "@/app/ui/Credits";
 
-// rest of the code omitted for brevity
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -14,9 +14,9 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
+        <Credits />
       </body>
     </html>
   );
 }
-
 
