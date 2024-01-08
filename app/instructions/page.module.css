@@ -1,0 +1,152 @@
+
+.skyContainer {
+  /* Background of the Website */
+  background: url('/background2.png') center center no-repeat;
+  background-size: cover;
+  margin-bottom: 20px;
+  padding-bottom: 130px;
+}
+
+.bird {
+  /* Initial position and rotation of the bird */
+  transform: translateY(50px) translateX(80px) rotate(14deg);
+}
+
+.birdfloating {
+   /* Properties for the floating animation */
+  animation: floatAnimation 10s infinite linear;
+}
+
+@keyframes floatAnimation {
+  0% {
+    /* Initial position and rotation of the bird at the start of the animation */
+    transform: translateY(0) translateX(0) rotate(-14deg);
+  }
+  25% {
+    /* Midway through the animation: bird moves up, right, and tilts */
+    transform: translateY(-20px) translateX(50px) rotate(-20deg);
+  }
+  50% {
+    /* Halfway through the animation: bird moves right and tilts further */
+    transform: translateY(0) translateX(100px) rotate(140deg);
+  }
+  75% {
+    /* Three-quarters through the animation: bird moves down, right, and tilts */
+    transform: translateY(20px) translateX(50px) rotate(-10deg);
+  }
+  100% {
+    /* At the end of the animation: bird returns to its initial position and rotation */
+    transform: translateY(0) translateX(0) rotate(140deg);
+  }
+}
+
+.instructions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto; 
+}
+
+.instructionsBasicGuide {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: 'Gill Sans', sans-serif;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.instructionsTitle {
+  margin-bottom: -60px; 
+}
+
+.instructionsText {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1.2px 1.2px #483C32;
+  font-family: 'Pacifico', cursive;
+}
+
+.instructionsTextContainer {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  color: #ffffff;
+  text-shadow: 1.2px 1.2px #483C32;
+  font-size: 1.2em;
+  padding-bottom: 100px;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 2px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.instructionsTextLine {
+  margin: 10px 0;
+}
+
+.spaceBar {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  background-color: #ff7700;
+  font-size: 1em;
+  color: #ffffff;
+  font-family: 'Pacifico', cursive;
+
+}
+
+.spaceBarContainer {
+  /* Controls Text */
+  font-size: 1em;
+  color:#ffffff;
+  max-width: 1500px;
+  letter-spacing: 1.5px;
+  text-shadow: 1.1px 1.1px #483C32;
+  font-family: 'Pacifico', cursive;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.gamePreview1 {
+  /* Background of the Game */
+  width: 70%;
+  height: 600px;
+  background-color: #F9DC35;
+  margin: 17px auto; 
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  opacity: 0.8;
+
+}
+
+.gamePreview2{
+  /* Background of the Game Instructions */
+  width: 70%;
+  height: 250px;
+  background-color: #FE9800;
+  margin: -20px auto; 
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  

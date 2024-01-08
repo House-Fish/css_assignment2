@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './instructions.module.css'; // Import the CSS module
+import styles from './page.module.css'; // Import the CSS module
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
@@ -32,44 +32,21 @@ export default function Instructions() {
     <div className={styles.skyContainer}>
       {/* Introduction */}
       <div className={styles.instructions}>
-      {/* Cloud on the left */}
-      <Image
-          src="/cloud.svg"
-          alt="Cloud Logo"
-          width={100}
-          height={50}
-          className={`${styles.cloud} ${styles.left}`}
+        <Image
+          src="/bird.png"
+          alt="Bird Logo"
+          width={150}
+          height={100}
+          className={`${styles.bird} ${styles.birdfloating}`}
         />
         <p className={styles.instructionsTitle}>
           <Image
             src="/flappy.svg"
             alt="Flappy Bird Logo"
             width={450}
-            height={350}
+            height={250}
           />
         </p>
-
-        {/* Cloud on the right */}
-        <Image
-          src="/cloud.svg"
-          alt="Cloud Logo"
-          width={100}
-          height={50}
-          className={`${styles.cloud} ${styles.right}`}
-        />
-
-        <Image
-          src="/bird.png"
-          alt="Bird Logo"
-          width={100}
-          height={50}
-        
-
-        
-        
-        />
-
-
         <div className={styles.instructionsTextContainer}>
           <p className={styles.instructionsTextLine}>
             <strong>
@@ -79,9 +56,9 @@ export default function Instructions() {
           </p>
         </div>
       </div>
-
-      {/* Game Instructions */}
-      <div className={styles.instructionsBasicGuide}>
+    
+      <div className={styles.gamePreview1}></div>
+      <div className={styles.gamePreview2}>
         <p className={styles.spaceBarContainer}>
           Hit the <span className={styles.spaceBar}>space</span> imparts a
           slight upward lift. <br />
@@ -96,8 +73,6 @@ export default function Instructions() {
           fun playing Flappy Bird, and challenge your friends to beat your high
           score.
         </p>
-        <div className={styles.gamePreviewPlaceholder1}></div>
-        <div className={styles.gamePreviewPlaceholder2}></div>
       </div>
     </div>
   );

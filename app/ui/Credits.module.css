@@ -1,0 +1,14 @@
+
+.credits {
+    display: flex;
+    background-color: #363936;
+    overflow: hidden;   
+    padding-left: 20px;
+    margin-top: -20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1.2px 1.2px #483C32;
+    font-family: 'Pacifico', cursive;
+  }
+  
