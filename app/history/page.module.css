@@ -1,71 +1,23 @@
-.parallax {
-  background-image: url('/background2.png');
-  height: 100vh;
-  background-attachment: fixed;
-  /* parallex scrolling effect?? */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* Full height of the viewport */
+  overflow: hidden;
 }
 
-.frame {
-  background-color: rgba(255, 255, 255, 0.90);
-  /* White with 10% opacity */
-  padding: 16px;
-  border-radius: 0px;
-  /* Other styles as needed */
+.heroVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video covers the entire container */
+  filter: brightness(50%); /* Darken the video for text visibility */
 }
 
-
-.flappybirdfont {
-  /* display: flex;
-    justify-content: space-between;
-    align-items: flex-start; */
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #000000;
-  text-shadow: 1.2px 1.2px #ffffff;
-  font-family: 'Pacifico', cursive;
-}
-
-
-.circularButton {
-  border-radius: 100%;
-  width: 100px;
-  height: 100px;
-  background-color: #81d9ff;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #000000;
-  text-shadow: 1.2px 1.2px #ffffff;
-  font-family: 'Pacifico', cursive;
-}
-/* the line */
-.timeline {
-  width: 70%; 
-  height: 1px;
-  background-color: #000000;  
+.heroText {
   position: absolute;
-  top: auto;
-  transform: translateY(-50%);
-}
-/* the dot */
-.timelineCursor {
-  height: 20px;
-  width: 20px;
-  background-color: #ffffff;
-  border: 1px;
-  border-color:  #000000;
-  border-radius: 50%;
-  position: absolute;
-  border-style: solid;
-  transform: scale(1); 
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Default shadow */
-  transition: left 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-/* hover styles for cursor */
-.nextButton:hover + .timelineCursor {
-  transform: translate(-50%, -50%) scale(2);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem; /* Large, eye-catching font size */
+  text-align: center;
 }
