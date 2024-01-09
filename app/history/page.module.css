@@ -11,7 +11,6 @@
 .frame {
   background-color: rgba(255, 255, 255, 0.90);
   /* White with 10% opacity */
-  margin: 32px;
   padding: 16px;
   border-radius: 0px;
   /* Other styles as needed */
@@ -60,4 +59,13 @@
   border-radius: 50%;
   position: absolute;
   border-style: solid;
+  transform: scale(1); 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Default shadow */
+  transition: left 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* hover styles for cursor */
+.nextButton:hover + .timelineCursor {
+  transform: translate(-50%, -50%) scale(2);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
 }
