@@ -1,23 +1,40 @@
 'use client';
 
-import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Container, Typography, Button, Box } from '@mui/material';
 import styles from './page.module.css'; 
 
 function App() {
+    const [currentStage, setCurrentStage] = useState(0);
     return (
         <div className={styles.parallax}>
             <Container className = {styles.frame} sx = {{width: '90%', height: '100vh'}}>
+                {/* Timeline + Circle container*/}
                 <Container sx={{ height: "10vh", display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <Button variant="contained" className = {styles.circularButton} sx={{ borderRadius: '50%' , width: '64px', height: '64px', boxShadow: 'none'}}>
-                           the early days
-                    </Button>
+                        <Box className = {styles.timeline}/>
+                        <Box className={styles.timelineCursor} sx={{
+                            left: `${15 + currentStage * (70 / 5)}%`, // my formula
+                            top: 'auto',
+                            transform: 'translate(-50%, 0%)',
+                        }} />
                 </Container>
+                <Container sx={{ height: "10vh", display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Button variant="contained" onClick={() => setCurrentStage(current => current > 0 ? current - 1 : 0)} sx={{ mb: 2, width: '100px' }}>
+                        Previous
+                    </Button>
+                    <Box sx = {{width: '80%'}}/>
+                    <Button variant="contained" onClick={() => setCurrentStage(current => current < 5 ? current + 1 : 5)} sx={{ mb: 2, width: '100px' }}>
+                        Next
+                    </Button>
+                    
+                </Container>
+                {/* Abstract of subpage container*/}
                 <Container sx={{ height: "10vh", display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography className={styles.flappybirdfont}>
                         The history of video gaming
                     </Typography>
                 </Container>
+                {/* Abstract of subpage container*/}
                 <Container sx={{ height: "30vh", display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'left' }}>
                     <Typography className={styles.flappybirdfont}>
                     Welcome to the thrilling world of gaming—a saga that unfolds over decades, 
