@@ -1,7 +1,9 @@
 .heroSection {
   position: relative;
   width: 100%;
-  height: 50vh; /* Full height of the viewport */
+  height: 0;
+  padding-top: 56.25%;
+  position: relative;
   overflow: hidden;
 }
 
@@ -10,6 +12,11 @@
   height: 100%;
   object-fit: cover; /* Ensures video covers the entire container */
   filter: brightness(50%); /* Darken the video for text visibility */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
 }
 
 .heroText {

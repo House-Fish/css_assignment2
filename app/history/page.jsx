@@ -11,15 +11,15 @@ function App() {
             <div className={styles.container}>
                 <Box className={styles.heroSection}>
                     <Image
-                        src="/hero_section.gif"
+                        src="/hero_section2.gif"
                         alt="Hero Section"
                         layout="fill"
                         objectFit="cover"
                         className={styles.heroVideo}
                     />
-                    <Box className={styles.heroTextOverlay}>
-                        <Typography variant="h2" component="h1" color="common.white">
-                            The History of Video Games
+                    <Box className={styles.heroText}>
+                        <Typography variant="h2" component="h1" color="common.white" zIndex={999}>
+                            The History of Video Gaming
                         </Typography>
                     </Box>
                 </Box>
