@@ -1,13 +1,18 @@
 'use client';
 
 import React from 'react';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Button } from '@mui/material';
 import styles from './page.module.css'; 
 
 function App() {
     return (
         <div className={styles.parallax}>
             <Container className = {styles.frame} sx = {{width: '90%', height: '100vh'}}>
+                <Container sx={{ height: "10vh", display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Button variant="contained" className = {styles.circularButton} sx={{ borderRadius: '50%' , width: '64px', height: '64px', boxShadow: 'none'}}>
+                           the early days
+                    </Button>
+                </Container>
                 <Container sx={{ height: "10vh", display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography className={styles.flappybirdfont}>
                         The history of video gaming
