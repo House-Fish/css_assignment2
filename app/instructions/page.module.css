@@ -10,7 +10,7 @@
 .bird {
   /* Initial position and rotation of the bird */
   transform: translateY(50px) translateX(80px) rotate(14deg);
-}
+} 
 
 .birdfloating {
    /* Properties for the floating animation */
@@ -132,9 +132,9 @@
 .gamePreview2{
   /* Background of the Game Instructions */
   width: 70%;
-  height: 250px;
+  height: 275px;
   background-color: #FE9800;
-  margin: -20px auto; 
+  margin: -17.5px auto; 
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
