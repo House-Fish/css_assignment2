@@ -26,8 +26,31 @@
   width: 90%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 5rem; /* large font size */
+  font-size: 10vw; /* large font size */
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   letter-spacing: 1px; /* dramatic effect?? */
+}
+
+.button {
+  background-color: #ffffff; /* Green background */
+  color: rgb(0, 0, 0); /* White text */
+  border: none; /* No border */
+  text-transform: uppercase; /* Optional: makes text uppercase */
+  padding: 1vw 2vw; /* Padding around the text */
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline for text */
+  display: inline-block; /* Aligns button correctly */
+  font-size: 2vw; /* Font size */
+  margin: 4px 2px; /* Margin around the button */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  z-index: 10;
+  transform: translate(0%, -10vw);
+}
+
+.button:hover {
+  background-color: #323232; /* Slightly darker green on hover */
+  color:#ffffff
 }
