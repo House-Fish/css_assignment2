@@ -43,7 +43,7 @@ button {
 .startBtn {
   position: absolute;
   height: 10%;
-  left: 35%;
+  left: 31%;
   bottom: 45%;
   opacity: 0.8;
   z-index: 1;
@@ -85,7 +85,7 @@ button {
 }
 
 .gameWindow {
-  color: #F9DC35;
+  color: rgb(37, 37, 37);
   margin-bottom: 20px;
   padding-bottom: 130px;
 }

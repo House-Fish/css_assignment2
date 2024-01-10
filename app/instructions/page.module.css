@@ -94,7 +94,7 @@
   margin: 10px 0;
 }
 
-.spaceBar {
+.click {
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 5px;
@@ -105,7 +105,7 @@
 
 }
 
-.spaceBarContainer {
+.clickContainer {
   /* Controls Text */
   font-size: 1em;
   color:#ffffff;
@@ -120,7 +120,7 @@
 .gamePreview1 {
   /* Background of the Game */
   width: 70%;
-  height: 600px;
+  height: 665.5px;
   background-color: #F9DC35;
   margin: 17px auto; 
   border-top-left-radius: 15px;
