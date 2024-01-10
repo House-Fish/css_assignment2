@@ -13,7 +13,7 @@ function App() {
             <div className={styles.container}>
                 <HeroSection/>
             </div>
-            <Container maxWidth={false} sx={{ width: '100%', height: '30vh', bgcolor: 'lightgrey'}}>
+            <Container id='first_para' maxWidth={false} sx={{ width: '100%', height: '30vh', bgcolor: 'lightgrey'}}>
                 <Typography
                     variant="h6"
                     align="center"
@@ -34,12 +34,12 @@ function App() {
         </div>
     );
 }
+const scrollFirst = () => {
+    document.getElementById('first_para').scrollIntoView({ behavior: 'smooth' });
+};
 
 function HeroSection() {
-    const handleClick = (scrollAmount) => () => {
-        const scrollValue = window.innerHeight * (scrollAmount / 100);
-        window.scrollBy({ top: scrollValue, behavior: 'smooth' });
-    };
+    
     return (
         <Box className={styles.heroSection}>
             <Grid container alignItems="center" justifyContent="center">
@@ -58,7 +58,7 @@ function HeroSection() {
                     </Typography>
                 </Grid>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Button className={styles.button} variant="contained" onClick={handleClick(47)}>
+                    <Button className={styles.button} variant="contained" onClick={scrollFirst}>
                         Learn More
                     </Button>
                 </Grid>
@@ -69,11 +69,11 @@ function HeroSection() {
 
 //SIDE BAR STEPPER CODE
 
-
 const sections = ['Era 1', 'Era 2', 'Era 3', 'Era 4', 'Era 5', 'Era 6']; //INCOMPLETE
 const scrollToSection = (section) => {
     document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
 };
+
 function SidebarStepper() {
     const [isSticky, setIsSticky] = useState(false);
     const navbarHeight = 50;
