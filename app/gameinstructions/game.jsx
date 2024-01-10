@@ -2,6 +2,7 @@
 import './game.css';
 import React from "react";
 import { useState, useEffect } from 'react';
+import TextBubble from "./TextBubble";
 
 
 function DeathPage({restartGame, score}) {
@@ -11,7 +12,6 @@ function DeathPage({restartGame, score}) {
       <img src="/bird2.png" style={{height: "45%", marginLeft: "3.5px", marginTop: "45px"}}/>
       <div className="deathText">
         <p>The tutorial is finished! </p>
-        <p>Go play the Game and get the highest score!</p>
       </div>
       <button className="againBtn" onClick={restartGame}>Play the tutorial again?</button>
     </div>
@@ -49,6 +49,7 @@ function Game({over, score, setScore}) {
   const [gameStart, setGameStart] = useState(false);
   const [totalDistance, setTotalDistance] = useState(0); // -- Tevel's Code
   const [showInstructions, setShowInstructions] = useState(true); // -- Tevel's Code
+  const [showTextBubble, setShowTextBubble] = useState(false); // Tevel's Code
   
   useEffect(() => {
     const collisionInterval = setInterval(() => {
@@ -109,6 +110,8 @@ function Game({over, score, setScore}) {
     return () => clearInterval(interval);
   }, [gameStart, topDist]);
 
+  
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (gameStart == true) {
@@ -123,6 +126,20 @@ function Game({over, score, setScore}) {
     return () => clearInterval(interval);
   }, [gameStart, upLeftDist, downLeftDist]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (gameStart == true) {
+        // Check if half of the distance is covered
+        if (totalDistance >= 20 && !showTextBubble) {
+          setShowTextBubble(true);
+        }
+      }
+    }, 100);
+  
+    return () => clearInterval(interval);
+  }, [gameStart, totalDistance, showTextBubble]);
+
+  
   const handleClick = () => {
     if (gameStart === true) {
       setTopDist((prevTopDist) => prevTopDist - 75);
@@ -144,23 +161,22 @@ function Game({over, score, setScore}) {
       setShowInstructions(false);
     }
   };
+
   return (
     <div className="background" onClick={handleClick}>
       {gameStart === false && (
         <div>
-          {showInstructions && (
-            // Display instructions if showInstructions is true
-            <p className="instructionPrompt"></p>
-          )}
+          {showInstructions && <p className="instructionPrompt"></p>}
+          {showTextBubble && <TextBubble />}
           <button className="startBtn" onClick={handleStart}>
             Start Game
           </button>
         </div>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src="/upBlock.png" style={{marginLeft: upLeftDist}} />
-      <img className="bird" src="/bird.png" style={{top: topDist}} />
-      <img className="downObstacle" src="/downBlock.png" style={{marginLeft: downLeftDist}} />
+      <img className="upObstacle" src="/upBlock.png" style={{ marginLeft: upLeftDist }} />
+      <img className="bird" src="/bird.png" style={{ top: topDist }} />
+      <img className="downObstacle" src="/downBlock.png" style={{ marginLeft: downLeftDist }} />
     </div>
   );
 }
