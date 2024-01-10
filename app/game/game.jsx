@@ -153,7 +153,7 @@ function Game({over, score, setScore}) {
       )}
       <div className="score">{score}</div>
       <img className="upObstacle" src="/upBlock.png" style={{marginLeft: upLeftDist}} />
-      <img className="bird" src="/sparrow.png" style={{top: topDist}} />
+      <img className="bird" src="/bird.png" style={{top: topDist}} />
       <img className="downObstacle" src="/downBlock.png" style={{marginLeft: downLeftDist}} />
     </div>    
   )

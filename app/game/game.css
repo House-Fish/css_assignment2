@@ -1,9 +1,11 @@
 
+
 .background {
   position: relative;
-  background-image: url("/sgback2.jpg");
+  background-image: url("/back.png");
   margin-left: auto;
   margin-right: auto;
+  margin-top: 100px;
   height: 660px;
   width: 525px;
   border-style: solid;
@@ -13,7 +15,6 @@
 
 .death {
   position: relative;
-  background-image: url("/white.jpg");
   height: 525px;
   width: auto;
   margin-top: 50px;
@@ -84,6 +85,8 @@ button {
 }
 
 .gameWindow {
+  color: #F9DC35;
   margin-bottom: 20px;
   padding-bottom: 130px;
 }
+
