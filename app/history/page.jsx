@@ -13,6 +13,9 @@ import {
 import Image from "next/image";
 import styles from "./page.module.css";
 
+
+
+
 function App() {
   return (
     <div>
@@ -21,33 +24,49 @@ function App() {
         <HeroSection />
       </div>
       <Container
-        id="first_para"
+        id="Start"
+        maxWidth={false}
+        sx={{ width: "100%", height: "30vh", bgcolor: "lightgrey", maxWidth: 1200, marginTop: 2 }}
+      >
+        <Grid container alignItems="center" justifyContent="center">
+          <Grid item xs={6} sm = {2}>
+            <ol></ol>
+          </Grid>
+          <Grid item xs={6} sm = {6}>
+            <Typography
+              variant="h6"
+              align="center"
+              sx={{ margin: 0, fontWeight: "normal", fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" }}
+              component="p"
+            >
+              Discover the epic journey of gaming, from its rudimentary beginnings
+              to the immersive experiences of today. Join us on a journey through
+              time and technology.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+      
+      <Container
+        id="Start"
         maxWidth={false}
         sx={{ width: "100%", height: "30vh", bgcolor: "lightgrey" }}
       >
-        <Typography
-          variant="h6"
-          align="center"
-          sx={{ margin: 0, fontWeight: "normal" }}
-          component="p"
-        >
-          Discover the epic journey of gaming, from its rudimentary beginnings
-          to the immersive experiences of today. Join us on a journey through
-          time and technology.
-        </Typography>
+        
       </Container>
       <Container id="Era 1" sx={{ width: "100%", height: "200vh" }}></Container>
       <Container id="Era 2" sx={{ width: "100%", height: "200vh" }}></Container>
     </div>
+    
   );
 }
 const scrollFirst = () => {
-  document.getElementById("first_para").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("Start").scrollIntoView({ behavior: "smooth" });
 };
 
 function HeroSection() {
   return (
-    <Box className={styles.heroSection}>
+    <Box style={{ fontFamily: 'inherit' }} className={styles.myHeroSection}>
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Image
@@ -59,7 +78,11 @@ function HeroSection() {
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h4" component="h1" className={styles.heroText}>
+          <Typography 
+            variant="h4" 
+            component="h1" 
+            className={styles.heroText}
+          >
             The History of Video Gaming
           </Typography>
         </Grid>
@@ -87,7 +110,7 @@ function HeroSection() {
 
 //SIDE BAR STEPPER CODE
 
-const sections = ["Era 1", "Era 2", "Era 3", "Era 4", "Era 5", "Era 6"]; //INCOMPLETE
+const sections = ["Start", "Era 1", "Era 2", "Era 3", "Era 4", "Era 5", "Era 6"]; //INCOMPLETE
 const scrollToSection = (section) => {
   document.getElementById(section).scrollIntoView({ behavior: "smooth" });
 };
