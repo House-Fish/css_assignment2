@@ -30,6 +30,7 @@
   text-align: center;
   letter-spacing: 1px; /* dramatic effect?? */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-shadow: 1vw;
 
 }
 
@@ -58,3 +59,26 @@
   color:#ffffff
 }
 
+.contentPage.contentPage {
+  border-bottom: 1px;
+  border-radius: 0px;
+  border-color: black;
+  border-style: solid;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: black;
+  width: 100%;
+  font-size: 1.5vw;
+  height: auto;
+  transition: background-color, font-size 0.4s
+}
+
+.contentPage.contentPage:hover {
+  background-color: #323232; /* Slightly darker green on hover */
+  color:#ffffff;
+  font-size: 2vw !important;
+}
+
+.noPadding{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}

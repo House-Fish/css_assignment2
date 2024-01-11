@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { blue } from "@mui/material/colors";
 
 
 
@@ -21,42 +22,84 @@ function App() {
     <div>
       <div className={styles.container}>
         <HeroSection />
+        <Box sx={{height: "3vh"}}>
+
+        </Box>
       </div>
+
       <Container
         id="Start"
         maxWidth={false}
-        sx={{ width: "100%", height: "30vh", bgcolor: "#ffffff", maxWidth: 1200, marginTop: 2 }}
+        className={styles.noPadding}
+        sx={{ 
+          width: '100%', 
+          height: "auto", 
+          bgcolor: "#ffffff", 
+          maxWidth: "lg", 
+          marginBottom: 5, 
+          boxShadow: 5
+        }}
       >
-        <Grid container spacing = {2} alignItems="center" justifyContent="center">
-          <Grid item xs={12} sm = {4} sx={{boxShadow: 10, height: 100}}>
-            <ol>
-              <li>Content page 1</li>
-            </ol>
+        <Grid container spacing = {2} alignItems="center" justifyContent="center" sx ={{height: '100%', width: '100%', margin: 0}}>
+          <Grid item className={styles.noPadding} xs={12} lg = {5} display= 'flex' alignItems= 'center' justifyContent= 'center' sx={{height:'100%'}}>
+            <Box display = "flex" flexDirection="column" alignItems="center" justifyContent="center" sx = {{width: "100%", height: "100%", margin: 0, padding: 0}}>
+              <Button className={styles.contentPage}> 
+                Early Beginnings <br/> (1950s-1970s)
+              </Button>
+              <Button className = {styles.contentPage}>
+                The Golden Age of <br/> Arcade Games
+              </Button>
+              <Button className = {styles.contentPage}>
+                The Rise of <br/> Home Consoles
+              </Button>
+              <Button className = {styles.contentPage}>
+                The 3D Revolution and <br/> Online Gaming
+              </Button>
+              <Button className = {styles.contentPage} sx = {{borderBottom: 0}}>
+                Modern Era and the <br/> Expansion of Gaming
+              </Button>
+            </Box>
           </Grid>
-          <Grid item xs={12} sm = {8}>
-            <Typography
-              variant="h6"
-              align="center"
-              sx={{ margin: 0, fontWeight: "normal", fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" }}
-              component="p"
-            >
-              Discover the epic journey of gaming, from its rudimentary beginnings
-              to the immersive experiences of today. Join us on a journey through
-              time and technology.
-            </Typography>
+          <Grid item xs={12} lg = {7} display= 'flex' alignItems= 'center' justifyContent= 'center' sx={{boxShadow: 20, width: '100%', height:'100%', bgcolor: "white"}}>
+            <Box display = "flex" flexDirection="column" alignItems="center" justifyContent="center" sx = {{width: "100%", height: "100%", margin: 0, padding: 0}}>
+              <Typography
+                variant="h6"
+                align="center"
+                sx={{ 
+                  margin: 0, 
+                  fontWeight: "normal", 
+                  fontFamily: "'Open Sans', 'Opens Sans Fallback', 'Segoe UI', Tahoma, sans-serif",
+                  fontSize: '1.5rem', 
+                  lineHeight: 1.4,
+                  width: '90%',
+                  bgcolor: "white"
+                }}
+                component="p"
+                textAlign={"justify"}
+              >
+                The history of video gaming is a remarkable journey of technological
+                 innovation and cultural impact. It began in the 1950s and 1970s, an 
+                 experimental phase where the concept of video games emerged. Simple 
+                 yet groundbreaking games like "Tennis for Two" and "Spacewar!" laid 
+                 the foundation. The 1970s marked the commercialization of gaming with 
+                 the Magnavox Odyssey, the first home video game console, and the rise 
+                 of arcade gaming epitomized by "Pong," which brought video games into
+                  the public eye.
+                <br/><br/>
+                Discover the epic journey of gaming, from its rudimentary beginnings
+                to the immersive experiences of today. Join us on a journey through
+                time and technology.
+                <br/><br/>
+                
+              </Typography>
+            </Box>
+
           </Grid>
         </Grid>
       </Container>
       
-      <Container
-        id="Start"
-        maxWidth={false}
-        sx={{ width: "100%", height: "30vh", bgcolor: "lightgrey" }}
-      >
-        
-      </Container>
-      <Container id="Era 1" sx={{ width: "100%", height: "200vh" }}></Container>
-      <Container id="Era 2" sx={{ width: "100%", height: "200vh" }}></Container>
+      
+      
     </div>
     
   );
@@ -67,7 +110,7 @@ const scrollFirst = () => {
 
 function HeroSection() {
   return (
-    <Box style={{ fontFamily: 'inherit' }} className={styles.myHeroSection}>
+    <Box style={{ fontFamily: 'inherit'}} className={styles.myHeroSection}>
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Image
