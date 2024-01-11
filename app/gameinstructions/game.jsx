@@ -1,23 +1,37 @@
 "use client";
-import './game.css';
+import '@/app/game/game.css';
 import React from "react";
 import { useState, useEffect } from 'react';
 import TextBubble from "./TextBubble";
 
 
-function DeathPage({restartGame, score}) {
-
+// DeathPage component
+function DeathPage({ restartGame, score }) {
   return (
     <div className="death">
-      <img src="/bird2.png" style={{height: "45%", marginLeft: "3.5px", marginTop: "45px"}}/>
+      <img src="/skull.png" style={{ height: "45%", marginLeft: "3.5px", marginTop: "45px" }} />
       <div className="deathText">
-        <p>The tutorial is finished! </p>
+        <p>You died! Your final score: {score} </p>
       </div>
-      <button className="againBtn" onClick={restartGame}>Play the tutorial again?</button>
+      <button className="againBtn" onClick={restartGame}>Try again?</button>
     </div>
   );
 }
 
+// TutorialFin component
+function TutorialFin({ restartGame, score }) {
+  return (
+    <div className="tutorialFin">
+      <img src="/bird2.png" style={{ height: "45%", marginLeft: "3.5px", marginTop: "45px" }} />
+      <div className="tutorialFinText">
+        <p>You completed the tutorial!</p>
+      </div>
+      <button className="againBtn" onClick={restartGame}>Play again?</button>
+    </div>
+  );
+}
+
+// UpColliding function
 function UpColliding(bird, upObstacle) {
   const birdPos = bird.getBoundingClientRect();
   const upObstaclePos = upObstacle.getBoundingClientRect();
@@ -30,6 +44,7 @@ function UpColliding(bird, upObstacle) {
   );
 }
 
+// DownColliding function
 function DownColliding(bird, downObstacle) {
   const birdPos = bird.getBoundingClientRect();
   const downObstaclePos = downObstacle.getBoundingClientRect();
@@ -42,15 +57,19 @@ function DownColliding(bird, downObstacle) {
   );
 }
 
-function Game({over, score, setScore}) {
+// Game component
+function Game({ over, score, setScore }) {
   const [topDist, setTopDist] = useState(320);
   const [downLeftDist, setDownLeftDist] = useState(540);
   const [upLeftDist, setUpLeftDist] = useState(540);
   const [gameStart, setGameStart] = useState(false);
-  const [totalDistance, setTotalDistance] = useState(0); // -- Tevel's Code
-  const [showInstructions, setShowInstructions] = useState(true); // -- Tevel's Code
-  const [showTextBubble, setShowTextBubble] = useState(false); // Tevel's Code
-  
+  const [showInstructions, setShowInstructions] = useState(true);
+
+  // Additional state for totalDistance and showTextBubble
+  const [totalDistance, setTotalDistance] = useState(0);
+  const [showTextBubble, setShowTextBubble] = useState(false);
+
+  // useEffect for collision detection
   useEffect(() => {
     const collisionInterval = setInterval(() => {
       const bird = document.querySelector(".bird");
@@ -63,99 +82,93 @@ function Game({over, score, setScore}) {
       }
     }, 10);
 
-    // -- Tevel's Code
     return () => clearInterval(collisionInterval);
   }, [topDist]);
 
+  // useEffect for distance covered
   useEffect(() => {
     const distanceInterval = setInterval(() => {
       if (gameStart) {
-        // Update the total distance covered by the bird
         setTotalDistance((prevTotalDistance) => prevTotalDistance + 1);
       }
     }, 100);
 
     return () => clearInterval(distanceInterval);
-  }, [gameStart]);
-    // -- Tevel's Code
+  }, [gameStart, setTotalDistance]);
 
-
-
+  // useEffect for score update and game end condition
   useEffect(() => {
     const interval = setInterval(() => {
-      if (gameStart == true) {
-        setScore(score => score + 1);
-      }
-    }, 100);
-
-    // -- Tevel's Code
-    if (totalDistance >= 150) {
-        setGameStart(false);
-        over();
-      }
-  
-    return () => clearInterval(interval);
-  }, [gameStart, totalDistance]);
-    // -- Tevel's Code
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart == true) {
-        if (topDist < 613) {
-          setTopDist(prevTopDist => prevTopDist + 10.3);
+      if (gameStart === true) {
+        setScore((prevScore) => prevScore + 1);
+        if (totalDistance >= 130) {
+          setGameStart(false);
+          over();
         }
       }
     }, 100);
-  
+
+    return () => clearInterval(interval);
+  }, [gameStart, totalDistance, over, setScore]);
+
+  // useEffect for bird movement
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (gameStart === true) {
+        if (topDist < 613) {
+          setTopDist((prevTopDist) => prevTopDist + 10.3);
+        }
+      }
+    }, 100);
+
     return () => clearInterval(interval);
   }, [gameStart, topDist]);
 
-  
-
+  // useEffect for obstacle movement
   useEffect(() => {
     const interval = setInterval(() => {
-      if (gameStart == true) {
-          setDownLeftDist(prevDownLeftDist => prevDownLeftDist - 10);
-          setUpLeftDist(prevUpLeftDist => prevUpLeftDist - 10);
+      if (gameStart === true) {
+        setDownLeftDist((prevDownLeftDist) => prevDownLeftDist - 10);
+        setUpLeftDist((prevUpLeftDist) => prevUpLeftDist - 10);
         if ((downLeftDist < -160) || (upLeftDist < -160)) {
           setDownLeftDist(550);
           setUpLeftDist(550);
         }
-      }}, 100);
-    
+      }
+    }, 100);
+
     return () => clearInterval(interval);
   }, [gameStart, upLeftDist, downLeftDist]);
 
+  // useEffect for showing text bubble
   useEffect(() => {
     const interval = setInterval(() => {
-      if (gameStart == true) {
-        // Check if half of the distance is covered
+      if (gameStart === true) {
         if (totalDistance >= 20 && !showTextBubble) {
           setShowTextBubble(true);
         }
       }
     }, 100);
-  
+
     return () => clearInterval(interval);
   }, [gameStart, totalDistance, showTextBubble]);
 
-  
+  // Click handler for bird jump or showing instructions
   const handleClick = () => {
     if (gameStart === true) {
       setTopDist((prevTopDist) => prevTopDist - 75);
     } else {
-      // Display a prompt before starting the game
       if (showInstructions) {
         alert("Read the instructions first!");
       } else {
-        // Set showInstructions to true to display instructions on the next click
         setShowInstructions(true);
       }
     }
   };
 
+  // Click handler for starting the game
   const handleStart = () => {
-    if (!showInstructions) { // -- Tevel's Code
+    if (!showInstructions) {
       setGameStart(true);
     } else {
       setShowInstructions(false);
@@ -174,17 +187,20 @@ function Game({over, score, setScore}) {
         </div>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src="/upBlock.png" style={{ marginLeft: upLeftDist }} />
-      <img className="bird" src="/bird.png" style={{ top: topDist }} />
-      <img className="downObstacle" src="/downBlock.png" style={{ marginLeft: downLeftDist }} />
+      <img className="upObstacle" src="/upBlock.png" style={{ marginLeft: upLeftDist }} alt="Up Obstacle" />
+      <img className="bird" src="/bird.png" style={{ top: topDist }} alt="Bird" />
+      <img className="downObstacle" src="/downBlock.png" style={{ marginLeft: downLeftDist }} alt="Down Obstacle" />
     </div>
   );
 }
- 
 
+// App component
 function App() {
   const [gameRun, setGameRun] = useState(true);
   const [score, setScore] = useState(0);
+
+  // Additional state for totalDistance
+  const [totalDistance, setTotalDistance] = useState(0);
 
   const handleOver = () => {
     setGameRun(false);
@@ -193,16 +209,20 @@ function App() {
   const handleRestart = () => {
     setGameRun(true);
     setScore(0);
+    setTotalDistance(0);
   };
 
   return (
-    <div className='gameWindow'>
-      {gameRun == true ? (
+    <div className="gameWindow">
+      {gameRun === true ? (
         <div>
-          <Game over={handleOver} score={score} setScore={setScore} />
+          { totalDistance >= 15 ? (
+            <TutorialFin restartGame={handleRestart} score={score} />
+          ) : (
+            <Game over={handleOver} score={score} setScore={setScore} setTotalDistance={setTotalDistance} />
+          )}
         </div>
-      )
-      : (
+      ) : (
         <DeathPage restartGame={handleRestart} score={score} />
       )}
     </div>
