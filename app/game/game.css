@@ -1,11 +1,13 @@
-
+.websiteContainer {
+  background: url('/background2.png') center center no-repeat;
+  background-size: cover;
+}
 
 .background {
   position: relative;
   background-image: url("/sgback2.jpg");
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
   height: 660px;
   width: 525px;
   border-style: solid;
