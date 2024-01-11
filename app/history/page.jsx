@@ -25,13 +25,15 @@ function App() {
       <Container
         id="Start"
         maxWidth={false}
-        sx={{ width: "100%", height: "30vh", bgcolor: "lightgrey", maxWidth: 1200, marginTop: 2 }}
+        sx={{ width: "100%", height: "30vh", bgcolor: "#ffffff", maxWidth: 1200, marginTop: 2 }}
       >
-        <Grid container alignItems="center" justifyContent="center">
-          <Grid item xs={6} sm = {2}>
-            <ol></ol>
+        <Grid container spacing = {2} alignItems="center" justifyContent="center">
+          <Grid item xs={12} sm = {4} sx={{boxShadow: 10, height: 100}}>
+            <ol>
+              <li>Content page 1</li>
+            </ol>
           </Grid>
-          <Grid item xs={6} sm = {6}>
+          <Grid item xs={12} sm = {8}>
             <Typography
               variant="h6"
               align="center"

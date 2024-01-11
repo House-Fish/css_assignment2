@@ -60,83 +60,65 @@ function Game({over, score, setScore}) {
       if ((topDist > 613) || (UpColliding(bird, upObstacle)) || (DownColliding(bird, downObstacle))) {
         setGameStart(false);
         over();
-    }}, 10);
+    }}, 100);
 
       return () => clearInterval(collisionInterval);
     }, [topDist]);
 
-  // useEffect(() => {
-  //   let scoreInterval;
-  //   let topDistInterval;
-  //   let obstacleInterval;
-
-  //   if (gameStart) {
-  //     scoreInterval = setInterval(() => {
-  //       if (gameStart) {
-  //         setScore((prevScore) => prevScore + 1);
-  //       }
-  //     }, 100);
-
-  //     topDistInterval = setInterval(() => {
-  //       if (gameStart && topDist < 613) {
-  //         setTopDist((prevTopDist) => prevTopDist + 10.3);
-  //       }
-  //     }, 100);
-
-  //     obstacleInterval = setInterval(() => {
-  //       if (gameStart) {
-  //         setDownLeftDist((prevDownLeftDist) => prevDownLeftDist - 10);
-  //         setUpLeftDist((prevUpLeftDist) => prevUpLeftDist - 10);
-  //         if (downLeftDist < -160 || upLeftDist < -160) {
-  //           setDownLeftDist(550);
-  //           setUpLeftDist(550);
-  //         }
-  //       }
-  //     }, 100);
-  //   }
-
-  //   return () => {
-  //     clearInterval(scoreInterval);
-  //     clearInterval(topDistInterval);
-  //     clearInterval(obstacleInterval);
-  //   };
-  // }, [gameStart, score, setScore, topDist, downLeftDist, upLeftDist]);
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart == true) {
-        setScore(score => score + 1);
-      }
-    }, 100);
-  
-    return () => clearInterval(interval);
-  }, [gameStart]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart == true) {
+    const moveInterval = setInterval(() => {
+      if (gameStart) {
+        setScore((prevScore) => prevScore + 1);
         if (topDist < 613) {
-          setTopDist(prevTopDist => prevTopDist + 10.3);
+          setTopDist((prevTopDist) => prevTopDist + 10.3);
         }
-      }
-    }, 100);
-  
-    return () => clearInterval(interval);
-  }, [gameStart, topDist]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart == true) {
-          setDownLeftDist(prevDownLeftDist => prevDownLeftDist - 10);
-          setUpLeftDist(prevUpLeftDist => prevUpLeftDist - 10);
-        if ((downLeftDist < -160) || (upLeftDist < -160)) {
+        setDownLeftDist((prevDownLeftDist) => prevDownLeftDist - 10);
+        setUpLeftDist((prevUpLeftDist) => prevUpLeftDist - 10);
+        if (downLeftDist < -160 || upLeftDist < -160) {
           setDownLeftDist(550);
           setUpLeftDist(550);
         }
-      }}, 100);
+      }
+    }, 100);
+
+      return () => clearInterval(moveInterval);
+    }, [gameStart, score, setScore, topDist, downLeftDist, upLeftDist]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (gameStart == true) {
+  //       setScore(score => score + 1);
+  //     }
+  //   }, 100);
+  
+  //   return () => clearInterval(interval);
+  // }, [gameStart]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (gameStart == true) {
+  //       if (topDist < 613) {
+  //         setTopDist(prevTopDist => prevTopDist + 10.3);
+  //       }
+  //     }
+  //   }, 100);
+  
+  //   return () => clearInterval(interval);
+  // }, [gameStart, topDist]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (gameStart == true) {
+  //         setDownLeftDist(prevDownLeftDist => prevDownLeftDist - 10);
+  //         setUpLeftDist(prevUpLeftDist => prevUpLeftDist - 10);
+  //       if ((downLeftDist < -160) || (upLeftDist < -160)) {
+  //         setDownLeftDist(550);
+  //         setUpLeftDist(550);
+  //       }
+  //     }}, 100);
     
-    return () => clearInterval(interval);
-  }, [gameStart, upLeftDist, downLeftDist]);
+  //   return () => clearInterval(interval);
+  // }, [gameStart, upLeftDist, downLeftDist]);
 
   const handleClick = () => {
     if (gameStart == true)
@@ -154,7 +136,7 @@ function Game({over, score, setScore}) {
       )}
       <div className="score">{score}</div>
       <img className="upObstacle" src="/upBlock.png" style={{marginLeft: upLeftDist}} />
-      <img className="bird" src="/bird.png" style={{top: topDist}} />
+      <img className="bird" src="/sparrow.png" style={{top: topDist}} />
       <img className="downObstacle" src="/downBlock.png" style={{marginLeft: downLeftDist}} />
     </div>    
   )
