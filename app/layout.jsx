@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Your Website Title</title>
+        <title>Flappy Bird Game</title>
       </Head>
       <body>
         <Navbar />
