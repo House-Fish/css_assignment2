@@ -6,9 +6,9 @@ import {
   Button,
   Box,
   Grid,
-  Stepper,
-  Step,
-  StepLabel,
+  //Stepper,
+  //Step,
+  //StepLabel,
 } from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -19,7 +19,6 @@ import styles from "./page.module.css";
 function App() {
   return (
     <div>
-      <SidebarStepper />
       <div className={styles.container}>
         <HeroSection />
       </div>
@@ -109,7 +108,7 @@ function HeroSection() {
 }
 
 //SIDE BAR STEPPER CODE
-
+{/*
 const sections = ["Start", "Era 1", "Era 2", "Era 3", "Era 4", "Era 5", "Era 6"]; //INCOMPLETE
 const scrollToSection = (section) => {
   document.getElementById(section).scrollIntoView({ behavior: "smooth" });
@@ -155,5 +154,5 @@ function SidebarStepper() {
     </Box>
   );
 }
-
+*/}
 export default App;
