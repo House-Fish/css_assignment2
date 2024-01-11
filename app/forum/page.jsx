@@ -23,7 +23,7 @@ const ForumPage = () => {
 
   return (
     <div className={styles.forumPage}>
-      <h1>Flappy Bird Forum!</h1>
+      <h1>Forum!</h1>
 
       <div className={styles.commentContainer}>
         <textarea
