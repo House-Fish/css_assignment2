@@ -1,44 +1,43 @@
 /* page.module.css */
 .forumPage {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    color: #ffffff;
-    text-shadow: 1.2px 1.2px #483C32;
-    font-family: 'Pacifico', cursive;
-    
-    margin-top: 70px;
-    margin-bottom: 70px;
-    border: 2px solid #FE9800; /* Adjust the color and transparency as needed */
-    border-radius: 20px; /* Adjust the border radius as needed */
-  }
-  
-  .commentContainer {
-    margin-bottom: 20px;
-  }
-  
-  .textareaContainer textarea {
-    width: 100%;
-    height: 150px; /* Adjust the height according to your preference */
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .buttonContainer {
-    display: flex;
-  }
-  
-  .comments {
-    display: flex;
-    flex-direction: column;
-    color:black;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  .comment {
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #ffffff;
+  text-shadow: 1.2px 1.2px #483C32;
+  font-family: 'Pacifico', cursive;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  background-color: rgba(0, 0, 0, 0.2); 
+  border-radius: 20px; 
+}
+
+
+.commentContainer {
+  margin-bottom: 20px;
+}
+
+.textareaContainer textarea {
+  width: 100%;
+  height: 100px; /* Adjust the height according to your preference */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.comment {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
