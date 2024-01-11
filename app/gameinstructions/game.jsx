@@ -4,32 +4,18 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import TextBubble from "./TextBubble";
 
-
-// DeathPage component
-function DeathPage({ restartGame, score }) {
+function TutorialFin({restartGame, score}) {
   return (
     <div className="death">
-      <img src="/skull.png" style={{ height: "45%", marginLeft: "3.5px", marginTop: "45px" }} />
+      <img src="/bird2.png" style={{height: "45%", marginLeft: "3.5px", marginTop: "45px"}}/>
       <div className="deathText">
-        <p>You died! Your final score: {score} </p>
+        <p>You completed the tutorial!</p>
       </div>
-      <button className="againBtn" onClick={restartGame}>Try again?</button>
+      <button className="againBtn" onClick={restartGame}>Play Again?</button>
     </div>
   );
 }
 
-// TutorialFin component
-function TutorialFin({ restartGame, score }) {
-  return (
-    <div className="tutorialFin">
-      <img src="/bird2.png" style={{ height: "45%", marginLeft: "3.5px", marginTop: "45px" }} />
-      <div className="tutorialFinText">
-        <p>You completed the tutorial!</p>
-      </div>
-      <button className="againBtn" onClick={restartGame}>Play again?</button>
-    </div>
-  );
-}
 
 // UpColliding function
 function UpColliding(bird, upObstacle) {
@@ -213,17 +199,14 @@ function App() {
   };
 
   return (
-    <div className="gameWindow">
-      {gameRun === true ? (
+    <div className='gameWindow'>
+      {gameRun == true ? (
         <div>
-          { totalDistance >= 15 ? (
-            <TutorialFin restartGame={handleRestart} score={score} />
-          ) : (
-            <Game over={handleOver} score={score} setScore={setScore} setTotalDistance={setTotalDistance} />
-          )}
+          <Game over={handleOver} score={score} setScore={setScore} />
         </div>
-      ) : (
-        <DeathPage restartGame={handleRestart} score={score} />
+      )
+      : (
+        <TutorialFin restartGame={handleRestart} score={score} />
       )}
     </div>
   );
