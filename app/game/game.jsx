@@ -2,7 +2,7 @@
 import './game.css';
 import React from "react";
 import { useState, useEffect } from 'react';
-import Instructions from '../instructions/page';
+
 
 // Things to add: moving background, changing obstacle height
 
@@ -156,7 +156,8 @@ function App() {
   };
 
   return (
-    <div className='gameWindow'>
+    <div className='websiteContainer'>
+      <div className='gameWindow'>
       {gameRun == true ? (
         <div>
           <Game over={handleOver} score={score} setScore={setScore} />
@@ -165,6 +166,7 @@ function App() {
       : (
         <DeathPage restartGame={handleRestart} score={score} />
       )}
+    </div>
     </div>
   );
 }
