@@ -17,6 +17,9 @@ export default function Navbar() {
       <Link className={styles.navitem} href="/forum">
         Forum
       </Link> 
+      <Link className={styles.navitem} href="/settings">
+        Settings 
+      </Link> 
     </nav>
   );
 }
