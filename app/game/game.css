@@ -1,5 +1,5 @@
 .websiteContainer {
-  background: url('/background2.png') center center no-repeat;
+  background: url("/back.png") center center no-repeat;
   background-size: cover;
 }
 
@@ -29,7 +29,7 @@
   top: 20px;
   font-family: fantasy;
   font-size: 30px;
-  color:aliceblue;
+  color:azure;
 }
 
 .againBtn {
@@ -89,6 +89,7 @@ button {
 }
 
 .gameWindow {
+  padding-top: 20px;
   padding-bottom: 70px;
 }
 

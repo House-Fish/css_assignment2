@@ -52,6 +52,7 @@ function Game({over, score, setScore}) {
       const downObstaclePos = document.querySelector(".downObstacle").getBoundingClientRect();
 
       if ((topDist > 613) || (DownColliding(birdPos, downObstaclePos)) || (UpColliding(birdPos, upObstaclePos))) {
+        clearInterval(collisionInterval)
         setGameStart(false);
         over();
       }
@@ -65,8 +66,8 @@ function Game({over, score, setScore}) {
     const moveInterval = setInterval(() => {
       if (gameStart == true) {
         setScore((prevScore) => prevScore + 1);
-        setTopDist((prevTopDist) => prevTopDist + 11);
-        setLeftDist((prevLeftDist) => prevLeftDist - 12);
+        setTopDist((prevTopDist) => prevTopDist + 12);
+        setLeftDist((prevLeftDist) => prevLeftDist - 15);
         if (leftDist < -160) {
           setLeftDist(550);
         }
@@ -112,15 +113,17 @@ function App() {
   };
 
   return (
-    <div className="gameWindow">
-      {gameRun == true ? (
-        <div>
-          <Game over={handleOver} score={score} setScore={setScore} />
-        </div>
-      )
-      : (
-        <DeathPage restartGame={handleRestart} score={score} />
-      )}
+    <div className="websiteContainer">
+      <div className="gameWindow">
+        {gameRun == true ? (
+          <div>
+            <Game over={handleOver} score={score} setScore={setScore} />
+          </div>
+        )
+        : (
+          <DeathPage restartGame={handleRestart} score={score} />
+        )}
+      </div>
     </div>
   );
 }
