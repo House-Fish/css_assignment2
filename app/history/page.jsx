@@ -10,11 +10,79 @@ import {
   //Step,
   //StepLabel,
 } from "@mui/material";
+import { BarChart } from '@mui/x-charts/BarChart';
 import Image from "next/image";
 import styles from "./page.module.css";
-import { blue } from "@mui/material/colors";
 
+const chartSetting = {
+  xAxis: [
+    {
+      label: 'Hardware units sold',
+    },
+  ],
+  width: '500',
+  height: 400,
+};
+const dataset = [
+  {
+    game: 750000,
+    month: 'Space Invaders',
+  },
+  {
+    game: 400000,
+    month: 'Pac-Man',
+  },
+  {
+    game: 132000,
+    month: 'Donkey Kong',
+  },
+  {
+    game: 125000,
+    month: 'Ms. Pac-Man',
+  },
+  {
+    game: 100000,
+    month: 'Asteroids',
+  },
+  {
+    game: 70000,
+    month: 'Defender',
+  },
+  {
+    game: 55988,
+    month: 'Centipede',
+  },
+  {
+    game: 50000,
+    month: 'Galaxian',
+  },
+  {
+    game: 38000,
+    month: 'Hyper Olympic',
+  },
+  {
+    game: 30000,
+    month: 'Donkey Kong Jr.',
+  },
+  {
+    game: 30000,
+    month: 'Karate Champ',
+  },
+  {
+    game: 30000,
+    month: 'Mr Do!',
+  },
+  {
+    game: 29000,
+    month: 'Tempest',
+  },
+  {
+    game: 25000,
+    month: 'Q*bert',
+  },
+];
 
+const valueFormatter = (value) => `${value} units`;
 
 const scrollToSection = (section) => {
   document.getElementById(section).scrollIntoView({ behavior: "smooth" });
@@ -71,7 +139,8 @@ function App() {
                 }}>
                 The Golden Age of <br/> Arcade Games
               </Button>
-              <Button className = {styles.contentPage}sx = {{ 
+              <Button className = {styles.contentPage} onClick={() => scrollToSection('home_consoles')} 
+              sx = {{ 
                 ':hover': {
                   backgroundSize: "cover",
                   backgroundPosition: '50% 10%',
@@ -81,7 +150,8 @@ function App() {
                 }}>
                 The Rise of <br/> Home Consoles
               </Button>
-              <Button className = {styles.contentPage} sx = {{ 
+              <Button className = {styles.contentPage} onClick={() => scrollToSection('3d_revolution')} 
+              sx = {{ 
                 ':hover': {
                   backgroundSize: "cover",
                   backgroundPosition: '50% 50%',
@@ -91,7 +161,7 @@ function App() {
                 }}>
                 The 3D Revolution and <br/> Online Gaming
               </Button>
-              <Button className = {styles.contentPage} 
+              <Button className = {styles.contentPage} onClick={() => scrollToSection('modern_era')} 
                 sx = {{ 
                 ':hover': {
                   backgroundSize: "cover",
@@ -100,7 +170,7 @@ function App() {
                   filter: 'brightness(50%)',
                 }
                 }}>
-                Modern Era and the <br/> Expansion of Gaming
+                Modern Era and the <br/> Explosion of Gaming
               </Button>
             </Box>
           </Grid>
@@ -172,7 +242,7 @@ function App() {
                     component="img"
                     sx={{
                       width: '90%', 
-                      height: 'auto' //for aspect ratio
+                      height: 'auto', //for aspect ratio 
                     }}
                     src="tennis_for_two.jpg"
                     alt="Tennis for Two"
@@ -210,6 +280,48 @@ function App() {
                     The Golden Age of Arcade Games
                   </Typography>
                 </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  className={styles.gridItem}
+                >
+                  <Box
+                    component="img"
+                    sx={{
+                      width: '90%', 
+                      height: 'auto', //for aspect ratio 
+                    }}
+                    src="arcade_games.jpg"
+                    alt="Arcade Games"
+                  />
+                </Grid>
+                <Grid item xs={12} className= {styles.gridItem}>
+                  <Typography
+                    align="left"
+                    className={styles.para}
+                    textAlign={"justify"}
+                  >
+                    The golden age of arcade video games was the period of rapid growth, technological 
+                    development, and cultural influence of arcade video games from the late 1970s to the 
+                    early 1980s. The release of Space Invaders in 1978 led to a wave of shoot-'em-up games 
+                    such as Galaxian and the vector graphics-based Asteroids in 1979, made possible by new 
+                    computing technology that had greater power and lower costs. Arcade video games switched 
+                    from black-and-white to color, with titles such as Frogger and Centipede taking advantage 
+                    of the visual opportunities of bright palettes.
+
+
+
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} className= {styles.gridItem}>
+                  <BarChart
+                    dataset={dataset}
+                    yAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+                    series={[{ dataKey: 'game', label: 'Best-selling arcade games', valueFormatter }]}
+                    layout="horizontal"
+                    {...chartSetting}
+                  />
+                </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
                   <Typography
                     id = "home_consoles"
@@ -237,7 +349,7 @@ function App() {
                     className={styles.title}
                     textAlign={"left"}
                   >
-                    Modern Era and The Expansion of Gaming
+                    Modern Era and The Explosion of Gaming
                   </Typography>
                 </Grid>
               </Grid>
