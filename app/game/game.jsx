@@ -2,9 +2,10 @@
 import './game.css';
 import React from "react";
 import { useState, useEffect } from 'react';
-import Instructions from '../instructions/page';
 
-// Things to add: moving background, changing obstacle height
+var birdImg;
+var upObstacleImg;
+var downObstacleImg;
 
 function DeathPage({restartGame, score}) {
 
@@ -43,6 +44,39 @@ function Game({over, score, setScore}) {
   const [topDist, setTopDist] = useState(320);
   const [leftDist, setLeftDist] = useState(540);
   const [gameStart, setGameStart] = useState(false);
+
+  useEffect(() => {
+    // load bird image
+    const birdImgUrl = localStorage.getItem("selectedImageBird");
+
+    if (isDataUrl(birdImgUrl)) {
+      birdImg = birdImgUrl;
+    } else if (birdImgUrl === "Sparrow") {
+      birdImg = "/sparrow.png";
+    }
+
+    // Load obstacles image
+    const obstacleImgUrl = localStorage.getItem("selectedImageObstacles");
+    if (isDataUrl(obstacleImgUrl)) {
+      upObstacleImg = obstacleImgUrl;
+      flipImageUpsideDown(obstacleImgUrl, function (flippedDataUrl) {
+        downObstacleImg = flippedDataUrl;
+      });
+    } else if (obstacleImgUrl === "Block") {
+      upObstacleImg = "/upBlock.png";
+      downObstacleImg = "/downBlock.png";
+    }
+
+    // Load background image
+    const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
+    if (isDataUrl(backgroundImgUrl)) {
+      document.querySelector(".background").style.backgroundImage =
+        "url(" + backgroundImgUrl + ")";
+    } else if (backgroundImgUrl === "HDB") {
+      document.querySelector(".background").style.backgroundImage =
+        "url(/sgback2.jpg)";
+    }
+  }, []);
 
   useEffect(() => {
     const collisionInterval = setInterval(() => {
@@ -92,11 +126,42 @@ function Game({over, score, setScore}) {
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src="/upBlock.png" style={{marginLeft: leftDist}} />
-      <img className="bird" src="/sparrow.png" style={{top: topDist}} />
-      <img className="downObstacle" src="/downBlock.png" style={{marginLeft: leftDist}} />
+      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="bird" src={birdImg} style={{top: topDist}} />
+      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
     </div>    
   )
+}
+
+function isDataUrl(str) {
+  return /^data:/.test(str);
+}
+
+function flipImageUpsideDown(dataUrl, callback) {
+  const img = new Image();
+  img.onload = function () {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas dimensions to match the image dimensions
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Flip the image upside down by drawing it with a transformation matrix
+    context.translate(0, img.height);
+    context.scale(1, -1);
+
+    // Draw the flipped image onto the canvas
+    context.drawImage(img, 0, 0);
+
+    // Get the data URL of the flipped image
+    const flippedDataUrl = canvas.toDataURL('image/png');
+
+    // Call the callback function with the flipped data URL
+    callback(flippedDataUrl);
+  };
+
+  img.src = dataUrl;
 }
 
 function App() {

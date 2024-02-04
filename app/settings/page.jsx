@@ -16,9 +16,9 @@ export default function Settings() {
       <Audio name={'Music'}/>
       <Audio name={'Effects'}/>
       <Audio name={'Master'}/> 
-      <Customize name="Bird"/>
-      <Customize name="Obstacles"/>
-      <Customize name="Background"/>
+      <Customize name="Bird" defaultImages={["Sparrow"]} width={60.8} height={46.2}/>
+      <Customize name="Obstacles" defaultImages={["Block"]} width={87.8833} height={250}/>
+      <Customize name="Background" defaultImages={["HDB"]} width={525} height={660}/>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Customize({ name }) {
+export default function Customize({ name, defaultImages, width, height}) {
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
   const [images, setImages] = useState({});
   
@@ -19,7 +19,7 @@ export default function Customize({ name }) {
         throw error; // Re-throw other errors
       }
     }
-  }, [name]);
+  }, []);
 
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
@@ -36,7 +36,7 @@ export default function Customize({ name }) {
     }
   };
 
-  const handleAddImage = (event) => {
+  const handleAddImage = async (event) => {
     const file = event.target.files[0];
   
     if (file) {
@@ -45,13 +45,16 @@ export default function Customize({ name }) {
           alert('Please select a valid image file.');
           return;
         }
-
+  
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = async (e) => {
           const imageUrl = e.target.result;
   
+          // Resize the image using createImageBitmap
+          const resizedImageDataURL = await resizeImage(imageUrl, width, height);
+  
           // Save custom image to localStorage with file name as option
-          const newImages = { ...images, [file.name]: imageUrl };
+          const newImages = { ...images, [file.name]: resizedImageDataURL };
   
           try {
             localStorage.setItem('images' + name, JSON.stringify(newImages));
@@ -70,7 +73,37 @@ export default function Customize({ name }) {
       }
     }
   };
+
+  const resizeImage = async (imageUrl, width, height) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = async () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context = canvas.getContext('2d');
   
+        // Resize the image using createImageBitmap
+        await createImageBitmap(img, { resizeWidth: width, resizeHeight: height })
+          .then((bitmap) => {
+            context.drawImage(bitmap, 0, 0, width, height);
+  
+            // Get the data URL of the resized image
+            const resizedDataURL = canvas.toDataURL('image/jpeg');
+  
+            resolve(resizedDataURL);
+          })
+          .catch((error) => {
+            console.error('Error resizing image:', error);
+            reject(error);
+          });
+      };
+  
+      img.src = imageUrl;
+    });
+  };
+
   const removeSelectedImage = () => {
     if (selectedImageUrl) {
       const selectedImageName = Object.keys(images).find((key) => images[key] === selectedImageUrl);
@@ -95,13 +128,18 @@ export default function Customize({ name }) {
     <div>
       <span>{name}</span>
       <select id="imageSelect" value={selectedImageUrl} onChange={handleOptionChange}>
-        <option>Sparrow</option>
-        <option>Classic</option>
-        {Object.keys(images).map((imageName, index) => (
-          <option key={index} value={images[imageName]}>
+        {defaultImages.map((imageName, key) => (
+          <option key={key} value={imageName}>
             {imageName}
           </option>
         ))}
+
+        {Object.entries(images).map(([imageName, image]) => (
+          <option key={imageName} value={image}>
+            {imageName}
+          </option>
+        ))}
+
         <option value="Add Custom Image">Add Custom Image</option>
         <option value="Remove Selected Image">Remove Selected Image</option>
       </select>
