@@ -9,8 +9,19 @@ export default function Customize({ name, defaultImages, width, height}) {
       // Retrieve images from localStorage on component mount
       const storedImages = JSON.parse(localStorage.getItem('images' + name)) || {};
       const storedSelectedImageUrl = localStorage.getItem('selectedImage' + name) || '';
+
+      // If there's no stored selected image, set it to the first default image
+      if (!storedSelectedImageUrl && defaultImages.length > 0) {
+        const firstDefaultImage = '/' + defaultImages[0];
+        setSelectedImageUrl(firstDefaultImage);
+
+        // Save selected image URL to localStorage
+        localStorage.setItem('selectedImage' + name, firstDefaultImage);
+      } else {
+        setSelectedImageUrl(storedSelectedImageUrl);
+      }
+
       setImages(storedImages);
-      setSelectedImageUrl(storedSelectedImageUrl);
     } catch (error) {
       if (error instanceof DOMException && error.name === 'QuotaExceededError') {
         console.error('LocalStorage space exceeded:', error.message);
@@ -19,7 +30,7 @@ export default function Customize({ name, defaultImages, width, height}) {
         throw error; // Re-throw other errors
       }
     }
-  }, []);
+  }, [name, defaultImages]);
 
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
@@ -107,17 +118,26 @@ export default function Customize({ name, defaultImages, width, height}) {
   const removeSelectedImage = () => {
     if (selectedImageUrl) {
       const selectedImageName = Object.keys(images).find((key) => images[key] === selectedImageUrl);
-      const confirmDelete = window.confirm(`Are you sure you want to remove ${selectedImageName}?`);
+  
+      // Check if selectedImageName is not undefined before attempting to replace
+      if (selectedImageName !== undefined) {
+        const confirmReplace = window.confirm(`Are you sure you want to remove ${selectedImageName}?`);
+  
+        if (confirmReplace) {
+          // Get the initial selected image without modifying the newImages object
+          const initialSelectedImage = '/' + defaultImages[0];
+  
+          // Update localStorage and state
+          const { [selectedImageName]: deletedImage, ...newImages } = images;
 
-      if (confirmDelete) {
-        // Remove the selected image from localStorage
-        const { [selectedImageName]: deletedImage, ...newImages } = images;
-        localStorage.setItem('images' + name, JSON.stringify(newImages));
-        setImages(newImages);
-        setSelectedImageUrl('');
-
-        // Remove selected image URL from localStorage
-        localStorage.removeItem('selectedImage' + name);
+          // Update localStorage and state
+          localStorage.setItem('images' + name, JSON.stringify(newImages));
+          setImages(newImages);
+          setSelectedImageUrl(initialSelectedImage);
+  
+          // Save the updated selected image URL to localStorage
+          localStorage.setItem('selectedImage' + name, initialSelectedImage);
+        }
       }
     }
   };
@@ -128,8 +148,8 @@ export default function Customize({ name, defaultImages, width, height}) {
     <div>
       <span>{name}</span>
       <select id="imageSelect" value={selectedImageUrl} onChange={handleOptionChange}>
-        {defaultImages.map((imageName, key) => (
-          <option key={key} value={imageName}>
+        {defaultImages.map((imageName) => (
+          <option key={imageName} value={'/' + imageName}>
             {imageName}
           </option>
         ))}

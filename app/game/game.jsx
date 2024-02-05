@@ -47,35 +47,19 @@ function Game({over, score, setScore}) {
 
   useEffect(() => {
     // load bird image
-    const birdImgUrl = localStorage.getItem("selectedImageBird");
-
-    if (isDataUrl(birdImgUrl)) {
-      birdImg = birdImgUrl;
-    } else if (birdImgUrl === "Sparrow") {
-      birdImg = "/sparrow.png";
-    }
+    birdImg = localStorage.getItem("selectedImageBird");
 
     // Load obstacles image
-    const obstacleImgUrl = localStorage.getItem("selectedImageObstacles");
-    if (isDataUrl(obstacleImgUrl)) {
-      upObstacleImg = obstacleImgUrl;
-      flipImageUpsideDown(obstacleImgUrl, function (flippedDataUrl) {
-        downObstacleImg = flippedDataUrl;
-      });
-    } else if (obstacleImgUrl === "Block") {
-      upObstacleImg = "/upBlock.png";
-      downObstacleImg = "/downBlock.png";
-    }
+    upObstacleImg = localStorage.getItem("selectedImageObstacles");
+    flipImageUpsideDown(upObstacleImg, function (flippedDataUrl) {
+      downObstacleImg = flippedDataUrl;
+    });
 
     // Load background image
     const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
-    if (isDataUrl(backgroundImgUrl)) {
-      document.querySelector(".background").style.backgroundImage =
-        "url(" + backgroundImgUrl + ")";
-    } else if (backgroundImgUrl === "HDB") {
-      document.querySelector(".background").style.backgroundImage =
-        "url(/sgback2.jpg)";
-    }
+    document.querySelector(".background").style.backgroundImage =
+      "url(" + backgroundImgUrl + ")";
+
   }, []);
 
   useEffect(() => {
@@ -131,10 +115,6 @@ function Game({over, score, setScore}) {
       <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
     </div>    
   )
-}
-
-function isDataUrl(str) {
-  return /^data:/.test(str);
 }
 
 function flipImageUpsideDown(dataUrl, callback) {

@@ -7,8 +7,6 @@ import Audio from "./audio";
 import Customize from "./customize";
 
 export default function Settings() {
-
-
   return (
     <div id="root">
       <Controls name={'Jump'} defaultKey={'Space'}/>
@@ -16,9 +14,9 @@ export default function Settings() {
       <Audio name={'Music'}/>
       <Audio name={'Effects'}/>
       <Audio name={'Master'}/> 
-      <Customize name="Bird" defaultImages={["Sparrow"]} width={60.8} height={46.2}/>
-      <Customize name="Obstacles" defaultImages={["Block"]} width={87.8833} height={250}/>
-      <Customize name="Background" defaultImages={["HDB"]} width={525} height={660}/>
+      <Customize name="Bird" defaultImages={["sparrow.png"]} width={60.8} height={46.2}/>
+      <Customize name="Obstacles" defaultImages={["upBlock.png"]} width={87.8833} height={250}/>
+      <Customize name="Background" defaultImages={["sgback2.jpg"]} width={525} height={660}/>
     </div>
   );
 };
