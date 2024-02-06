@@ -267,7 +267,6 @@ function App() {
                     The button on each controller triggered a loud “click” in the device’s electrical switches, and the
                      onscreen dot sailed in a new direction, arcing in simulated gravity and bouncing on the other side of the net. <br/> <br/>
                      This game was Tennis for Two, the game widely known as being the first video game in history.
-
                   </Typography>
                 </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
@@ -308,9 +307,6 @@ function App() {
                     computing technology that had greater power and lower costs. Arcade video games switched 
                     from black-and-white to color, with titles such as Frogger and Centipede taking advantage 
                     of the visual opportunities of bright palettes.
-
-
-
                   </Typography>
                 </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
@@ -332,6 +328,36 @@ function App() {
                     The Rise of Home Consoles
                   </Typography>
                 </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  className={styles.gridItem}
+                >
+                  <Box
+                    component="img"
+                    sx={{
+                      width: '90%', 
+                      height: 'auto', //for aspect ratio 
+                    }}
+                    src="home_consoles.jpg"
+                    alt="home_consoles"
+                  />
+                </Grid>
+                <Grid item xs={12} className= {styles.gridItem}>
+                  <Typography
+                    align="left"
+                    className={styles.para}
+                    textAlign={"justify"}
+                  >
+                    The golden age of arcade video games was the period of rapid growth, technological 
+                    development, and cultural influence of arcade video games from the late 1970s to the 
+                    early 1980s. The release of Space Invaders in 1978 led to a wave of shoot-'em-up games 
+                    such as Galaxian and the vector graphics-based Asteroids in 1979, made possible by new 
+                    computing technology that had greater power and lower costs. Arcade video games switched 
+                    from black-and-white to color, with titles such as Frogger and Centipede taking advantage 
+                    of the visual opportunities of bright palettes.
+                  </Typography>
+                </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
                   <Typography
                     id = "3d_revolution"
@@ -342,6 +368,33 @@ function App() {
                     The 3D Revolution and Online Gaming
                   </Typography>
                 </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  className={styles.gridItem}
+                >
+                  <Box
+                    component="img"
+                    sx={{
+                      width: '90%', 
+                      height: 'auto', //for aspect ratio 
+                    }}
+                    src="3d_evolution.png"
+                    alt="3d evolution"
+                  />
+                </Grid>
+                <Grid item xs={12} className= {styles.gridItem}>
+                  <Typography
+                    align="left"
+                    className={styles.para}
+                    textAlign={"justify"}
+                  >
+                    The Sony PlayStation and Nintendo 64 pushed gaming into 3D environments. 
+                    Microsoft's Xbox introduced Xbox Live, revolutionizing online 
+                    multiplayer gaming. The era also saw the rise of PC gaming with MMOs 
+                    like "World of Warcraft."
+                  </Typography>
+                </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
                   <Typography
                     id = "modern_era"
@@ -349,9 +402,38 @@ function App() {
                     className={styles.title}
                     textAlign={"left"}
                   >
-                    Modern Era and The Explosion of Gaming
+                    Modern Era and the Explosion of Gaming
                   </Typography>
                 </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  className={styles.gridItem}
+                >
+                  <Box
+                    component="img"
+                    sx={{
+                      width: '90%', 
+                      height: 'auto', //for aspect ratio 
+                    }}
+                    src="modern_gaming.jpg"
+                    alt="3d evolution"
+                  />
+                </Grid>
+                <Grid item xs={12} className= {styles.gridItem}>
+                  <Typography
+                    align="left"
+                    className={styles.para}
+                    textAlign={"justify"}
+                  >
+                    Gaming became mainstream with advanced consoles like the Xbox 360, 
+                    PlayStation 3, and Nintendo's Wii, which expanded the audience with 
+                    motion control. Mobile gaming surged with smartphones, and indie 
+                    games flourished thanks to digital distribution.
+                  </Typography>
+                </Grid>
+                {/*small spacing at the bottom*/}
+                <Grid item xs={12} className= {styles.gridItem}/> 
               </Grid>
             </Container>
           </Container>
