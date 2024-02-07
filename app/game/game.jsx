@@ -114,9 +114,9 @@ function Game({over, score, setScore}) {
           var topRandHt = randomNumberInRange(200,330);
           var bottomRandHt = randomNumberInRange(200,330);
           var diff = 660 - (topRandHt + bottomRandHt);
-          if (diff < 125 )
+          if (diff < 140 )
           {
-            var change = 125 - diff;
+            var change = 140 - diff;
             if (topRandHt > bottomRandHt)
             {
               topRandHt -= change;
