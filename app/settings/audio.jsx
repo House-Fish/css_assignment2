@@ -1,4 +1,6 @@
+import { ClassNames } from "@emotion/react";
 import React, { useState, useEffect } from "react";
+import styles from "./page.module.css";
 
 export default function Audio({ name }) {
   const [volume, setVolume] = useState(50); // Set a default value or retrieve from local storage
@@ -20,8 +22,8 @@ export default function Audio({ name }) {
   };
 
   return (
-    <>
-      <span>{name}</span>
+    <div className={styles.item}>
+      <span className={styles.span}>{name}</span>
       <input
         type="range"
         name="volume"
@@ -30,6 +32,6 @@ export default function Audio({ name }) {
         value={volume}
         onChange={handleVolumeChange}
       />
-    </>
+    </div>
   );
 }
