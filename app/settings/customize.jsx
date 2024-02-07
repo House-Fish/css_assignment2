@@ -1,3 +1,5 @@
+// Jia Yu's code
+
 import React, { useState, useEffect } from 'react';
 import { resizeImage } from '../utils/imageUtils';
 import styles from "./page.module.css";

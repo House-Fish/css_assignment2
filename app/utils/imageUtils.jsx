@@ -1,3 +1,5 @@
+// Jia Yu's code
+
 // Function to resize an image
 export const resizeImage = async (imageUrl, width, height) => {
   try {
