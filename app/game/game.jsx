@@ -71,7 +71,7 @@ function Game({over, score, setScore}) {
       bgm.loop = true;
       const storedMusicVolume = localStorage.getItem("audioVolumeMusic") * masterVolume;
       if (storedMusicVolume !== null) {
-        bgm.volume = 0.5; 
+        bgm.volume = storedMusicVolume;
       } else {
         bgm.volume = 0.5;
       }
