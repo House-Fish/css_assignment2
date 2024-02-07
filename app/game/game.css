@@ -1,5 +1,10 @@
 /* Liu JieXin */
 
+@font-face {
+  font-family: "Atlantis International";
+  src: url("/fonts/AtlantisInternational-jen0.ttf") format('truetype');
+}
+
 .websiteContainer {
   background: url("/back.png") center center no-repeat;
   background-size: cover;
@@ -30,24 +35,24 @@
 .deathText {
   position: relative;
   top: 20px;
-  font-family: fantasy;
   font-size: 30px;
   color:azure;
+  font-family: "Atlantis International", sans-serif;
 }
 
 .againBtn {
   position: relative;
   top: 25px;
   color:crimson;
+  font-family: "Atlantis International", sans-serif;
 }
 
 .startBtn {
   position: absolute;
   font-family: fantasy;
   font-size: 35px;
-}
-
-.startBtn {
+  font-family: "Atlantis International", sans-serif;
+  margin-left: 20px;
   position: absolute;
   height: 10%;
   left: 31%;
@@ -55,6 +60,7 @@
   opacity: 0.8;
   z-index: 1;
 }
+
 
 .score {
   position: relative;
