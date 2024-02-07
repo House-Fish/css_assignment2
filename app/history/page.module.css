@@ -55,10 +55,10 @@
 }
 
 .button.button:hover {
-  background-color: #fede24;
-  color:#000000
+  background-color: #F9DC35; /* yellow on hover */
+  color:#ffffff
 }
-
+/* fede24 */
 .contentPage.contentPage {
   min-height: 80px;
   border-top: 1px;
@@ -117,7 +117,7 @@
   font-size: 1.5rem;
   line-height: 1.4;
   width: 90%;
-  background-color: #fede24;
+  background-color: white;
   component: p
 }
 
@@ -129,7 +129,7 @@
   font-size: 3rem;
   line-height: 1.4;
   width: 90%;
-  background-color: #fede24;
+  background-color: white;
 }
 
 .gridItem.gridItem{
@@ -138,7 +138,18 @@
   justify-content: center;
   width: 100%;
   height: 100%; 
-  background-color: #fede24;
+  background-color: white;
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}
+
+.smallbar{
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  width: 100%;
+  height: 100%; 
+  background-color: #F9DC35;
   padding-left: 0% !important;
   padding-right: 0% !important;
 }

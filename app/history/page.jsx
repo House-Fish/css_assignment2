@@ -186,10 +186,10 @@ function App() {
                 The history of video gaming is a remarkable journey of technological
                  innovation and cultural impact. It began in the 1950s and 1970s, an 
                  experimental phase where the concept of video games emerged. Simple 
-                 yet groundbreaking games like "Tennis for Two" and "Spacewar!" laid 
+                 yet groundbreaking games like "<a href="https://www.youtube.com/watch?v=6PG2mdU_i8k">Tennis for Two</a>" and "<a href="https://www.masswerk.at/spacewar/">Spacewar!</a>" laid 
                  the foundation. The 1970s marked the commercialization of gaming with 
                  the Magnavox Odyssey, the first home video game console, and the rise 
-                 of arcade gaming epitomized by "Pong," which brought video games into
+                 of arcade gaming epitomized by "<a href="https://www.ponggame.org/">Pong</a>," which brought video games into
                   the public eye.
                 <br/><br/>
                 Discover the epic journey of gaming, from its rudimentary beginnings
@@ -200,6 +200,11 @@ function App() {
             </Box>
           </Grid>
           {/* End of Intro paragraph grid item */}
+          <Grid item xs={12} className= {styles.smallbar} sx={{zIndex: 100, bgcolor: "yellow"}}>
+            <Box display = "flex" flexDirection="column" alignItems="center" justifyContent="center" sx = {{width: "100%", height: "100%", margin: 0, padding: 0}}>
+              
+            </Box>
+          </Grid>
           <Container
             maxWidth={false}
             className={styles.noPadding}
@@ -255,7 +260,7 @@ function App() {
                     textAlign={"justify"}
                   >
                     The crowd wound out the door at Brookhaven National Laboratory’s open house on October 18, 1958. 
-                    Visitors lined up for an interactive exhibit, designed by William A. Higinbotham, a nuclear 
+                    Visitors lined up for an interactive exhibit, designed by <a href="https://en.wikipedia.org/wiki/William_Higinbotham">William A. Higinbotham</a>, a nuclear 
                     physicist who led the lab’s Instrumentation Division. <br/><br/>
                     On a small, round monochrome screen similar to those used in early radar displays, a couple of
                     green-lit lines and a streaking green dot had captured their attention. <br/><br/>
@@ -266,7 +271,7 @@ function App() {
                     represented the surface of the court and a shorter line in the middle of the screen represented a net.<br/><br/>
                     The button on each controller triggered a loud “click” in the device’s electrical switches, and the
                      onscreen dot sailed in a new direction, arcing in simulated gravity and bouncing on the other side of the net. <br/> <br/>
-                     This game was Tennis for Two, the game widely known as being the first video game in history.
+                     This game was <a href="https://www.youtube.com/watch?v=6PG2mdU_i8k">Tennis for Two</a>, the game widely known as being the first video game in history.
                   </Typography>
                 </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
@@ -302,10 +307,10 @@ function App() {
                   >
                     The golden age of arcade video games was the period of rapid growth, technological 
                     development, and cultural influence of arcade video games from the late 1970s to the 
-                    early 1980s. The release of Space Invaders in 1978 led to a wave of shoot-'em-up games 
-                    such as Galaxian and the vector graphics-based Asteroids in 1979, made possible by new 
-                    computing technology that had greater power and lower costs. Arcade video games switched 
-                    from black-and-white to color, with titles such as Frogger and Centipede taking advantage 
+                    early 1980s. <br/><br/>The release of <a href="https://freeinvaders.org/">Space Invaders</a> in 1978 led to a wave of shoot-'em-up games 
+                    such as <a href="https://www.retrogames.cz/play_019-NES.php?language=EN">Galaxian</a> and the vector graphics-based <a href="https://freeasteroids.org/">Asteroids</a> in 1979, made possible by new 
+                    computing technology that had greater power and lower costs. <br/><br/>Arcade video games switched 
+                    from black-and-white to color, with titles such as <a href="https://happyhopper.org/">Frogger</a> and <a href="https://www.retrogames.cz/play_137-Atari7800.php?language=EN">Centipede</a> taking advantage 
                     of the visual opportunities of bright palettes.
                   </Typography>
                 </Grid>
@@ -349,13 +354,13 @@ function App() {
                     className={styles.para}
                     textAlign={"justify"}
                   >
-                    The golden age of arcade video games was the period of rapid growth, technological 
-                    development, and cultural influence of arcade video games from the late 1970s to the 
-                    early 1980s. The release of Space Invaders in 1978 led to a wave of shoot-'em-up games 
-                    such as Galaxian and the vector graphics-based Asteroids in 1979, made possible by new 
-                    computing technology that had greater power and lower costs. Arcade video games switched 
-                    from black-and-white to color, with titles such as Frogger and Centipede taking advantage 
-                    of the visual opportunities of bright palettes.
+                    The late 1980s to early 1990s are a period where two major console manufacturers, <a href="https://www.ign.com/wikis/history-of-video-game-consoles/NES">Nintendo NES</a> and <a href="https://www.ign.com/wikis/history-of-video-game-consoles/SEGA_Genesis">Sega's Genesis</a> vied for dominance. 
+                    <a href="https://www.ign.com/wikis/history-of-video-game-consoles/NES"> Nintendo NES</a> released in North America in 1985, and quickly became a houshold name with its intuitive control system, improved graphics and exceptional game library. It introduced the iconic character                   
+                    <a href="https://en.wikipedia.org/wiki/Mario"> Mario</a>, which has become synonymous with Nintendo console gaming up till today. 
+                    <br/><br/>
+                    Sega answered with its <a href="https://www.ign.com/wikis/history-of-video-game-consoles/SEGA_Genesis">Genesis</a> console in 1989, which had superior hardware, delivering more sophistacted graphics and sound. It became the home of <a href="https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(character)">Sonic the Hedgehog</a>, whose fast-paced gameplay captured the current generation. 
+                    <br/><br/>
+                    The period was a technological arms race between the two console producers, that birthed iconic characters like <a href="https://en.wikipedia.org/wiki/Mario">Mario</a> and <a href="https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(character)">Sonic the Hedgehog</a>. This rivalry between the two systems shaped the gaming industry's future with a lasting legacy. 
                   </Typography>
                 </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
@@ -389,10 +394,12 @@ function App() {
                     className={styles.para}
                     textAlign={"justify"}
                   >
-                    The Sony PlayStation and Nintendo 64 pushed gaming into 3D environments. 
-                    Microsoft's Xbox introduced Xbox Live, revolutionizing online 
-                    multiplayer gaming. The era also saw the rise of PC gaming with MMOs 
-                    like "World of Warcraft."
+                    The mid 90s brought forth another seismic shift in video games. The release of Sony's <a href="https://www.ign.com/wikis/history-of-video-game-consoles/PlayStation">PlayStation</a> and <a href="https://www.ign.com/wikis/history-of-video-game-consoles/Nintendo_64">Nintendo 64</a> was a new leap into the realm of three dimensions. 
+                    <br/><br/>
+                    <a href="https://www.ign.com/wikis/history-of-video-game-consoles/Nintendo_64">Nintendo's N64</a> console brought <a href="https://en.wikipedia.org/wiki/Mario">Mario</a> and <a href="https://en.wikipedia.org/wiki/Ocarina_of_Time">Zelda</a> into
+                    the third dimension with "<a href="https://en.wikipedia.org/wiki/Mario">Super Mario 64</a>" and "<a href="https://en.wikipedia.org/wiki/Ocarina_of_Time">The Legend of Zelda: Ocaria of Time</a>". This was a huge visual enhancement from previous two-dimensional platformers. 
+                    <br/><br/>
+                    Sony's <a href="https://www.ign.com/wikis/history-of-video-game-consoles/PlayStation">PlayStation</a> brought two more 3D games: <a href="https://en.wikipedia.org/wiki/Final_Fantasy_VII">Final Fantasy VII</a> and <a href="https://en.wikipedia.org/wiki/Metal_Gear_Solid_(1998_video_game)">Metal Gear Solid</a>, which were iconic titles which still have sequels still played today.  
                   </Typography>
                 </Grid>
                 <Grid item xs={12} className= {styles.gridItem}>
@@ -426,10 +433,11 @@ function App() {
                     className={styles.para}
                     textAlign={"justify"}
                   >
-                    Gaming became mainstream with advanced consoles like the Xbox 360, 
-                    PlayStation 3, and Nintendo's Wii, which expanded the audience with 
-                    motion control. Mobile gaming surged with smartphones, and indie 
-                    games flourished thanks to digital distribution.
+                    In the 2000s, gaming became a staple of entertainment in households worldwide. This era can be credited to the <a href="https://www.ign.com/wikis/history-of-video-game-consoles/Xbox_360">Xbox 360</a> and <a href="https://www.ign.com/wikis/history-of-video-game-consoles/PlayStation_3">PlayStation 3</a>. These consoles had powerful processors and intuitive online ecosystems. Players could play games with friends, or compete in multiplayer arenas. 
+                    <br/><br/>Nintendo's next console, the <a href="https://www.ign.com/wikis/history-of-video-game-consoles/Nintendo_Wii">Wii</a>, implemented a unique motion-control system, which meant gaming was no longer a sedentary activity. People could swing their arms to hit virtual tennis balls or bowling strikes. 
+                    <br/><br/>Simultaneously, the rise of smartphones opened up mobile gaming, with touch screens offering new games like "<a href="https://en.wikipedia.org/wiki/Angry_Birds">Angry Birds</a>" and "<a href="https://en.wikipedia.org/wiki/Candy_Crush_Saga">Candy Crush</a>." 
+                    <br/><br/>During all this, PC gaming has continued its march of innocation, with graphics reaching photorealism. Computer gaming has become a billion dollar industry, with triple A game franchies such as <a href="https://en.wikipedia.org/wiki/Call_of_Duty">Call of Duty</a> amassing over <a href="https://www.statista.com/statistics/1244198/cod-lifetime-player-spending/">30 billion dollars in consumer spending</a>. 
+                    <br/><br/>The history of video gaming is a testament to the innovation and cultural integration of humans, evolving from simple pixelated screens to complex, narrative experiences that rival movies and literature, in just one lifetime. Emerging technologies like <a href="https://en.wikipedia.org/wiki/Virtual_reality">virtual reality</a> foresee an even more exciting future for the gaming scene. 
                   </Typography>
                 </Grid>
                 {/*small spacing at the bottom*/}
@@ -462,7 +470,7 @@ function HeroSection() {
             component="h1" 
             className={styles.heroText}
           >
-            The History of Video Gaming
+            The <span style={{ color: '#fede24' }}>History</span> of Video Gaming
           </Typography>
         </Grid>
         <Grid
@@ -486,53 +494,4 @@ function HeroSection() {
     </Box>
   );
 }
-
-//SIDE BAR STEPPER CODE
-{/*
-const sections = ["Start", "Era 1", "Era 2", "Era 3", "Era 4", "Era 5", "Era 6"]; //INCOMPLETE
-const scrollToSection = (section) => {
-  document.getElementById(section).scrollIntoView({ behavior: "smooth" });
-};
-
-function SidebarStepper() {
-  const [isSticky, setIsSticky] = useState(false);
-  const navbarHeight = 50;
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroHeight = window.innerWidth * (9 / 16) + navbarHeight; // Calculate height based on aspect ratio
-      setIsSticky(window.scrollY > heroHeight);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const heroHeightVH =
-    ((window.innerWidth * (9 / 16) + navbarHeight) / window.innerHeight) * 100; // Convert hero height to vh units
-  const stepperStyle = isSticky
-    ? { position: "fixed", top: 0, left: 10 }
-    : { position: "absolute", top: `${heroHeightVH}vh`, left: 10 };
-
-  const [activeStep, setActiveStep] = useState(0);
-  const handleStep = (index) => () => {
-    setActiveStep(index);
-    scrollToSection(sections[index]);
-  };
-
-  return (
-    <Box sx={{ ...stepperStyle, width: "100%", height: "100vh" }}>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {sections.map((label, index) => (
-          <Step key={label} onClick={handleStep(index)}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </Box>
-  );
-}
-*/}
 export default App;
