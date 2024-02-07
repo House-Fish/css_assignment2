@@ -7,7 +7,6 @@ import styles from './page.module.css'; // Import the CSS module
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
-
 // Effect Animation Code
 const AnimatedText = ({ text }) => {
   const [visibleText, setVisibleText] = useState('');
