@@ -110,9 +110,9 @@ function Game({over, score, setScore}) {
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist, height: 250}} />
       <img className="bird" src={birdImg} style={{top: topDist}} />
-      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist, height: 250}} />
     </div>    
   )
 }

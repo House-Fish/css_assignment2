@@ -1,19 +1,48 @@
 /* Tevel's Code */
 
+.bird {
+  /* Initial position and rotation of the bird */
+  transform: translateY(150px) translateX(250px) rotate(15deg);
+} 
+
+.birdfloating {
+  /* Properties for the floating animation */
+  animation: floatAnimation 40s infinite linear;
+}
+
+@keyframes floatAnimation {
+  0%, 80% {
+    /* Initial position and rotation of the bird at the start and end of the animation */
+    transform: translateY(150px) translateX(250px) rotate(15deg);
+  }
+  10%, 90% {
+    /* Gradually lifting the bird up and bringing it back down */
+    transform: translateY(120px) translateX(450px) rotate(5deg);
+  }
+  25%, 75% {
+    /* Midway through the animation: bird moves up, right, and tilts, then back down */
+    transform: translateY(90px) translateX(800px) rotate(20deg);
+  }
+  50% {
+    /* Halfway through the animation: bird moves right and tilts further */
+    transform: translateY(60px) translateX(600px) rotate(-5deg);
+  }
+}
 
 .forumPage {
   max-width: 100%;
   margin: 0 auto;
   padding: 15px;
-  color: #333;
+  color: #ffffff;
   text-shadow: 1.2px 1.2px #483C32;
   font-family: 'Pacifico', cursive;
   letter-spacing: 1px;
-  background-color: #fede24;
+  background: url('/background2.png') center center no-repeat;
   opacity: 0.8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-height: calc(100vh - 100px);
-  overflow-y: auto;
+  overflow-x: hidden; 
+  overflow-y: hidden; 
   margin-bottom: 20px;
 }
 

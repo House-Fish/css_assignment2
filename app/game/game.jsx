@@ -10,6 +10,7 @@ var upObstacleImg = "/upBlock.png";
 var downObstacleImg = "/downBlock.png";
 var jumpKey = " "; // Space
 
+/* Function to show game over screen. Asks the user if want to play again. */
 function DeathPage({restartGame, score}) {
 
   return (
@@ -25,6 +26,7 @@ function DeathPage({restartGame, score}) {
   );
 }
 
+/* Detection function to check if the bird has collided with the up obstacle */
 function UpColliding(birdPos, upObstaclePos) {
   // Needs to return false if alive, true if dead
   return (
@@ -34,6 +36,7 @@ function UpColliding(birdPos, upObstaclePos) {
   );
 }
 
+/* Detection function to check if bird has collided with the down obstacle. */
 function DownColliding(birdPos, downObstaclePos) {
   // Needs to return false if alive, true if dead
   return (
@@ -43,10 +46,20 @@ function DownColliding(birdPos, downObstaclePos) {
   );
 }
 
+/* Game function that uses useEffect to move the obstacles and bird. 
+    It also checks if bird has touched the floor and obstacles */
 function Game({over, score, setScore}) {
   const [topDist, setTopDist] = useState(320);
   const [leftDist, setLeftDist] = useState(540);
   const [gameStart, setGameStart] = useState(false);
+
+  const [topHt, setTopHt] = useState(250);
+  const [bottomHt, setBottomHt] = useState(250);
+
+  /* Random number generator function to vary the obstacle heights */
+  const randomNumberInRange = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
   useEffect(() => {
     // load bird image
@@ -92,6 +105,8 @@ function Game({over, score, setScore}) {
     };
   }, [gameStart]);
 
+  /* To detect if the bird has collided with the floor or obstacles whenever the bird or obstacles move.
+      If detected, setGameStart becomes false and game will be stopped in the App function */
   useEffect(() => {
     const collisionInterval = setInterval(() => {
       if (gameStart == true) {
@@ -110,6 +125,8 @@ function Game({over, score, setScore}) {
       return () => clearInterval(collisionInterval);
     }, [topDist, leftDist]);
 
+  /* To move the bird downwards and obstacles left every 170ms. 
+      Also changes the height of the obstacles every iteration. */
   useEffect(() => {
     const moveInterval = setInterval(() => {
       if (gameStart == true) {
@@ -118,6 +135,25 @@ function Game({over, score, setScore}) {
         setLeftDist((prevLeftDist) => prevLeftDist - 15);
         if (leftDist < -160) {
           setLeftDist(550);
+          var topRandHt = randomNumberInRange(180,330);
+          var bottomRandHt = randomNumberInRange(180,330);
+          var diff = 660 - (topRandHt + bottomRandHt);
+          /* If the obstacles' heights are too tall for the bird to get through,
+              minus the height of a obstacle */
+          if (diff < 140 )
+          {
+            var change = 140 - diff;
+            if (topRandHt > bottomRandHt)
+            {
+              topRandHt -= change;
+            }
+            else
+            {
+              bottomRandHt -= change;
+            }
+          }
+          setBottomHt(topRandHt);
+          setTopHt(bottomRandHt);
         }
       }
     }, 170);
@@ -127,7 +163,7 @@ function Game({over, score, setScore}) {
 
   const handleClick = () => {
     if (gameStart == true)
-      setTopDist((prevTopDist) => prevTopDist - 75);
+      setTopDist((prevTopDist) => prevTopDist - 70);
   };
   
   const handleStart = () => {
@@ -140,9 +176,9 @@ function Game({over, score, setScore}) {
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist, height: topHt}} />
       <img className="bird" src={birdImg} style={{top: topDist}} />
-      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist, height: bottomHt}} />
     </div>    
   )
 }
@@ -151,15 +187,18 @@ function App() {
   const [gameRun, setGameRun] = useState(true);
   const [score, setScore] = useState(0);
 
+  // Game over
   const handleOver = () => {
     setGameRun(false);
   };
 
+  // Restart game and reset score
   const handleRestart = () => {
     setGameRun(true);
     setScore(0);
   };
 
+  /* If gameRun is true game runs, else death page shows. */
   return (
     <div className="websiteContainer">
       <div className="gameWindow">

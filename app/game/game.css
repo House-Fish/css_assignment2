@@ -73,7 +73,6 @@
 
 .upObstacle {
   position: absolute;
-  height: 250px;
   width: auto;
   top: -0.2%;
   padding: 1px;
@@ -82,14 +81,13 @@
 
 .downObstacle {
   position: absolute;
-  height: 250px;
   width: auto;
   bottom: -0.2%;
   padding: 1px;
 }
 
 .gameWindow {
-  padding-top: 20px;
-  padding-bottom: 70px;
+  padding-top: 70px;
+  padding-bottom: 100px;
 }
 
