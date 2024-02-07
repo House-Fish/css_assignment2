@@ -1,3 +1,4 @@
+/* Tevel's Code */
 
 .skyContainer {
   /* Background of the Website */
@@ -119,20 +120,20 @@
 
 .gamePreview1 {
   /* Background of the Game */
-  width: 70%;
-  height: 665.5px;
+  width: 80%;
+  height: 700px;
   background-color: #F9DC35;
   margin: 17px auto; 
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   opacity: 0.8;
-
 }
 
 .gamePreview2{
   /* Background of the Game Instructions */
-  width: 70%;
-  height: 275px;
+  width: 80%;
+  height: 100%;
+  padding-bottom: 5px;
   background-color: #FE9800;
   margin: -17.5px auto; 
   border-bottom-left-radius: 15px;
