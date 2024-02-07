@@ -1,49 +1,40 @@
-// Tevel's Code
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'; // Import Image component from Next.js
-
 import styles from './page.module.css'; // Import the CSS module
+import Image from 'next/image';
 
 const ForumPage = () => {
-  // State hooks
+  // State variables to manage comments and replies
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [replyText, setReplyText] = useState('');
   const [replyIndex, setReplyIndex] = useState(null);
 
+  // Load comments from localStorage on component mount
   useEffect(() => {
-    // Load comments from localStorage 
     const storedComments = localStorage.getItem('comments');
     if (storedComments) {
       setComments(JSON.parse(storedComments));
     }
   }, []);
 
-  // Event handler for changing the main comment input
+  // Event handler for comment input change
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
-  // Event handler for changing the reply input
+  // Event handler for reply text input change
   const handleReplyTextChange = (e) => {
     setReplyText(e.target.value);
   };
 
-
   // Event handler for adding a new comment
   const handleAddComment = () => {
     if (comment.trim() !== '') {
-
-       // Create a new comment object and update the state
-      const newComments = [...comments, { text: comment, user: 'You', replies: [] }];
+      const newComments = [...comments, { text: comment, user: 'You', likes: 0, dislikes: 0, replies: [] }];
       setComments(newComments);
-
-      // Save the comments to localStorage
       localStorage.setItem('comments', JSON.stringify(newComments));
-
-      // Clear the comment input
       setComment('');
     }
   };
@@ -53,29 +44,54 @@ const ForumPage = () => {
     setReplyIndex(index);
   };
 
-   // Event handler for adding a reply to a comment
+  // Event handler for adding a reply to a comment
   const handleAddReply = () => {
     if (replyText.trim() !== '' && replyIndex !== null) {
-
-      // Update the comments array with the new reply
       const updatedComments = [...comments];
-      updatedComments[replyIndex].replies.push({ text: replyText, user: 'You' });
+      const replyDepth = updatedComments[replyIndex].replies.length;
+      updatedComments[replyIndex].replies.push({ text: replyText, user: 'You', likes: 0, dislikes: 0 });
       setComments(updatedComments);
-
-      // Save the updated comments to localStorage
       localStorage.setItem('comments', JSON.stringify(updatedComments));
-
-      // Clear the reply input and reset the reply index
       setReplyText('');
-      setReplyIndex(null);
+      setReplyIndex(null); // Clear the reply index after replying
     }
+  };
+
+  // Event handler for liking a comment or reply
+  const handleLike = (commentIndex, replyIndex) => {
+    const updatedComments = [...comments];
+    if (replyIndex !== undefined) {
+      updatedComments[commentIndex].replies[replyIndex].likes += 1;
+    } else {
+      updatedComments[commentIndex].likes += 1;
+    }
+    setComments(updatedComments);
+    localStorage.setItem('comments', JSON.stringify(updatedComments));
+  };
+
+  // Event handler for disliking a comment or reply
+  const handleDislike = (commentIndex, replyIndex) => {
+    const updatedComments = [...comments];
+    if (replyIndex !== undefined) {
+      updatedComments[commentIndex].replies[replyIndex].dislikes += 1;
+    } else {
+      updatedComments[commentIndex].dislikes += 1;
+    }
+    setComments(updatedComments);
+    localStorage.setItem('comments', JSON.stringify(updatedComments));
+  };
+
+  // Event handler for clearing localStorage
+  const clearLocalStorage = () => {
+    localStorage.removeItem('comments');
+    setComments([]); // Clear the comments in the state as well
   };
 
   return (
     <div className={styles.websiteContainer}>
       <div className={styles.forumPage}>
         <h1>Forum!</h1>
-        
+  
         {/* Floating bird */}
         <div className={`${styles.bird} ${styles.birdfloating}`}>
           <Image
@@ -85,7 +101,7 @@ const ForumPage = () => {
             height={100}
           />
         </div>
-
+  
         <div className={styles.commentContainer}>
           <textarea
             className={styles.textareaContainer}
@@ -93,30 +109,67 @@ const ForumPage = () => {
             value={comment}
             onChange={handleCommentChange}
           ></textarea>
-          <button onClick={handleAddComment}>Comment</button>
+          <button className={styles.commentButton} onClick={handleAddComment}>
+            Comment
+          </button>
+          <button className={styles.clearButton} onClick={clearLocalStorage}>
+            Clear Comments
+          </button>
         </div>
-        
+  
         <div className={styles.comments}>
           {comments.map((comment, index) => (
             <div key={index} className={styles.comment}>
-              <div>{`${comment.user}: ${comment.text}`}</div>
-              <button onClick={() => handleReply(index)}>Reply to comment</button>
+              <div className={styles.commentHeader}>
+                <div className={styles.commentUser}>{comment.user}:</div>
+                <div className={styles.commentText}>{comment.text}</div>
+              </div>
+              <div className={styles.likeDislikeButtons}>
+                <button className={`${styles.likeButton} ${styles.actionButton}`} onClick={() => handleLike(index)}>
+                  Like
+                </button>
+                <span>{comment.likes}</span>
+                <button className={`${styles.dislikeButton} ${styles.actionButton}`} onClick={() => handleDislike(index)}>
+                  Dislike
+                </button>
+                <span>{comment.dislikes}</span>
+              </div>
+              <button className={styles.replyButton} onClick={() => handleReply(index)}>
+                Reply to comment
+              </button>
               {replyIndex === index && (
-                <div>
+                <div className={styles.replyContainer} style={{ marginLeft: `${comment.replies.length * 2}em` }}>
                   <textarea
+                    className={styles.replyTextarea}
                     placeholder="Write your reply..."
                     value={replyText}
                     onChange={handleReplyTextChange}
                   ></textarea>
-                  <button onClick={handleAddReply}>Reply</button>
+                  <button className={styles.replyButton} onClick={handleAddReply}>
+                    Reply
+                  </button>
                 </div>
               )}
               <div className={styles.replies}>
-                {comment.replies && comment.replies.map((reply, replyIndex) => (
-                  <div key={replyIndex} className={styles.reply}>
-                    {`${reply.user}: ${reply.text}`}
-                  </div>
-                ))}
+                {comment.replies &&
+                  comment.replies.map((reply, replyIndex) => (
+                    <div key={replyIndex} className={styles.reply}>
+                      <div className={styles.commentHeader}>
+                        <div className={styles.commentUser}>{reply.user}:</div>
+                        <div className={styles.commentText}>{reply.text}</div>
+                      </div>
+                      <div className={styles.likeDislikeButtons}>
+                        <button className={`${styles.likeButton} ${styles.actionButton}`} onClick={() => handleLike(index, replyIndex)}>
+                          Like
+                        </button>
+                        <span>{reply.likes}</span>
+                        <button className={`${styles.dislikeButton} ${styles.actionButton}`} onClick={() => handleDislike(index, replyIndex)}>
+                          Dislike
+                        </button>
+                        <span>{reply.dislikes}</span>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           ))}
@@ -127,3 +180,4 @@ const ForumPage = () => {
 };
 
 export default ForumPage;
+
