@@ -47,19 +47,20 @@ function Game({over, score, setScore}) {
 
   useEffect(() => {
     // load bird image
-    birdImg = localStorage.getItem("selectedImageBird");
+    birdImg = localStorage.getItem("selectedImageBird") || "/sparrow.png";
 
     // Load obstacles image
-    upObstacleImg = localStorage.getItem("selectedImageObstacles");
+    upObstacleImg = localStorage.getItem("selectedImageObstacles") || "/upBlock.png";
     flipImageUpsideDown(upObstacleImg, function (flippedDataUrl) {
-      downObstacleImg = flippedDataUrl;
+      downObstacleImg = flippedDataUrl || "/downBlock.png";
     });
 
     // Load background image
     const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
-    document.querySelector(".background").style.backgroundImage =
-      "url(" + backgroundImgUrl + ")";
-
+    if (backgroundImgUrl !== null) {
+      document.querySelector(".background").style.backgroundImage =
+        "url(" + backgroundImgUrl + ")";
+    }
   }, []);
 
   useEffect(() => {

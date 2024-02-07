@@ -30,7 +30,7 @@ export default function Customize({ name, defaultImages, width, height}) {
         throw error; // Re-throw other errors
       }
     }
-  }, [name, defaultImages]);
+  }, []);
 
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
