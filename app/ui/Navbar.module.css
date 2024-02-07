@@ -1,4 +1,8 @@
 /* Tevels Code */
+@font-face {
+  font-family: "Atlantis International";
+  src: url("/fonts/AtlantisInternational-jen0.ttf") format('truetype');
+}
 
 .navbar {
   display: flex;
@@ -10,7 +14,8 @@
   color: white;
   text-decoration: none;
   padding: 14px 16px;
-  font-family: sans-serif;
+  font-family: "Atlantis International", sans-serif;
+  font-size: 25px;
   font-weight: 1000;
 }
 

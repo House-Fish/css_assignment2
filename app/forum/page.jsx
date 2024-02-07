@@ -1,3 +1,5 @@
+/* Tevel's Code */
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -90,7 +92,7 @@ const ForumPage = () => {
   return (
     <div className={styles.websiteContainer}>
       <div className={styles.forumPage}>
-        <h1>Forum!</h1>
+        <h1>Flappy's Forum!</h1>
   
         {/* Floating bird */}
         <div className={`${styles.bird} ${styles.birdfloating}`}>
