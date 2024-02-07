@@ -25,6 +25,7 @@ export default function Audio({ name }) {
     <div className={styles.item}>
       <span className={styles.span}>{name}</span>
       <input
+        className={styles.slider}
         type="range"
         name="volume"
         min="0"

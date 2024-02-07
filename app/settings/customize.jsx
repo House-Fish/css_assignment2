@@ -117,7 +117,7 @@ export default function Customize({ name, defaultImages, width, height}) {
     <div className={styles.item}>
       <span className={styles.span}>{name}</span>
       <select
-        className={styles.dropdown}
+        className={styles.select}
         id="imageSelect"
         value={selectedImageUrl}
         onChange={handleOptionChange}
