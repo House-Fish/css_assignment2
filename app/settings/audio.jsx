@@ -1,4 +1,5 @@
-import { ClassNames } from "@emotion/react";
+// Jia Yu's code
+
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 
@@ -25,6 +26,7 @@ export default function Audio({ name }) {
     <div className={styles.item}>
       <span className={styles.span}>{name}</span>
       <input
+        className={styles.slider}
         type="range"
         name="volume"
         min="0"

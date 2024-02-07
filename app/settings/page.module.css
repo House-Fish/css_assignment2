@@ -1,3 +1,5 @@
+/* Jia Yu's code */
+
 @font-face {
   font-family: "Atlantis International";
   src: url("/fonts/AtlantisInternational-jen0.ttf") format('truetype');
@@ -74,7 +76,7 @@
               1px 1px 0px #523747;
 }
 
-.dropdown {
+.select {
   color: #523747;
   font-family: "Atlantis International", sans-serif;
   font-weight: 400;
@@ -100,3 +102,23 @@
 .h1, .ul {
   margin: 5px;
 }
+
+/* Change the color of the track */
+.slider {
+  background-color: transparent;
+  width: 40%;
+}
+
+.slider::-moz-range-thumb {
+  background-color: #523747; /* Change to the desired color */
+}
+.slider::-moz-range-progress { 
+  background-color: #523747; /* Change to the desired color */
+  box-shadow: 0 0 0 1px #523747;
+}
+.slider::-moz-range-track {
+  background-color: #d2aa4f; /* Change to the desired color */
+  height: 5px;
+}
+
+/* Other browsers have ourdated elements, leaving them as default colours*/
