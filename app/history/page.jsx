@@ -15,6 +15,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 const chartSetting = {
+  //The settings for the chart object
   xAxis: [
     {
       label: 'Hardware units sold',
@@ -24,6 +25,7 @@ const chartSetting = {
   height: 400,
 };
 const dataset = [
+  //The data of the chart object, Retrived from Wikipedia: https://en.wikipedia.org/wiki/List_of_arcade_video_games
   {
     game: 750000,
     month: 'Space Invaders',
@@ -85,6 +87,7 @@ const dataset = [
 const valueFormatter = (value) => `${value} units`;
 
 const scrollToSection = (section) => {
+  //Method to scroll to the object position by id
   document.getElementById(section).scrollIntoView({ behavior: "smooth" });
 };
 function App() {
@@ -110,6 +113,7 @@ function App() {
           boxShadow: 5
         }}
       >
+        {/*Content Page grid background colour*/}
         <Grid container spacing = {2} alignItems="center" justifyContent="center" sx ={{height: '100%', width: '100%', margin: 0, bgcolor: 'rgb(247,247,247)'}}>
           {/*Content page grid item */}
           <Grid item className={styles.noPadding} xs={12} lg = {5} display= 'flex' alignItems= 'center' justifyContent= 'center' sx={{height:'100%'}}>
@@ -200,11 +204,13 @@ function App() {
             </Box>
           </Grid>
           {/* End of Intro paragraph grid item */}
+          {/* Small yellow bar for aesthethic purpose*/}
           <Grid item xs={12} className= {styles.smallbar} sx={{zIndex: 100, bgcolor: "yellow"}}>
             <Box display = "flex" flexDirection="column" alignItems="center" justifyContent="center" sx = {{width: "100%", height: "100%", margin: 0, padding: 0}}>
               
             </Box>
           </Grid>
+          {/* The "inner" page, set in the centre of the larger page*/}
           <Container
             maxWidth={false}
             className={styles.noPadding}
@@ -217,6 +223,7 @@ function App() {
               minWidth: false,
             }}
           >
+            {/* Container for the entire article below the content page and introduction paragraph*/}
             <Container
               maxWidth={false}
               className={styles.noPadding}
@@ -457,6 +464,7 @@ function HeroSection() {
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Image
+            //The "video" that plays in the background
             src="/hero_section2.gif"
             alt="Hero Section"
             layout="fill"
@@ -466,6 +474,7 @@ function HeroSection() {
         </Grid>
         <Grid item xs={12}>
           <Typography 
+            //The Hero Text
             variant="h4" 
             component="h1" 
             className={styles.heroText}
@@ -483,6 +492,7 @@ function HeroSection() {
           }}
         >
           <Button
+            //The "Learn more" button that scrolls to the start of the article
             className={styles.button}
             variant="contained"
             onClick={() => scrollToSection('Start')}

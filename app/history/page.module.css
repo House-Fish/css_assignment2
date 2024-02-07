@@ -1,3 +1,5 @@
+/* doubled class to increase specificity score */
+
 .myHeroSection.myHeroSection {
   position: relative;
   width: 100%;
@@ -34,12 +36,11 @@
 
 }
 
-/* doubled class to increase specificity score */
 .button.button {
-  background-color: #ffffff; /* Green background */
-  color: rgb(0, 0, 0); /* White text */
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0); 
   border: none; /* No border */
-  text-transform: uppercase; /* Optional: makes text uppercase */
+  text-transform: uppercase; 
   padding: 1vw 2vw; /* Padding around the text */
   text-align: center; /* Center text */
   text-decoration: none; /* No underline for text */
@@ -58,7 +59,7 @@
   background-color: #F9DC35; /* yellow on hover */
   color:#ffffff
 }
-/* fede24 */
+/* Used for each "bar" in the content page*/
 .contentPage.contentPage {
   min-height: 80px;
   border-top: 1px;
@@ -84,6 +85,8 @@
   text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.5), -2px -1px 0 rgba(0, 0, 0, 0.5), 2px -1px 0 rgba(0, 0, 0, 0.5), -2px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
+/* For the first "bar" in the content page*/
+/* There will be no border */
 .contentPage1.contentPage1 {
   border-radius: 0px;
   min-height: 80px;
@@ -105,6 +108,7 @@
   text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.5), -2px -1px 0 rgba(0, 0, 0, 0.5), 2px -1px 0 rgba(0, 0, 0, 0.5), -2px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
+/* style I created to remove any padding from a component that I dont want padding for, such as the inner page */
 .noPadding.noPadding{
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -118,9 +122,9 @@
   line-height: 1.4;
   width: 90%;
   background-color: white;
-  component: p
 }
 
+/* Text styling for each title in the article, to make it bigger and bolder*/
 .title.title{
   margin: 0;
   font-weight: bold;
@@ -132,6 +136,7 @@
   background-color: white;
 }
 
+/* I used this with most of my grid items so that I wouldnt need to repeat repeated code. Which I found myself doing a lot*/
 .gridItem.gridItem{
   display: flex; 
   align-items: center; 
@@ -143,6 +148,7 @@
   padding-right: 0% !important;
 }
 
+/* for the thin yellow bar that seperates the content page, introduction paragraph, and the main article */
 .smallbar{
   display: flex; 
   align-items: center; 
