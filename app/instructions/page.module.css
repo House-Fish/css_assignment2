@@ -1,4 +1,8 @@
 /* Tevel's Code */
+@font-face {
+  font-family: "Atlantis International";
+  src: url("/fonts/AtlantisInternational-jen0.ttf") format('truetype');
+}
 
 .skyContainer {
   /* Background of the Website */
@@ -54,7 +58,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  font-family: 'Gill Sans', sans-serif;
+  font-family: "Atlantis International", sans-serif;
   color: #ffffff;
   font-weight: bold;
 }
@@ -64,11 +68,11 @@
 }
 
 .instructionsText {
-  font-size: 1.2em;
+  font-size: 20px;
   font-weight: bold;
   color: #ffffff;
   text-shadow: 1.2px 1.2px #483C32;
-  font-family: 'Pacifico', cursive;
+  font-family: "Atlantis International", sans-serif;
 }
 
 .instructionsTextContainer {
@@ -78,7 +82,7 @@
   text-shadow: 1.2px 1.2px #483C32;
   font-size: 1.2em;
   padding-bottom: 100px;
-  font-family: 'Pacifico', cursive;
+  font-family: "Atlantis International", sans-serif;
   letter-spacing: 2px;
 }
 
@@ -93,6 +97,8 @@
 
 .instructionsTextLine {
   margin: 10px 0;
+  font-family: "Atlantis International", sans-serif;
+  font-size: 30px;
 }
 
 .click {
@@ -102,18 +108,17 @@
   background-color: #ff7700;
   font-size: 1em;
   color: #ffffff;
-  font-family: 'Pacifico', cursive;
-
+  font-family: "Atlantis International";
 }
 
 .clickContainer {
   /* Controls Text */
-  font-size: 1em;
+  font-size: 1.2em;
   color:#ffffff;
   max-width: 1500px;
   letter-spacing: 1.5px;
   text-shadow: 1.1px 1.1px #483C32;
-  font-family: 'Pacifico', cursive;
+  font-family: "Atlantis International";
   padding-top: 20px;
   padding-left: 20px;
 }
@@ -135,7 +140,7 @@
   height: 100%;
   padding-bottom: 5px;
   background-color: #FE9800;
-  margin: -17.5px auto; 
+  margin: -22px auto; 
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
