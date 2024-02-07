@@ -45,6 +45,13 @@ function Game({over, score, setScore}) {
   const [leftDist, setLeftDist] = useState(540);
   const [gameStart, setGameStart] = useState(false);
 
+  const [topHt, setTopHt] = useState(250);
+  const [bottomHt, setBottomHt] = useState(250);
+
+  const randomNumberInRange = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   useEffect(() => {
     // load bird image
     birdImg = localStorage.getItem("selectedImageBird");
@@ -88,6 +95,23 @@ function Game({over, score, setScore}) {
         setLeftDist((prevLeftDist) => prevLeftDist - 15);
         if (leftDist < -160) {
           setLeftDist(550);
+          var topRandHt = randomNumberInRange(200,330);
+          var bottomRandHt = randomNumberInRange(200,330);
+          var diff = 660 - (topRandHt + bottomRandHt);
+          if (diff < 125 )
+          {
+            var change = 125 - diff;
+            if (topRandHt > bottomRandHt)
+            {
+              topRandHt -= change;
+            }
+            else
+            {
+              bottomRandHt -= change;
+            }
+          }
+          setBottomHt(topRandHt);
+          setTopHt(bottomRandHt);
         }
       }
     }, 170);
@@ -97,7 +121,7 @@ function Game({over, score, setScore}) {
 
   const handleClick = () => {
     if (gameStart == true)
-      setTopDist((prevTopDist) => prevTopDist - 75);
+      setTopDist((prevTopDist) => prevTopDist - 70);
   };
 
   const handleStart = () => {
@@ -110,9 +134,9 @@ function Game({over, score, setScore}) {
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist, height: topHt}} />
       <img className="bird" src={birdImg} style={{top: topDist}} />
-      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist, height: bottomHt}} />
     </div>    
   )
 }
