@@ -1,4 +1,4 @@
-// Liu JieXin
+// Liu JieXin & Jia Yu (Images, Music & Controls)
 
 "use client";
 import './game.css';
