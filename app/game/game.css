@@ -65,7 +65,9 @@
 .score {
   position: relative;
   text-align: center;
-  font-family: fantasy;
+  font-family: fantasy; 
+  font-family: "Atlantis International", sans-serif;
+
   margin-top: 7%;
   font-size: 45px;
   ;
