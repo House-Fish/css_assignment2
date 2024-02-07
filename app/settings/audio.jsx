@@ -8,8 +8,6 @@ export default function Audio({ name }) {
     const storedVolume = localStorage.getItem("audioVolume" + name);
     if (storedVolume !== null) {
       setVolume(Number(storedVolume));
-    } else {
-      localStorage.setItem("audioVolume" + name, volume.toString());
     }
   }, []);
 

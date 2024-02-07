@@ -2,10 +2,13 @@
 import './game.css';
 import React from "react";
 import { useState, useEffect } from 'react';
+import { flipImageUpsideDown } from "../utils/imageUtils";
 
-var birdImg;
-var upObstacleImg;
-var downObstacleImg;
+// default images
+var birdImg = "/sparrow.png";
+var upObstacleImg = "/upBlock.png";
+var downObstacleImg = "/downBlock.png";
+var jumpKey = " "; // Space
 
 function DeathPage({restartGame, score}) {
 
@@ -47,13 +50,20 @@ function Game({over, score, setScore}) {
 
   useEffect(() => {
     // load bird image
-    birdImg = localStorage.getItem("selectedImageBird") || "/sparrow.png";
+    const storedBird = localStorage.getItem("selectedImageBird");
+    if (storedBird !== null) {
+      birdImg = storedBird;
+    }
 
     // Load obstacles image
-    upObstacleImg = localStorage.getItem("selectedImageObstacles") || "/upBlock.png";
-    flipImageUpsideDown(upObstacleImg, function (flippedDataUrl) {
-      downObstacleImg = flippedDataUrl || "/downBlock.png";
-    });
+    const storedObstacle = localStorage.getItem("selectedImageObstacles");
+
+    if (storedObstacle !== null) {
+      upObstacleImg = storedObstacle;
+      flipImageUpsideDown(storedObstacle).then(downImg => {
+        downObstacleImg = downImg;
+      });
+    }
 
     // Load background image
     const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
@@ -64,8 +74,12 @@ function Game({over, score, setScore}) {
   }, []);
 
   useEffect(() => {
+    const storedJumpKey = localStorage.getItem("Jump");
+    if (storedJumpKey !== null) {
+      jumpKey = storedJumpKey === "Space" ? " " : storedJumpKey;
+    } 
+
     const handleKeyPress = (event) => {
-      const jumpKey = localStorage.getItem("Jump") === "Space" ? " " : localStorage.getItem("Jump") || " "; // Get the stored jump key
       if (event.key === jumpKey && gameStart) {
         setTopDist((prevTopDist) => prevTopDist - 75);
       }
@@ -131,33 +145,6 @@ function Game({over, score, setScore}) {
       <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
     </div>    
   )
-}
-
-function flipImageUpsideDown(dataUrl, callback) {
-  const img = new Image();
-  img.onload = function () {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-
-    // Set the canvas dimensions to match the image dimensions
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    // Flip the image upside down by drawing it with a transformation matrix
-    context.translate(0, img.height);
-    context.scale(1, -1);
-
-    // Draw the flipped image onto the canvas
-    context.drawImage(img, 0, 0);
-
-    // Get the data URL of the flipped image
-    const flippedDataUrl = canvas.toDataURL('image/png');
-
-    // Call the callback function with the flipped data URL
-    callback(flippedDataUrl);
-  };
-
-  img.src = dataUrl;
 }
 
 function App() {
