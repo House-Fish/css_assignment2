@@ -1,192 +1,152 @@
 "use client";
-import '@/app/game/game.css';
+import '/app/game/game.css';
 import React from "react";
 import { useState, useEffect } from 'react';
-import TextBubble from "./TextBubble";
 
-function TutorialFin({restartGame, score}) {
+var birdImg;
+var upObstacleImg;
+var downObstacleImg;
+
+function DeathPage({restartGame, score}) {
+
   return (
     <div className="death">
-      <img src="/bird2.png" style={{height: "45%", marginLeft: "3.5px", marginTop: "45px"}}/>
+      <img src="/skull.png" style={{height: "45%", marginLeft: "3.5px", marginTop: "45px"}}/>
       <div className="deathText">
-        <p>You completed the tutorial!</p>
+        <p>HDB rammed your Bird. </p>
+        <p>Your score is {score}.</p>
+        Wanna
       </div>
       <button className="againBtn" onClick={restartGame}>Play Again?</button>
     </div>
   );
 }
 
-
-// UpColliding function
-function UpColliding(bird, upObstacle) {
-  const birdPos = bird.getBoundingClientRect();
-  const upObstaclePos = upObstacle.getBoundingClientRect();
-
+function UpColliding(birdPos, upObstaclePos) {
   // Needs to return false if alive, true if dead
   return (
-    birdPos.y <= upObstaclePos.height &&
-    birdPos.x + birdPos.width >= upObstaclePos.x &&
-    birdPos.x <= upObstaclePos.x + upObstaclePos.width
+    birdPos.top <= upObstaclePos.bottom &&
+    birdPos.right >= upObstaclePos.left &&
+    birdPos.left <= upObstaclePos.right
   );
 }
 
-// DownColliding function
-function DownColliding(bird, downObstacle) {
-  const birdPos = bird.getBoundingClientRect();
-  const downObstaclePos = downObstacle.getBoundingClientRect();
-
+function DownColliding(birdPos, downObstaclePos) {
   // Needs to return false if alive, true if dead
   return (
-    birdPos.y + birdPos.height - downObstaclePos.y >= 0 &&
-    birdPos.x + birdPos.width >= downObstaclePos.x &&
-    birdPos.x <= downObstaclePos.x + downObstaclePos.width
+    birdPos.bottom >= downObstaclePos.top &&
+    birdPos.right >= downObstaclePos.left &&
+    birdPos.left <= downObstaclePos.right
   );
 }
 
-// Game component
-function Game({ over, score, setScore }) {
+function Game({over, score, setScore}) {
   const [topDist, setTopDist] = useState(320);
-  const [downLeftDist, setDownLeftDist] = useState(540);
-  const [upLeftDist, setUpLeftDist] = useState(540);
+  const [leftDist, setLeftDist] = useState(540);
   const [gameStart, setGameStart] = useState(false);
-  const [showInstructions, setShowInstructions] = useState(true);
 
-  // Additional state for totalDistance and showTextBubble
-  const [totalDistance, setTotalDistance] = useState(0);
-  const [showTextBubble, setShowTextBubble] = useState(false);
+  useEffect(() => {
+    // load bird image
+    birdImg = localStorage.getItem("selectedImageBird");
 
-  // useEffect for collision detection
+    // Load obstacles image
+    upObstacleImg = localStorage.getItem("selectedImageObstacles");
+    flipImageUpsideDown(upObstacleImg, function (flippedDataUrl) {
+      downObstacleImg = flippedDataUrl;
+    });
+
+    // Load background image
+    const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
+    document.querySelector(".background").style.backgroundImage =
+      "url(" + backgroundImgUrl + ")";
+
+  }, []);
+
   useEffect(() => {
     const collisionInterval = setInterval(() => {
-      const bird = document.querySelector(".bird");
-      const upObstacle = document.querySelector(".upObstacle");
-      const downObstacle = document.querySelector(".downObstacle");
+      if (gameStart == true) {
+      const birdPos = document.querySelector(".bird").getBoundingClientRect();
+      const upObstaclePos = document.querySelector(".upObstacle").getBoundingClientRect();
+      const downObstaclePos = document.querySelector(".downObstacle").getBoundingClientRect();
 
-      if ((topDist > 613) || (UpColliding(bird, upObstacle)) || (DownColliding(bird, downObstacle))) {
+      if ((topDist > 613) || (DownColliding(birdPos, downObstaclePos)) || (UpColliding(birdPos, upObstaclePos))) {
+        clearInterval(collisionInterval)
         setGameStart(false);
         over();
       }
-    }, 10);
+    }
+    });
 
-    return () => clearInterval(collisionInterval);
-  }, [topDist]);
+      return () => clearInterval(collisionInterval);
+    }, [topDist, leftDist]);
 
-  // useEffect for distance covered
   useEffect(() => {
-    const distanceInterval = setInterval(() => {
-      if (gameStart) {
-        setTotalDistance((prevTotalDistance) => prevTotalDistance + 1);
-      }
-    }, 100);
-
-    return () => clearInterval(distanceInterval);
-  }, [gameStart, setTotalDistance]);
-
-  // useEffect for score update and game end condition
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart === true) {
+    const moveInterval = setInterval(() => {
+      if (gameStart == true) {
         setScore((prevScore) => prevScore + 1);
-        if (totalDistance >= 130) {
-          setGameStart(false);
-          over();
+        setTopDist((prevTopDist) => prevTopDist + 12);
+        setLeftDist((prevLeftDist) => prevLeftDist - 15);
+        if (leftDist < -160) {
+          setLeftDist(550);
         }
       }
-    }, 100);
+    }, 170);
 
-    return () => clearInterval(interval);
-  }, [gameStart, totalDistance, over, setScore]);
+      return () => clearInterval(moveInterval);
+    }, [gameStart, leftDist]);
 
-  // useEffect for bird movement
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart === true) {
-        if (topDist < 613) {
-          setTopDist((prevTopDist) => prevTopDist + 10.3);
-        }
-      }
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [gameStart, topDist]);
-
-  // useEffect for obstacle movement
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart === true) {
-        setDownLeftDist((prevDownLeftDist) => prevDownLeftDist - 10);
-        setUpLeftDist((prevUpLeftDist) => prevUpLeftDist - 10);
-        if ((downLeftDist < -160) || (upLeftDist < -160)) {
-          setDownLeftDist(550);
-          setUpLeftDist(550);
-        }
-      }
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [gameStart, upLeftDist, downLeftDist]);
-
-  // useEffect for showing text bubble
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (gameStart === true) {
-        if (totalDistance >= 20 && !showTextBubble) {
-          setShowTextBubble(true);
-        }
-      }
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [gameStart, totalDistance, showTextBubble]);
-
-  // Click handler for bird jump or showing instructions
   const handleClick = () => {
-    if (gameStart === true) {
+    if (gameStart == true)
       setTopDist((prevTopDist) => prevTopDist - 75);
-    } else {
-      if (showInstructions) {
-        alert("Read the instructions first!");
-      } else {
-        setShowInstructions(true);
-      }
-    }
   };
 
-  // Click handler for starting the game
   const handleStart = () => {
-    if (!showInstructions) {
-      setGameStart(true);
-    } else {
-      setShowInstructions(false);
-    }
+    setGameStart(true);
   };
-
+  
   return (
     <div className="background" onClick={handleClick}>
-      {gameStart === false && (
-        <div>
-          {showInstructions && <p className="instructionPrompt"></p>}
-          {showTextBubble && <TextBubble />}
-          <button className="startBtn" onClick={handleStart}>
-            Start Game
-          </button>
-        </div>
+      { (gameStart == false) && (
+        <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
       <div className="score">{score}</div>
-      <img className="upObstacle" src="/upBlock.png" style={{ marginLeft: upLeftDist }} alt="Up Obstacle" />
-      <img className="bird" src="/bird.png" style={{ top: topDist }} alt="Bird" />
-      <img className="downObstacle" src="/downBlock.png" style={{ marginLeft: downLeftDist }} alt="Down Obstacle" />
-    </div>
-  );
+      <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist}} />
+      <img className="bird" src={birdImg} style={{top: topDist}} />
+      <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist}} />
+    </div>    
+  )
 }
 
-// App component
+function flipImageUpsideDown(dataUrl, callback) {
+  const img = new Image();
+  img.onload = function () {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas dimensions to match the image dimensions
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Flip the image upside down by drawing it with a transformation matrix
+    context.translate(0, img.height);
+    context.scale(1, -1);
+
+    // Draw the flipped image onto the canvas
+    context.drawImage(img, 0, 0);
+
+    // Get the data URL of the flipped image
+    const flippedDataUrl = canvas.toDataURL('image/png');
+
+    // Call the callback function with the flipped data URL
+    callback(flippedDataUrl);
+  };
+
+  img.src = dataUrl;
+}
+
 function App() {
   const [gameRun, setGameRun] = useState(true);
   const [score, setScore] = useState(0);
-
-  // Additional state for totalDistance
-  const [totalDistance, setTotalDistance] = useState(0);
 
   const handleOver = () => {
     setGameRun(false);
@@ -195,7 +155,6 @@ function App() {
   const handleRestart = () => {
     setGameRun(true);
     setScore(0);
-    setTotalDistance(0);
   };
 
   return (
@@ -213,3 +172,27 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+function TutorialFin({restartGame, score}) {
+  return (
+    <div className="death">
+      <img src="/bird2.png" style={{height: "45%", marginLeft: "3.5px", marginTop: "45px"}}/>
+      <div className="deathText">
+        <p>You completed the tutorial!</p>
+      </div>
+      <button className="againBtn" onClick={restartGame}>Play Again?</button>
+    </div>
+  );
+}

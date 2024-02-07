@@ -1,10 +1,8 @@
-.websiteContainer {
-  background: url('/background2.png') center center no-repeat;
-  background-size: cover;
-}
+/* Tevel's Code */
+
 
 .forumPage {
-  max-width: 1300px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 15px;
   color: #333;
@@ -64,6 +62,8 @@
   margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  word-wrap: break-word;
   transition: box-shadow 0.3s ease;
 }
 

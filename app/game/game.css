@@ -5,6 +5,7 @@
 
 .background {
   position: relative;
+  background-image: url("/sgback2.jpg");
   margin-left: auto;
   margin-right: auto;
   height: 660px;
@@ -37,7 +38,7 @@
   color:crimson;
 }
 
-button {
+.startBtn {
   position: absolute;
   font-family: fantasy;
   font-size: 35px;

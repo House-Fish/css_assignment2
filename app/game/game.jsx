@@ -54,20 +54,36 @@ function Game({over, score, setScore}) {
 
   useEffect(() => {
     // load bird image
-    birdImg = localStorage.getItem("selectedImageBird");
+    birdImg = localStorage.getItem("selectedImageBird") || "/sparrow.png";
 
     // Load obstacles image
-    upObstacleImg = localStorage.getItem("selectedImageObstacles");
+    upObstacleImg = localStorage.getItem("selectedImageObstacles") || "/upBlock.png";
     flipImageUpsideDown(upObstacleImg, function (flippedDataUrl) {
-      downObstacleImg = flippedDataUrl;
+      downObstacleImg = flippedDataUrl || "/downBlock.png";
     });
 
     // Load background image
     const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
-    document.querySelector(".background").style.backgroundImage =
-      "url(" + backgroundImgUrl + ")";
-
+    if (backgroundImgUrl !== null) {
+      document.querySelector(".background").style.backgroundImage =
+        "url(" + backgroundImgUrl + ")";
+    }
   }, []);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      const jumpKey = localStorage.getItem("Jump") === "Space" ? " " : localStorage.getItem("Jump") || " "; // Get the stored jump key
+      if (event.key === jumpKey && gameStart) {
+        setTopDist((prevTopDist) => prevTopDist - 75);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [gameStart]);
 
   useEffect(() => {
     const collisionInterval = setInterval(() => {
@@ -123,11 +139,11 @@ function Game({over, score, setScore}) {
     if (gameStart == true)
       setTopDist((prevTopDist) => prevTopDist - 70);
   };
-
+  
   const handleStart = () => {
     setGameStart(true);
   };
-  
+
   return (
     <div className="background" onClick={handleClick}>
       { (gameStart == false) && (
