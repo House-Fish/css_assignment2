@@ -1,3 +1,5 @@
+// Liu JieXin
+
 "use client";
 import './game.css';
 import React from "react";
@@ -46,7 +48,7 @@ function DownColliding(birdPos, downObstaclePos) {
   );
 }
 
-/* Game function that uses useEffect to move the obstacles and bird. 
+/* Game function that moves the obstacles and bird
     It also checks if bird has touched the floor and obstacles */
 function Game({over, score, setScore}) {
   const [topDist, setTopDist] = useState(320);
@@ -56,7 +58,7 @@ function Game({over, score, setScore}) {
   const [topHt, setTopHt] = useState(250);
   const [bottomHt, setBottomHt] = useState(250);
 
-  /* Random number generator function to vary the obstacle heights */
+  // Random number generator function to vary the obstacle heights
   const randomNumberInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -105,7 +107,7 @@ function Game({over, score, setScore}) {
     };
   }, [gameStart]);
 
-  /* To detect if the bird has collided with the floor or obstacles whenever the bird or obstacles move.
+  /* To detect if the bird has collided with the floor or obstacles whenever the bird or obstacles move
       If detected, setGameStart becomes false and game will be stopped in the App function */
   useEffect(() => {
     const collisionInterval = setInterval(() => {
@@ -125,8 +127,8 @@ function Game({over, score, setScore}) {
       return () => clearInterval(collisionInterval);
     }, [topDist, leftDist]);
 
-  /* To move the bird downwards and obstacles left every 170ms. 
-      Also changes the height of the obstacles every iteration. */
+  /* To move the bird downwards and obstacles left every 170ms 
+      Also changes the height of the obstacles every iteration */
   useEffect(() => {
     const moveInterval = setInterval(() => {
       if (gameStart == true) {
@@ -139,7 +141,7 @@ function Game({over, score, setScore}) {
           var bottomRandHt = randomNumberInRange(180,330);
           var diff = 660 - (topRandHt + bottomRandHt);
           /* If the obstacles' heights are too tall for the bird to get through,
-              minus the height of a obstacle */
+              minus the height of obstacle */
           if (diff < 140 )
           {
             var change = 140 - diff;
@@ -161,6 +163,7 @@ function Game({over, score, setScore}) {
       return () => clearInterval(moveInterval);
     }, [gameStart, leftDist]);
 
+  // Upon click, bird moves up by 70px
   const handleClick = () => {
     if (gameStart == true)
       setTopDist((prevTopDist) => prevTopDist - 70);
@@ -183,6 +186,7 @@ function Game({over, score, setScore}) {
   )
 }
 
+/* Game loop, handles game over and restart */
 function App() {
   const [gameRun, setGameRun] = useState(true);
   const [score, setScore] = useState(0);
@@ -198,7 +202,7 @@ function App() {
     setScore(0);
   };
 
-  /* If gameRun is true game runs, else death page shows. */
+  /* If gameRun is true game function renders, else death page function renders. */
   return (
     <div className="websiteContainer">
       <div className="gameWindow">
