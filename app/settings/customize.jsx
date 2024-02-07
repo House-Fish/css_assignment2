@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { resizeImage } from '../utils/imageUtils';
 
 export default function Customize({ name, defaultImages, width, height}) {
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
@@ -9,18 +10,15 @@ export default function Customize({ name, defaultImages, width, height}) {
       // Retrieve images from localStorage on component mount
       const storedImages = JSON.parse(localStorage.getItem('images' + name)) || {};
       const storedSelectedImageUrl = localStorage.getItem('selectedImage' + name) || '';
-
+  
       // If there's no stored selected image, set it to the first default image
       if (!storedSelectedImageUrl && defaultImages.length > 0) {
         const firstDefaultImage = '/' + defaultImages[0];
         setSelectedImageUrl(firstDefaultImage);
-
-        // Save selected image URL to localStorage
-        localStorage.setItem('selectedImage' + name, firstDefaultImage);
       } else {
         setSelectedImageUrl(storedSelectedImageUrl);
       }
-
+  
       setImages(storedImages);
     } catch (error) {
       if (error instanceof DOMException && error.name === 'QuotaExceededError') {
@@ -83,36 +81,6 @@ export default function Customize({ name, defaultImages, width, height}) {
         // Handle other potential errors related to file processing
       }
     }
-  };
-
-  const resizeImage = async (imageUrl, width, height) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = async () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        const context = canvas.getContext('2d');
-  
-        // Resize the image using createImageBitmap
-        await createImageBitmap(img, { resizeWidth: width, resizeHeight: height })
-          .then((bitmap) => {
-            context.drawImage(bitmap, 0, 0, width, height);
-  
-            // Get the data URL of the resized image
-            const resizedDataURL = canvas.toDataURL('image/jpeg');
-  
-            resolve(resizedDataURL);
-          })
-          .catch((error) => {
-            console.error('Error resizing image:', error);
-            reject(error);
-          });
-      };
-  
-      img.src = imageUrl;
-    });
   };
 
   const removeSelectedImage = () => {

@@ -9,7 +9,7 @@ export default function Controls({ name, defaultKey }) {
     if (storedValue !== null) {
       setInputValue(storedValue);
     }
-  }, [name]);
+  }, []);
 
   const handleKeyDown = (event) => {
     const key = event.key.replace(/ /g, "Space");

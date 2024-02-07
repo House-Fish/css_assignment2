@@ -1,24 +1,87 @@
 /* Tevel's Code */
 
+.bird {
+  /* Initial position and rotation of the bird */
+  transform: translateY(100px) translateX(100px) rotate(15deg);
+  
+}
+
+.birdfloating {
+  /* Properties for the floating animation */
+  animation: floatAnimation 40s infinite linear;
+}
+
+@keyframes floatAnimation {
+  0%, 100% {
+    /* Initial and final position of the bird */
+    transform: translateY(120px) translateX(100px) rotate(15deg);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    /* Flying up and down */
+    transform: translateY(10px) translateX(450px) rotate(5deg);
+  }
+  40%, 60%, 80% {
+    /* Flying up and down */
+    transform: translateY(140px) translateX(1000px) rotate(15deg);
+  }
+  20% {
+    /* Flying backward */
+    transform: translateY(10px) translateX(1000px) rotate(-5deg);
+  }
+  85% {
+    /* Flying backward */
+    transform: translateY(140px) translateX(1000px) rotate(-5deg);
+  }
+}
 
 .forumPage {
   max-width: 100%;
   margin: 0 auto;
   padding: 15px;
-  color: #333;
+  color: #ffffff;
   text-shadow: 1.2px 1.2px #483C32;
   font-family: 'Pacifico', cursive;
   letter-spacing: 1px;
-  background-color: #fede24;
+  background: url('/background2.png') center center no-repeat;
   opacity: 0.8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-height: calc(100vh - 100px);
-  overflow-y: auto;
+  overflow-x: hidden; 
+  overflow-y: hidden; 
   margin-bottom: 20px;
+}
+
+
+.likeButton {
+  background-color: #77DD77;
+  margin-right: 5px;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.dislikeButton {
+  background-color: #FF6961;
+  color: #000000;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .commentContainer {
   margin-bottom: 20px;
+}
+
+.textareaContainer{
+  width: 95%;
+  height: 60px;
+  margin-bottom: 10px;
+  resize: none;
+  transition: border-color 0.3s ease;
 }
 
 .textareaContainer textarea {
@@ -26,7 +89,6 @@
   height: 80px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
   resize: none;
   transition: border-color 0.3s ease;
 }
@@ -36,14 +98,15 @@
 }
 
 .commentButton {
-  background-color: #3498db;
+  background-color: #4bae4e;
   color: #fff;
   border: none;
-  padding: 8px 15px;
+  padding: 4px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
+  margin-right: 10px;
 }
 
 .commentButton:hover {
@@ -62,49 +125,48 @@
   margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  word-wrap: break-word;
   transition: box-shadow 0.3s ease;
 }
 
-.comment:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
 .commentHeader {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
   margin-bottom: 8px;
+  background-color: rgba(149, 149, 149, 0.3); /* Use rgba with the alpha channel (0.5 for 50% transparency) */
+  padding: 10px;
 }
 
-.commentText {
-  margin-bottom: 12px;
+.commentUser {
+  font-weight: bold;
+  margin-right: 8px;
+  color:#2ecc71;
 }
 
 .replyButton {
-  background-color: #2ecc71;
+  background-color: #232323;
   color: #fff;
   border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+  padding: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 12px;
-  margin-right: 8px;
+  font-size: 14px;
   transition: background-color 0.3s ease;
 }
 
 .replyButton:hover {
-  background-color: #239d5c;
+  background-color: #2077b1;
 }
 
 .replyContainer {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .replyTextarea {
-  width: calc(100% - 18px);
-  padding: 8px;
-  border: 1px solid #bfbebe;
-  border-radius: 5px;
+  width: 95%;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
   resize: none;
   transition: border-color 0.3s ease;
 }
@@ -113,22 +175,17 @@
   border-color: #2ecc71;
 }
 
-.replyUser {
-  font-weight: bold;
-}
-
 .replies {
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-left: 20px;
 }
 
 .reply {
-  background-color: #f5f5f5;
   padding: 8px;
   margin-top: 5px;
-  border-radius: 3px;
   transition: background-color 0.3s ease;
 }
 
-.reply:hover {
-  background-color: #e0e0e0;
+.replyButton:hover {
+  background-color: #2077b1;
 }

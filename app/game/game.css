@@ -1,3 +1,5 @@
+/* Liu JieXin */
+
 .websiteContainer {
   background: url("/back.png") center center no-repeat;
   background-size: cover;
@@ -5,6 +7,7 @@
 
 .background {
   position: relative;
+  background-image: url("/sgback2.jpg");
   margin-left: auto;
   margin-right: auto;
   height: 660px;
@@ -14,6 +17,7 @@
   overflow: hidden;
 }
 
+/* Death Page*/
 .death {
   position: relative;
   height: 525px;
@@ -72,7 +76,6 @@
 
 .upObstacle {
   position: absolute;
-  height: 250px;
   width: auto;
   top: -0.2%;
   padding: 1px;
@@ -81,14 +84,13 @@
 
 .downObstacle {
   position: absolute;
-  height: 250px;
   width: auto;
   bottom: -0.2%;
   padding: 1px;
 }
 
 .gameWindow {
-  padding-top: 20px;
-  padding-bottom: 70px;
+  padding-top: 70px;
+  padding-bottom: 100px;
 }
 
