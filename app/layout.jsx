@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "@/app/ui/Navbar";
 import Credits from "@/app/ui/Credits";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (

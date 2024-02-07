@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./page.module.css";
 
 export default function Controls({ name, defaultKey }) {
   const [inputValue, setInputValue] = useState(defaultKey);
@@ -18,9 +19,10 @@ export default function Controls({ name, defaultKey }) {
   };
 
   return (
-    <div>
-      <span>{name}</span>
+    <div className={styles.item}>
+      <span className={styles.span}>{name}</span>
       <input
+        className={styles.input}
         type="text"
         value={inputValue}
         onKeyDown={handleKeyDown}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { resizeImage } from '../utils/imageUtils';
+import styles from "./page.module.css";
 
 export default function Customize({ name, defaultImages, width, height}) {
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
@@ -113,11 +114,16 @@ export default function Customize({ name, defaultImages, width, height}) {
   const fileInputRef = React.createRef();
 
   return (
-    <div>
-      <span>{name}</span>
-      <select id="imageSelect" value={selectedImageUrl} onChange={handleOptionChange}>
+    <div className={styles.item}>
+      <span className={styles.span}>{name}</span>
+      <select
+        className={styles.dropdown}
+        id="imageSelect"
+        value={selectedImageUrl}
+        onChange={handleOptionChange}
+      >
         {defaultImages.map((imageName) => (
-          <option key={imageName} value={'/' + imageName}>
+          <option key={imageName} value={"/" + imageName}>
             {imageName}
           </option>
         ))}
@@ -136,7 +142,7 @@ export default function Customize({ name, defaultImages, width, height}) {
         type="file"
         accept="image/*"
         ref={fileInputRef}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         onChange={handleAddImage}
       />
     </div>
