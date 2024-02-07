@@ -1,9 +1,10 @@
 // Tevel's Code
+"use client";
 
-'use client';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // Import Image component from Next.js
 
 import styles from './page.module.css'; // Import the CSS module
-import React, { useState, useEffect } from 'react';
 
 const ForumPage = () => {
   // State hooks
@@ -73,44 +74,54 @@ const ForumPage = () => {
   return (
     <div className={styles.websiteContainer}>
       <div className={styles.forumPage}>
-      <h1>Forum!</h1>
+        <h1>Forum!</h1>
+        
+        {/* Floating bird */}
+        <div className={`${styles.bird} ${styles.birdfloating}`}>
+          <Image
+            src="/bird.png"
+            alt="Bird Logo"
+            width={150}
+            height={100}
+          />
+        </div>
 
-      <div className={styles.commentContainer}>
-        <textarea
-          className={styles.textareaContainer}
-          placeholder="Write your comment..."
-          value={comment}
-          onChange={handleCommentChange}
-        ></textarea>
-        <button onClick={handleAddComment}>Comment</button>
-      </div>
-
-      <div className={styles.comments}>
-        {comments.map((comment, index) => (
-          <div key={index} className={styles.comment}>
-            <div>{`${comment.user}: ${comment.text}`}</div>
-            <button onClick={() => handleReply(index)}>Reply to comment</button>
-            {replyIndex === index && (
-              <div>
-                <textarea
-                  placeholder="Write your reply..."
-                  value={replyText}
-                  onChange={handleReplyTextChange}
-                ></textarea>
-                <button onClick={handleAddReply}>Reply</button>
-              </div>
-            )}
-            <div className={styles.replies}>
-              {comment.replies && comment.replies.map((reply, replyIndex) => (
-                <div key={replyIndex} className={styles.reply}>
-                  {`${reply.user}: ${reply.text}`}
+        <div className={styles.commentContainer}>
+          <textarea
+            className={styles.textareaContainer}
+            placeholder="Write your comment..."
+            value={comment}
+            onChange={handleCommentChange}
+          ></textarea>
+          <button onClick={handleAddComment}>Comment</button>
+        </div>
+        
+        <div className={styles.comments}>
+          {comments.map((comment, index) => (
+            <div key={index} className={styles.comment}>
+              <div>{`${comment.user}: ${comment.text}`}</div>
+              <button onClick={() => handleReply(index)}>Reply to comment</button>
+              {replyIndex === index && (
+                <div>
+                  <textarea
+                    placeholder="Write your reply..."
+                    value={replyText}
+                    onChange={handleReplyTextChange}
+                  ></textarea>
+                  <button onClick={handleAddReply}>Reply</button>
                 </div>
-              ))}
+              )}
+              <div className={styles.replies}>
+                {comment.replies && comment.replies.map((reply, replyIndex) => (
+                  <div key={replyIndex} className={styles.reply}>
+                    {`${reply.user}: ${reply.text}`}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
