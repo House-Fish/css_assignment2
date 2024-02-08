@@ -1,3 +1,5 @@
+// Brayden's Code
+
 "use client";
 import React, { useState, useEffect } from "react";
 import {
@@ -362,8 +364,8 @@ function App() {
                     textAlign={"justify"}
                   >
                     The late 1980s to early 1990s are a period where two major console manufacturers, <a href="https://www.ign.com/wikis/history-of-video-game-consoles/NES">Nintendo NES</a> and <a href="https://www.ign.com/wikis/history-of-video-game-consoles/SEGA_Genesis">Sega's Genesis</a> vied for dominance. 
-                    <a href="https://www.ign.com/wikis/history-of-video-game-consoles/NES"> Nintendo NES</a> released in North America in 1985, and quickly became a houshold name with its intuitive control system, improved graphics and exceptional game library. It introduced the iconic character                   
-                    <a href="https://en.wikipedia.org/wiki/Mario"> Mario</a>, which has become synonymous with Nintendo console gaming up till today. 
+                    <a href="https://www.ign.com/wikis/history-of-video-game-consoles/NES"> Nintendo NES</a> released in North America in 1985, and quickly became a houshold name with its intuitive control system, improved graphics and exceptional game library. It introduced the iconic character <a href="https://en.wikipedia.org/wiki/Mario">Mario</a>, 
+                    which has become synonymous with Nintendo console gaming up till today. 
                     <br/><br/>
                     Sega answered with its <a href="https://www.ign.com/wikis/history-of-video-game-consoles/SEGA_Genesis">Genesis</a> console in 1989, which had superior hardware, delivering more sophistacted graphics and sound. It became the home of <a href="https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(character)">Sonic the Hedgehog</a>, whose fast-paced gameplay captured the current generation. 
                     <br/><br/>

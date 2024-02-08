@@ -1,43 +1,41 @@
 /* Tevel's Code */
+
+/* Define font face for custom font */
 @font-face {
   font-family: "Atlantis International";
   src: url("/fonts/AtlantisInternational-jen0.ttf") format('truetype');
 }
 
+/* Styling for the floating bird */
 .bird {
-  /* Initial position and rotation of the bird */
-  transform: translateY(100px) translateX(100px) rotate(15deg);
-  
+  transform: translateY(100px) translateX(100px) rotate(15deg); /* Initial position and rotation of the bird */
 }
 
+/* Animation for bird floating */
 .birdfloating {
-  /* Properties for the floating animation */
-  animation: floatAnimation 40s infinite linear;
+  animation: floatAnimation 40s infinite linear; /* Properties for the floating animation */
 }
 
+/* Keyframes for floating animation */
 @keyframes floatAnimation {
   0%, 100% {
-    /* Initial and final position of the bird */
-    transform: translateY(120px) translateX(100px) rotate(15deg);
+    transform: translateY(120px) translateX(100px) rotate(15deg); /* Initial and final position of the bird */
   }
   10%, 30%, 50%, 70%, 90% {
-    /* Flying up and down */
-    transform: translateY(10px) translateX(450px) rotate(5deg);
+    transform: translateY(10px) translateX(450px) rotate(5deg); /* Flying up and down */
   }
   40%, 60%, 80% {
-    /* Flying up and down */
-    transform: translateY(140px) translateX(1000px) rotate(15deg);
+    transform: translateY(140px) translateX(1000px) rotate(15deg); /* Flying up and down */
   }
   20% {
-    /* Flying backward */
-    transform: translateY(10px) translateX(1000px) rotate(-5deg);
+    transform: translateY(10px) translateX(1000px) rotate(-5deg); /* Flying backward */
   }
   85% {
-    /* Flying backward */
-    transform: translateY(140px) translateX(1000px) rotate(-5deg);
+    transform: translateY(140px) translateX(1000px) rotate(-5deg); /* Flying backward */
   }
 }
 
+/* Styling for forum page */
 .forumPage {
   max-width: 100%;
   margin: 0 auto;
@@ -47,16 +45,15 @@
   font-family: "Atlantis International", sans-serif;
   font-size: 40px;
   letter-spacing: 1px;
-  background: url('/background2.png') center center no-repeat;
+  background: url('/background2.png') center center no-repeat; /* Background image */
   opacity: 0.8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-height: calc(100vh - 100px);
   overflow-x: hidden; 
-  overflow-y: hidden; 
   margin-bottom: 20px;
 }
 
-
+/* Styling for like button */
 .likeButton {
   background-color: #77DD77;
   margin-right: 5px;
@@ -69,6 +66,7 @@
   font-size: 20px;
 }
 
+/* Styling for dislike button */
 .dislikeButton {
   background-color: #FF6961;
   color: #000000;
@@ -79,19 +77,21 @@
   padding-right: 6px;
   font-family: "Atlantis International", sans-serif;
   font-size: 20px;
-  
 }
 
-.clearButton{
+/* Styling for clear button */
+.clearButton {
   font-family: "Atlantis International", sans-serif;
   font-size: 20px;
 }
 
+/* Styling for comment container */
 .commentContainer {
   margin-bottom: 20px;
 }
 
-.textareaContainer{
+/* Styling for textarea */
+.textareaContainer {
   width: 95%;
   height: 60px;
   margin-bottom: 10px;
@@ -112,6 +112,7 @@
   border-color: #3498db;
 }
 
+/* Styling for comment button */
 .commentButton {
   background-color: #4bae4e;
   color: #fff;
@@ -130,12 +131,14 @@
   background-color: #2077b1;
 }
 
+/* Styling for comments */
 .comments {
   display: flex;
   flex-direction: column;
   color: #333;
 }
 
+/* Styling for each comment */
 .comment {
   background-color: #fff;
   padding: 15px;
@@ -147,6 +150,7 @@
   font-size: 18px;
 }
 
+/* Styling for comment header */
 .commentHeader {
   display: flex;
   align-items: center;
@@ -155,12 +159,14 @@
   padding: 10px;
 }
 
+/* Styling for comment user */
 .commentUser {
   font-weight: bold;
   margin-right: 8px;
-  color:#2ecc71;
+  color: #2ecc71; /* Green color */
 }
 
+/* Styling for reply button */
 .replyButton {
   background-color: #232323;
   color: #fff;
@@ -178,10 +184,12 @@
   background-color: #2077b1;
 }
 
+/* Styling for reply container */
 .replyContainer {
   margin-top: 15px;
 }
 
+/* Styling for reply textarea */
 .replyTextarea {
   width: 95%;
   height: 40px;
@@ -193,20 +201,18 @@
 }
 
 .replyTextarea:focus {
-  border-color: #2ecc71;
+  border-color: #2ecc71; /* Green color */
 }
 
+/* Styling for replies */
 .replies {
   margin-top: 15px;
   margin-left: 20px;
 }
 
+/* Styling for each reply */
 .reply {
   padding: 8px;
   margin-top: 5px;
   transition: background-color 0.3s ease;
-}
-
-.replyButton:hover {
-  background-color: #2077b1;
 }

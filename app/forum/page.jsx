@@ -1,11 +1,12 @@
 /* Tevel's Code */
 
-'use client';
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import styles from './page.module.css'; // Import the CSS module
 import Image from 'next/image';
 
+// Define ForumPage component
 const ForumPage = () => {
   // State variables to manage comments and replies
   const [comment, setComment] = useState('');
@@ -59,25 +60,13 @@ const ForumPage = () => {
     }
   };
 
-  // Event handler for liking a comment or reply
-  const handleLike = (commentIndex, replyIndex) => {
+  // Event handler for liking or disliking a comment or reply
+  const handleReaction = (commentIndex, replyIndex, reactionType) => {
     const updatedComments = [...comments];
     if (replyIndex !== undefined) {
-      updatedComments[commentIndex].replies[replyIndex].likes += 1;
+      updatedComments[commentIndex].replies[replyIndex][reactionType] += 1;
     } else {
-      updatedComments[commentIndex].likes += 1;
-    }
-    setComments(updatedComments);
-    localStorage.setItem('comments', JSON.stringify(updatedComments));
-  };
-
-  // Event handler for disliking a comment or reply
-  const handleDislike = (commentIndex, replyIndex) => {
-    const updatedComments = [...comments];
-    if (replyIndex !== undefined) {
-      updatedComments[commentIndex].replies[replyIndex].dislikes += 1;
-    } else {
-      updatedComments[commentIndex].dislikes += 1;
+      updatedComments[commentIndex][reactionType] += 1;
     }
     setComments(updatedComments);
     localStorage.setItem('comments', JSON.stringify(updatedComments));
@@ -93,7 +82,7 @@ const ForumPage = () => {
     <div className={styles.websiteContainer}>
       <div className={styles.forumPage}>
         <h1>Flappy's Forum!</h1>
-  
+
         {/* Floating bird */}
         <div className={`${styles.bird} ${styles.birdfloating}`}>
           <Image
@@ -103,7 +92,8 @@ const ForumPage = () => {
             height={100}
           />
         </div>
-  
+
+        {/* Comment input and buttons */}
         <div className={styles.commentContainer}>
           <textarea
             className={styles.textareaContainer}
@@ -118,7 +108,8 @@ const ForumPage = () => {
             Clear Comments
           </button>
         </div>
-  
+
+        {/* Display comments and replies */}
         <div className={styles.comments}>
           {comments.map((comment, index) => (
             <div key={index} className={styles.comment}>
@@ -127,11 +118,11 @@ const ForumPage = () => {
                 <div className={styles.commentText}>{comment.text}</div>
               </div>
               <div className={styles.likeDislikeButtons}>
-                <button className={`${styles.likeButton} ${styles.actionButton}`} onClick={() => handleLike(index)}>
+                <button className={`${styles.likeButton} ${styles.actionButton}`} onClick={() => handleReaction(index, undefined, 'likes')}>
                   Like
                 </button>
                 <span>{comment.likes}</span>
-                <button className={`${styles.dislikeButton} ${styles.actionButton}`} onClick={() => handleDislike(index)}>
+                <button className={`${styles.dislikeButton} ${styles.actionButton}`} onClick={() => handleReaction(index, undefined, 'dislikes')}>
                   Dislike
                 </button>
                 <span>{comment.dislikes}</span>
@@ -161,11 +152,11 @@ const ForumPage = () => {
                         <div className={styles.commentText}>{reply.text}</div>
                       </div>
                       <div className={styles.likeDislikeButtons}>
-                        <button className={`${styles.likeButton} ${styles.actionButton}`} onClick={() => handleLike(index, replyIndex)}>
+                        <button className={`${styles.likeButton} ${styles.actionButton}`} onClick={() => handleReaction(index, replyIndex, 'likes')}>
                           Like
                         </button>
                         <span>{reply.likes}</span>
-                        <button className={`${styles.dislikeButton} ${styles.actionButton}`} onClick={() => handleDislike(index, replyIndex)}>
+                        <button className={`${styles.dislikeButton} ${styles.actionButton}`} onClick={() => handleReaction(index, replyIndex, 'dislikes')}>
                           Dislike
                         </button>
                         <span>{reply.dislikes}</span>

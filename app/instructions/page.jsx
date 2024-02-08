@@ -1,40 +1,39 @@
 // Tevel's Code
 
-'use client';
+"use client";
 
+// Import necessary modules and components
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Game from '../gameinstructions/game';
 import styles from './page.module.css'; // Import the CSS module
-import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
 
-// Effect Animation Code
+// Component for animating text
 const AnimatedText = ({ text }) => {
   const [visibleText, setVisibleText] = useState('');
 
   useEffect(() => {
-    // Variable to keep track of the current index in the text
-    let index = 1;
+    let index = 1; // Variable to keep track of the current index in the text
     const interval = setInterval(() => {
-      // Check if we have reached the end of the text
       if (index > text.length) {
-        clearInterval(interval);
+        clearInterval(interval); // Check if we have reached the end of the text
       } else {
-        // Update the 'visibleText' state by taking a substring of 'text' up to the current index
-        setVisibleText(text.substring(0, index));
+        setVisibleText(text.substring(0, index)); // Update the 'visibleText' state with a substring of 'text' up to the current index
         index += 1;
       }
-    }, 100);
+    }, 100); // Text animation speed (milliseconds)
   }, [text]);
 
   return <span>{visibleText}</span>;
 };
 
-
+// Component for rendering instructions
 export default function Instructions() {
   return (
     <div className={styles.skyContainer}>
       {/* Introduction */}
       <div className={styles.instructions}>
+        {/* Flappy Bird Logo */}
         <Image
           src="/bird.png"
           alt="Bird Logo"
@@ -42,6 +41,7 @@ export default function Instructions() {
           height={100}
           className={`${styles.bird} ${styles.birdfloating}`}
         />
+        {/* Title */}
         <p className={styles.instructionsTitle}>
           <Image
             src="/flappy.svg"
@@ -50,24 +50,28 @@ export default function Instructions() {
             height={250}
           />
         </p>
+        {/* Instructions */}
         <div className={styles.instructionsTextContainer}>
           <p className={styles.instructionsTextLine}>
             <strong>
-              <AnimatedText text="Learn to soar through the skies, conquer the pipes
-              and become the best flapper!"/>
+              <AnimatedText text="Learn to soar through the skies, conquer the pipes and become the best flapper!" />
             </strong>
           </p>
         </div>
       </div>
-    
+
+      {/* Game Preview */}
       <div className={styles.gamePreview1}>
         <Game />
       </div>
+      {/* Game Instructions */}
       <div className={styles.gamePreview2}>
         <p className={styles.clickContainer}>
+          {/* Game Control Explanation */}
           Hitting the <span className={styles.click}>click</span> imparts a
           slight upward lift. <br />
           <br />
+          {/* Gameplay Tips */}
           Careful timing is crucial to navigate through gaps and varying pipe
           heights. <br /> <br /> Travelling greater distances scores you points!<br /> <br /> Be cautious of
           obstacles — colliding with pipes ends the game, and watch for sudden

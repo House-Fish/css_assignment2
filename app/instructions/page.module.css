@@ -1,91 +1,95 @@
 /* Tevel's Code */
+
+/* Define font face for custom font */
 @font-face {
   font-family: "Atlantis International";
   src: url("/fonts/AtlantisInternational-jen0.ttf") format('truetype');
 }
 
+/* Styling for the sky container */
 .skyContainer {
-  /* Background of the Website */
-  background: url('/background2.png') center center no-repeat;
-  background-size: cover;
-  margin-bottom: 20px;
-  padding-bottom: 130px;
+  background: url('/background2.png') center center no-repeat; /* Background image */
+  background-size: cover; /* Cover the entire container */
+  margin-bottom: 20px; /* Bottom margin */
+  padding-bottom: 130px; /* Bottom padding */
 }
 
+/* Styling for the bird */
 .bird {
-  /* Initial position and rotation of the bird */
-  transform: translateY(50px) translateX(80px) rotate(14deg);
+  transform: translateY(50px) translateX(80px) rotate(14deg); /* Initial position and rotation of the bird */
 } 
 
+/* Animation for bird floating */
 .birdfloating {
-   /* Properties for the floating animation */
-  animation: floatAnimation 10s infinite linear;
+  animation: floatAnimation 10s infinite linear; /* Properties for the floating animation */
 }
 
+/* Keyframes for floating animation */
 @keyframes floatAnimation {
   0% {
-    /* Initial position and rotation of the bird at the start of the animation */
-    transform: translateY(0) translateX(0) rotate(-14deg);
+    transform: translateY(0) translateX(0) rotate(-14deg); /* Initial position and rotation of the bird at the start of the animation */
   }
   25% {
-    /* Midway through the animation: bird moves up, right, and tilts */
-    transform: translateY(-20px) translateX(50px) rotate(-20deg);
+    transform: translateY(-20px) translateX(50px) rotate(-20deg); /* Midway through the animation: bird moves up, right, and tilts */
   }
   50% {
-    /* Halfway through the animation: bird moves right and tilts further */
-    transform: translateY(0) translateX(100px) rotate(140deg);
+    transform: translateY(0) translateX(100px) rotate(140deg); /* Halfway through the animation: bird moves right and tilts further */
   }
   75% {
-    /* Three-quarters through the animation: bird moves down, right, and tilts */
-    transform: translateY(20px) translateX(50px) rotate(-10deg);
+    transform: translateY(20px) translateX(50px) rotate(-10deg); /* Three-quarters through the animation: bird moves down, right, and tilts */
   }
   100% {
-    /* At the end of the animation: bird returns to its initial position and rotation */
-    transform: translateY(0) translateX(0) rotate(140deg);
+    transform: translateY(0) translateX(0) rotate(140deg); /* At the end of the animation: bird returns to its initial position and rotation */
   }
 }
 
+/* Styling for instructions container */
 .instructions {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  margin: 0 auto; 
+  margin: 0 auto; /* Center the container horizontally */
 }
 
+/* Styling for basic guide in instructions */
 .instructionsBasicGuide {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   font-family: "Atlantis International", sans-serif;
-  color: #ffffff;
+  color: #ffffff; /* White color */
   font-weight: bold;
 }
 
+/* Styling for instructions title */
 .instructionsTitle {
-  margin-bottom: -60px; 
+  margin-bottom: -60px; /* Adjust margin for title */
 }
 
+/* Styling for instructions text */
 .instructionsText {
   font-size: 20px;
   font-weight: bold;
-  color: #ffffff;
-  text-shadow: 1.2px 1.2px #483C32;
+  color: #ffffff; /* White color */
+  text-shadow: 1.2px 1.2px #483C32; /* Text shadow */
   font-family: "Atlantis International", sans-serif;
 }
 
+/* Styling for instructions text container */
 .instructionsTextContainer {
-  opacity: 0;
-  animation: fadeIn 2s forwards;
-  color: #ffffff;
-  text-shadow: 1.2px 1.2px #483C32;
+  opacity: 0; /* Initial opacity */
+  animation: fadeIn 2s forwards; /* Fade-in animation */
+  color: #ffffff; /* White color */
+  text-shadow: 1.2px 1.2px #483C32; /* Text shadow */
   font-size: 1.2em;
-  padding-bottom: 100px;
+  padding-bottom: 100px; /* Bottom padding */
   font-family: "Atlantis International", sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 2px; /* Letter spacing */
 }
 
+/* Keyframes for fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -95,55 +99,58 @@
   }
 }
 
+/* Styling for instructions text line */
 .instructionsTextLine {
   margin: 10px 0;
   font-family: "Atlantis International", sans-serif;
   font-size: 30px;
 }
 
+/* Styling for click text */
 .click {
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 5px;
-  background-color: #ff7700;
+  background-color: #ff7700; /* Orange color */
   font-size: 1em;
-  color: #ffffff;
+  color: #ffffff; /* White color */
   font-family: "Atlantis International";
 }
 
+/* Styling for click container */
 .clickContainer {
-  /* Controls Text */
   font-size: 1.2em;
-  color:#ffffff;
-  max-width: 1500px;
-  letter-spacing: 1.5px;
-  text-shadow: 1.1px 1.1px #483C32;
+  color:#ffffff; /* White color */
+  max-width: 1500px; /* Maximum width */
+  letter-spacing: 1.5px; /* Letter spacing */
+  text-shadow: 1.1px 1.1px #483C32; /* Text shadow */
   font-family: "Atlantis International";
-  padding-top: 20px;
-  padding-left: 20px;
+  padding-top: 20px; /* Top padding */
+  padding-left: 20px; /* Left padding */
 }
 
+/* Styling for game preview 1 */
 .gamePreview1 {
-  /* Background of the Game */
-  width: 80%;
-  height: 800px;
-  background-color: #F9DC35;
-  margin: 17px auto; 
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  opacity: 0.8;
+  width: 80%; /* Set width */
+  height: 800px; /* Set height */
+  background-color: #F9DC35; /* Yellow color */
+  margin: 17px auto; /* Center horizontally */
+  border-top-left-radius: 15px; /* Rounded corners */
+  border-top-right-radius: 15px; /* Rounded corners */
+  opacity: 0.8; /* Opacity */
 }
 
-.gamePreview2{
-  /* Background of the Game Instructions */
-  width: 80%;
-  height: 100%;
-  padding-bottom: 5px;
-  background-color: #FE9800;
-  margin: -22px auto; 
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+/* Styling for game preview 2 */
+.gamePreview2 {
+  width: 80%; /* Set width */
+  height: 100%; /* Set height */
+  padding-bottom: 5px; /* Bottom padding */
+  background-color: #FE9800; /* Orange color */
+  margin: -22px auto; /* Center horizontally */
+  border-bottom-left-radius: 15px; /* Rounded corners */
+  border-bottom-right-radius: 15px; /* Rounded corners */
 }
+
 
 
 

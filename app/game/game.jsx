@@ -1,4 +1,4 @@
-// Liu JieXin & Jia Yu (Images, Music & Controls)
+// Liu JieXin (Game Mechanics & Loop) & Jia Yu (Images, Music & Controls)
 
 "use client";
 import './game.css';
@@ -17,7 +17,7 @@ var masterVolume = 0.5;
 var musicVolume = 0.5;
 var effectsVolume = 0.5;
 
-/* Function to show game over screen. Asks the user if want to play again. */
+// Function to show game over screen. Asks the user if want to play again.
 function DeathPage({restartGame, score}) {
 
   return (
@@ -28,12 +28,15 @@ function DeathPage({restartGame, score}) {
         <p>Your score is {score}.</p>
         Wanna
       </div>
+      {/* To set gameRun to true again, 
+          allowing Game function to be rendered instead of DeathPage funtion 
+          (See App function for implementation) */}
       <button className="againBtn" onClick={restartGame}>Play Again?</button>
     </div>
   );
 }
 
-/* Detection function to check if the bird has collided with the up obstacle */
+// Detection function to check if the bird has collided with the up obstacle
 function UpColliding(birdPos, upObstaclePos) {
   // Needs to return false if alive, true if dead
   return (
@@ -43,7 +46,7 @@ function UpColliding(birdPos, upObstaclePos) {
   );
 }
 
-/* Detection function to check if bird has collided with the down obstacle. */
+// Detection function to check if bird has collided with the down obstacle.
 function DownColliding(birdPos, downObstaclePos) {
   // Needs to return false if alive, true if dead
   return (
@@ -54,12 +57,14 @@ function DownColliding(birdPos, downObstaclePos) {
 }
 
 /* Game function that moves the obstacles and bird
-    It also checks if bird has touched the floor and obstacles */
+  It also checks if bird has touched the floor and obstacles (game over) */
 function Game({over, score, setScore}) {
+  // Setting default bird and obstacle position
   const [topDist, setTopDist] = useState(320);
   const [leftDist, setLeftDist] = useState(540);
   const [gameStart, setGameStart] = useState(false);
 
+  // Setting default obstacles height
   const [topHt, setTopHt] = useState(250);
   const [bottomHt, setBottomHt] = useState(250);
 
@@ -127,19 +132,22 @@ function Game({over, score, setScore}) {
   }, []);
 
   /* To detect if the bird has collided with the floor or obstacles whenever the bird or obstacles move
-      If detected, setGameStart becomes false and game will be stopped in the App function */
+      If collision detected, setGameStart becomes false and game will be stopped in the App function */
   useEffect(() => {
     const collisionInterval = setInterval(() => {
+      // If game started, select the objects as variables to get their positions
       if (gameStart == true) {
       const birdPos = document.querySelector(".bird").getBoundingClientRect();
       const upObstaclePos = document.querySelector(".upObstacle").getBoundingClientRect();
       const downObstaclePos = document.querySelector(".downObstacle").getBoundingClientRect();
 
+      // 3 conditions that can cause game over
       if ((topDist > 613) || (DownColliding(birdPos, downObstaclePos)) || (UpColliding(birdPos, upObstaclePos))) {
         const deathSound = new Audio("/death.mp3");
         deathSound.volume = effectsVolume * masterVolume;
         deathSound.play();
         clearInterval(collisionInterval)
+        // Stop game and render death screen (See App function for implementation)
         setGameStart(false);
         over();
       }
@@ -154,19 +162,24 @@ function Game({over, score, setScore}) {
   useEffect(() => {
     const moveInterval = setInterval(() => {
       if (gameStart == true) {
+        // Score Increase
         setScore((prevScore) => prevScore + 1);
+        // Bird dropping
         setTopDist((prevTopDist) => prevTopDist + 12);
+        // Obstacle moving right
         setLeftDist((prevLeftDist) => prevLeftDist - 15);
+        // If obstacles goes out of screen, reset obstacle location
         if (leftDist < -160) {
           setLeftDist(550);
-          var topRandHt = randomNumberInRange(180,330);
-          var bottomRandHt = randomNumberInRange(180,330);
-          var diff = 660 - (topRandHt + bottomRandHt);
+          // Randomly generate obstacle height from 205 - 330
+          var topRandHt = randomNumberInRange(210,350);
+          var bottomRandHt = randomNumberInRange(210,350);
           /* If the obstacles' heights are too tall for the bird to get through,
-              minus the height of obstacle */
-          if (diff < 140 )
+            decrease the height of obstacle */
+          const diff = 660 - (topRandHt + bottomRandHt);
+          if (diff < 132)
           {
-            var change = 140 - diff;
+            const change = 132 - diff;
             if (topRandHt > bottomRandHt)
             {
               topRandHt -= change;
@@ -176,6 +189,7 @@ function Game({over, score, setScore}) {
               bottomRandHt -= change;
             }
           }
+          // Set new obstacle heights
           setBottomHt(topRandHt);
           setTopHt(bottomRandHt);
         }
@@ -195,6 +209,7 @@ function Game({over, score, setScore}) {
     }
   };
   
+  // To start game from initial paused state
   const handleStart = () => {
     setGameStart(true);
     document.querySelector(".background").focus();
@@ -206,6 +221,7 @@ function Game({over, score, setScore}) {
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
       <div className="score">{score}</div>
+      {/* Render of game objects */}
       <img className="upObstacle" src={upObstacleImg} style={{marginLeft: leftDist, height: topHt}} />
       <img className="bird" src={birdImg} style={{top: topDist}} />
       <img className="downObstacle" src={downObstacleImg} style={{marginLeft: leftDist, height: bottomHt}} />
@@ -229,7 +245,7 @@ function App() {
     setScore(0);
   };
 
-  /* If gameRun is true game function renders, else death page function renders. */
+  // If gameRun is true game function renders, else death page function renders
   return (
     <div className="websiteContainer">
       <div className="gameWindow">

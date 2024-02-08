@@ -1,5 +1,6 @@
-/* doubled class to increase specificity score */
+/* Brayden's Code */
 
+/* doubled class to increase specificity score */
 .myHeroSection.myHeroSection {
   position: relative;
   width: 100%;
@@ -97,7 +98,7 @@
   font-family: "Atlantis International", sans-serif;
   color: black;
   width: 100%;
-  font-size: 2.4vh;
+  font-size: 3vh;
   height: auto;
   transition: background-color, font-size 0.4s;
   filter: opacity(100%);
