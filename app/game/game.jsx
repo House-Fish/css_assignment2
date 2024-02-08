@@ -111,7 +111,7 @@ function Game({over, score, setScore}) {
 
     const storedJumpKey = localStorage.getItem("Jump");
     if (storedJumpKey !== null) {
-      jumpKey = storedJumpKey;
+      jumpKey = storedJumpKey.replace("Space", " ");
     }
 
     const storedMusicVolume = localStorage.getItem("audioVolumeMusic");
@@ -199,16 +199,25 @@ function Game({over, score, setScore}) {
       return () => clearInterval(moveInterval);
     }, [gameStart, leftDist]);
 
-  // Upon click, bird moves up by 70px
+
+  // Upon click, bird moves up by 70px and play 'flapwings.mp3'
+  const jumpBird = () => {
+    setTopDist((prevTopDist) => prevTopDist - 70);
+    const flap = new Audio("flapwings.mp3");
+    flap.volume = effectsVolume * masterVolume;
+    flap.play();
+  };
+
   const handleKeyDown = (e) => {
     if (gameStart && e.key === jumpKey) {
-      setTopDist((prevTopDist) => prevTopDist - 70);
-      const flap = new Audio("flapwings.mp3");
-      flap.volume = effectsVolume * masterVolume;
-      flap.play();
+      jumpBird();
     }
   };
-  
+
+  const handleClick = () => {
+    if (gameStart) jumpBird();
+  }
+
   // To start game from initial paused state
   const handleStart = () => {
     setGameStart(true);
@@ -216,7 +225,7 @@ function Game({over, score, setScore}) {
   };
 
   return (
-    <div className="background" onKeyDown={handleKeyDown} tabIndex="0">
+    <div className="background" onClick={handleClick} onKeyDown={handleKeyDown} tabIndex="0">
       { (gameStart == false) && (
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
