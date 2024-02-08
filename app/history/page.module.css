@@ -31,7 +31,8 @@
   font-size: 10vw; /* large font size */
   text-align: center;
   letter-spacing: 1px; /* dramatic effect?? */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  font-family: "Atlantis International", sans-serif;
   text-shadow: 1vw;
 
 }
@@ -45,14 +46,16 @@
   text-align: center; /* Center text */
   text-decoration: none; /* No underline for text */
   display: inline-block; /* Aligns button correctly */
-  font-size: 2vw; /* Font size */
+  font-size: 3vw; /* Font size */
   margin: 4px 2px; /* Margin around the button */
   cursor: pointer; /* Cursor changes to pointer on hover */
   border-radius: 4px; /* Rounded corners */
   transition: background-color 0.3s; /* Smooth transition for hover effect */
   z-index: 10;
   transform: translate(0%, -10vw);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  font-family: "Atlantis International", sans-serif;
+
 }
 
 .button.button:hover {
@@ -66,14 +69,14 @@
   border-radius: 0px;
   border-color: black;
   border-style: solid;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+  font-family: "Atlantis International", sans-serif;
   color: black;
   width: 100%;
-  font-size: 2.4vh;
+  font-size: 3vh;
   height: auto;
   transition: background-color, font-size 0.4s;
   filter: opacity(100%);
-  
   background-repeat: 'no-repeat';
 }
 
@@ -90,10 +93,11 @@
 .contentPage1.contentPage1 {
   border-radius: 0px;
   min-height: 80px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  font-family: "Atlantis International", sans-serif;
   color: black;
   width: 100%;
-  font-size: 2.4vh;
+  font-size: 3vh;
   height: auto;
   transition: background-color, font-size 0.4s;
   filter: opacity(100%);
@@ -117,8 +121,9 @@
 .para.para{
   margin: 0;
   font-weight: normal;
-  font-family: 'Open Sans', 'Opens Sans Fallback', 'Segoe UI', Tahoma, sans-serif;
-  font-size: 1.5rem;
+  /*font-family: 'Open Sans', 'Opens Sans Fallback', 'Segoe UI', Tahoma, sans-serif;*/
+  font-family: "Atlantis International", sans-serif;
+  font-size: 1.8rem;
   line-height: 1.4;
   width: 90%;
   background-color: white;
@@ -128,8 +133,8 @@
 .title.title{
   margin: 0;
   font-weight: bold;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  /*font-family: Merriweather,"Merriweather Fallback",serif; */
+  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+  font-family: "Atlantis International", sans-serif;
   font-size: 3rem;
   line-height: 1.4;
   width: 90%;
