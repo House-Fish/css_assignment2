@@ -13,6 +13,7 @@ const ForumPage = () => {
   const [comments, setComments] = useState([]);
   const [replyText, setReplyText] = useState('');
   const [replyIndex, setReplyIndex] = useState(null);
+  const [parentCommentIndex, setParentCommentIndex] = useState(null); // Track parent comment index for replies
 
   // Load comments from localStorage on component mount
   useEffect(() => {
@@ -42,22 +43,23 @@ const ForumPage = () => {
     }
   };
 
-  // Event handler for initiating a reply to a comment
-  const handleReply = (index) => {
-    setReplyIndex(index);
-  };
-
   // Event handler for adding a reply to a comment
   const handleAddReply = () => {
     if (replyText.trim() !== '' && replyIndex !== null) {
       const updatedComments = [...comments];
-      const replyDepth = updatedComments[replyIndex].replies.length;
-      updatedComments[replyIndex].replies.push({ text: replyText, user: 'You', likes: 0, dislikes: 0 });
+      updatedComments[parentCommentIndex].replies.push({ text: replyText, user: 'You', likes: 0, dislikes: 0, replies: [] });
       setComments(updatedComments);
       localStorage.setItem('comments', JSON.stringify(updatedComments));
       setReplyText('');
       setReplyIndex(null); // Clear the reply index after replying
+      setParentCommentIndex(null); // Clear the parent comment index after replying
     }
+  };
+
+  // Event handler for initiating a reply to a comment
+  const handleReply = (index) => {
+    setReplyIndex(index);
+    setParentCommentIndex(index); // Set the parent comment index for the replied comment
   };
 
   // Event handler for liking or disliking a comment or reply
@@ -76,6 +78,8 @@ const ForumPage = () => {
   const clearLocalStorage = () => {
     localStorage.removeItem('comments');
     setComments([]); // Clear the comments in the state as well
+    setReplyIndex(null); // Clear reply index
+    setParentCommentIndex(null); // Clear parent comment index
   };
 
   return (
@@ -131,7 +135,7 @@ const ForumPage = () => {
                 Reply to comment
               </button>
               {replyIndex === index && (
-                <div className={styles.replyContainer} style={{ marginLeft: `${comment.replies.length * 2}em` }}>
+                <div className={styles.replyContainer}>
                   <textarea
                     className={styles.replyTextarea}
                     placeholder="Write your reply..."
@@ -146,7 +150,7 @@ const ForumPage = () => {
               <div className={styles.replies}>
                 {comment.replies &&
                   comment.replies.map((reply, replyIndex) => (
-                    <div key={replyIndex} className={styles.reply}>
+                    <div key={replyIndex} className={`${styles.reply} ${replyIndex !== 0 ? styles['replied-reply'] : ''}`}>
                       <div className={styles.commentHeader}>
                         <div className={styles.commentUser}>{reply.user}:</div>
                         <div className={styles.commentText}>{reply.text}</div>
@@ -161,6 +165,9 @@ const ForumPage = () => {
                         </button>
                         <span>{reply.dislikes}</span>
                       </div>
+                      <button className={styles.replyButton} onClick={() => handleReply(index)}>
+                        Reply to reply
+                      </button>
                     </div>
                   ))}
               </div>
