@@ -15,6 +15,7 @@ export default function Controls({ name, defaultKey }) {
   }, []);
 
   const handleKeyDown = (event) => {
+    // Replace " " with "Space" as a keyboard input
     const key = event.key.replace(/ /g, "Space");
     setInputValue(key);
     localStorage.setItem(name, key);

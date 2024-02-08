@@ -119,7 +119,7 @@ export default function Customize({ name, defaultImages, width, height}) {
     <div className={styles.item}>
       <span className={styles.span}>{name}</span>
       <select
-        className={styles.select}
+        className={`${styles.select} ${styles.input}`}
         id="imageSelect"
         value={selectedImageUrl}
         onChange={handleOptionChange}
