@@ -125,7 +125,7 @@ function Game({over, score, setScore}) {
     }
 
     const storedMasterVolume = localStorage.getItem("audioVolumeMaster");
-    if (storedEffectsVolume !== null) {
+    if (storedMasterVolume !== null) {
       masterVolume = storedMasterVolume;
     }
 
