@@ -1,4 +1,4 @@
-// Liu JieXin & Jia Yu (Images, Music & Controls)
+// Liu JieXin (Game Mechanics & Loop) & Jia Yu (Images, Music & Controls)
 
 "use client";
 import './game.css';
@@ -254,7 +254,7 @@ function App() {
     setScore(0);
   };
 
-  /* If gameRun is true game function renders, else death page function renders. */
+  // If gameRun is true game function renders, else death page function renders
   return (
     <div className="websiteContainer">
       <div className="gameWindow">
