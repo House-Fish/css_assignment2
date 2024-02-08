@@ -6,13 +6,16 @@ import React, { use } from "react";
 import { useState, useEffect } from 'react';
 import { flipImageUpsideDown } from "../utils/imageUtils";
 
-// default images
+// Default images
 var birdImg = "/sparrow.png";
 var upObstacleImg = "/upBlock.png";
 var downObstacleImg = "/downBlock.png";
 var jumpKey = " "; // Space
 
+// Default volumes
 var masterVolume = 0.5; 
+var musicVolume = 0.5;
+var effectsVolume = 0.5;
 
 /* Function to show game over screen. Asks the user if want to play again. */
 function DeathPage({restartGame, score}) {
@@ -65,16 +68,12 @@ function Game({over, score, setScore}) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  // Play music while the game is running
   useEffect(() => {
     if (gameStart) {
       const bgm = new Audio("/bgm.mp3");
       bgm.loop = true;
-      const storedMusicVolume = localStorage.getItem("audioVolumeMusic") * masterVolume;
-      if (storedMusicVolume !== null) {
-        bgm.volume = storedMusicVolume;
-      } else {
-        bgm.volume = 0.5;
-      }
+      bgm.volume = musicVolume * masterVolume;
       bgm.play();
 
       return () => {
@@ -83,14 +82,13 @@ function Game({over, score, setScore}) {
     }
    }, [gameStart]);
 
+  // Load data stored in localStorage  
   useEffect(() => {
-    // load bird image
     const storedBird = localStorage.getItem("selectedImageBird");
     if (storedBird !== null) {
       birdImg = storedBird;
     }
 
-    // Load obstacles image
     const storedObstacle = localStorage.getItem("selectedImageObstacles");
 
     if (storedObstacle !== null) {
@@ -100,40 +98,33 @@ function Game({over, score, setScore}) {
       });
     }
 
-    // Load background image
     const backgroundImgUrl = localStorage.getItem("selectedImageBackground");
     if (backgroundImgUrl !== null) {
       document.querySelector(".background").style.backgroundImage =
         "url(" + backgroundImgUrl + ")";
     }
-  }, []);
 
-  useEffect(() => {
     const storedJumpKey = localStorage.getItem("Jump");
     if (storedJumpKey !== null) {
-      jumpKey = storedJumpKey === "Space" ? " " : storedJumpKey;
-    } 
+      jumpKey = storedJumpKey;
+    }
 
-    const handleKeyPress = (event) => {
-      if (event.key === jumpKey && gameStart) {
-        setTopDist((prevTopDist) => prevTopDist - 75);
-        const flap = new Audio("flapwings.mp3");
-        const storedEffectsVolume = localStorage.getItem("audioVolumeEffects") * masterVolume;
-        if (storedEffectsVolume !== null) {
-          flap.volume = storedEffectsVolume
-        } else {
-          flap.volume = 0.5;
-        }
-        flap.play();
-      }
-    };
+    const storedMusicVolume = localStorage.getItem("audioVolumeMusic");
+    if (storedMusicVolume !== null) {
+      musicVolume = storedMusicVolume;
+    }
 
-    window.addEventListener("keydown", handleKeyPress);
+    const storedEffectsVolume = localStorage.getItem("audioVolumeEffects");
+    if (storedEffectsVolume !== null) {
+      effectsVolume = storedEffectsVolume;
+    }
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [gameStart]);
+    const storedMasterVolume = localStorage.getItem("audioVolumeMaster");
+    if (storedEffectsVolume !== null) {
+      masterVolume = storedMasterVolume;
+    }
+
+  }, []);
 
   /* To detect if the bird has collided with the floor or obstacles whenever the bird or obstacles move
       If detected, setGameStart becomes false and game will be stopped in the App function */
@@ -146,12 +137,7 @@ function Game({over, score, setScore}) {
 
       if ((topDist > 613) || (DownColliding(birdPos, downObstaclePos)) || (UpColliding(birdPos, upObstaclePos))) {
         const deathSound = new Audio("/death.mp3");
-        const storedEffectsVolume = localStorage.getItem("audioVolumeEffects") * masterVolume;
-        if (storedEffectsVolume !== null) {
-          deathSound.volume = storedEffectsVolume;
-        } else {
-          deathSound.volume = 0.5;
-        }
+        deathSound.volume = effectsVolume * masterVolume;
         deathSound.play();
         clearInterval(collisionInterval)
         setGameStart(false);
@@ -200,24 +186,22 @@ function Game({over, score, setScore}) {
     }, [gameStart, leftDist]);
 
   // Upon click, bird moves up by 70px
-  const handleClick = () => {
-    if (gameStart == true) setTopDist((prevTopDist) => prevTopDist - 70);
-    const flap = new Audio("flapwings.mp3");
-    const storedEffectsVolume = localStorage.getItem("audioVolumeEffects") * masterVolume;
-    if (storedEffectsVolume !== null) {
-      flap.volume = storedEffectsVolume;
-    } else {
-      flap.volume = 0.5;
+  const handleKeyDown = (e) => {
+    if (gameStart && e.key === jumpKey) {
+      setTopDist((prevTopDist) => prevTopDist - 70);
+      const flap = new Audio("flapwings.mp3");
+      flap.volume = effectsVolume * masterVolume;
+      flap.play();
     }
-    flap.play();
   };
   
   const handleStart = () => {
     setGameStart(true);
+    document.querySelector(".background").focus();
   };
 
   return (
-    <div className="background" onClick={handleClick}>
+    <div className="background" onKeyDown={handleKeyDown} tabIndex="0">
       { (gameStart == false) && (
         <button className="startBtn" onClick={handleStart}>Start Game</button>
       )}
@@ -233,15 +217,6 @@ function Game({over, score, setScore}) {
 function App() {
   const [gameRun, setGameRun] = useState(true);
   const [score, setScore] = useState(0);
-
-  useEffect(() => {
-    const storedMasterVolume = localStorage.getItem("audioVolumeMaster");
-    if (storedMasterVolume !== null) {
-      masterVolume = storedMasterVolume
-    } else {
-      masterVolume = 0.5;
-    }
-  })
 
   // Game over
   const handleOver = () => {
