@@ -173,14 +173,14 @@ function Game({over, score, setScore}) {
         setLeftDist((prevLeftDist) => prevLeftDist - 15);
         if (leftDist < -160) {
           setLeftDist(550);
-          var topRandHt = randomNumberInRange(180,330);
-          var bottomRandHt = randomNumberInRange(180,330);
+          var topRandHt = randomNumberInRange(205,330);
+          var bottomRandHt = randomNumberInRange(205,330);
           var diff = 660 - (topRandHt + bottomRandHt);
           /* If the obstacles' heights are too tall for the bird to get through,
               minus the height of obstacle */
-          if (diff < 140 )
+          if (diff < 135)
           {
-            var change = 140 - diff;
+            var change = 135 - diff;
             if (topRandHt > bottomRandHt)
             {
               topRandHt -= change;
